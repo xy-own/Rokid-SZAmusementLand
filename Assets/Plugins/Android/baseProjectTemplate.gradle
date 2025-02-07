@@ -1,8 +1,8 @@
 allprojects {
     buildscript {
         repositories {**ARTIFACTORYREPOSITORY**
+            maven { url 'https://maven.rokid.com/repository/maven-public/' }
             google()
-maven { url 'https://maven.rokid.com/repository/maven-public/' }
             jcenter()
         }
 
@@ -17,9 +17,9 @@ maven { url 'https://maven.rokid.com/repository/maven-public/' }
     }
 
     repositories {**ARTIFACTORYREPOSITORY**
+        maven { url 'https://maven.rokid.com/repository/maven-public/' }
         google()
         jcenter()
-        maven { url 'https://maven.rokid.com/repository/maven-public/' }
         flatDir {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }
