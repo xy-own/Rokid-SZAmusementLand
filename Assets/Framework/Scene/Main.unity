@@ -343,7 +343,7 @@ MonoBehaviour:
   Hide: 1
 --- !u!114 &99879096
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -647,7 +647,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1218775036}
   m_Father: {fileID: 164299413}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1242,6 +1243,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraCandidate: {fileID: 0}
   originCandidate: {fileID: 0}
+--- !u!1 &1218775035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218775036}
+  - component: {fileID: 1218775037}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218775036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218775035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 335553575}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1218775037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218775035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfab1ee6490ef574588f7b00e801902b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!21 &1308178407
 Material:
   serializedVersion: 8
@@ -1806,7 +1851,7 @@ MonoBehaviour:
       MegaLandmark: 
       MegaLandmarkStorage: 
   hasaccessInfo: 1
-  token: 17384ZOtjXk5aDxwNRL4P7Fvb0wh0HkFPm0PhbWV9B1UhHpqt+autfU98MPXSrzQp6Fa9s+70kFZTDSI/wBKwC/KullKcQ
+  token: 1739iOcdYhW0jul7AHg+vD5acw90LhG1WCYL0k2zZcShVctBAQcAPPFQ6QrlKnP+OGGrrTctBA8g9PfxY9csgyIrec7SlA
   tokenLogin: 0
 --- !u!114 &1523445601
 MonoBehaviour:
