@@ -1,7 +1,14 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8042b29ff87dd5506d7aad72bd6d8d7405985f27"
+    },
     "com.easyar.mega": {
-      "version": "file:com.easyar.mega-2.11.1+4228.4f8cb168.tgz",
+      "version": "file:D:/Project/2025Unity/Rokid-SZAmusementLand/Packages/com.easyar.mega-2.11.1+4228.4f8cb168.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -10,7 +17,7 @@
       }
     },
     "com.easyar.sense": {
-      "version": "file:C:/Users/XY/Downloads/EasyARSenseUnityPlugin_4.7.0+4228.4f8cb168/com.easyar.sense-4.7.0+4228.4f8cb168.tgz",
+      "version": "file:D:/Project/2025Unity/Rokid-SZAmusementLand/Packages/com.easyar.sense-4.7.0+4228.4f8cb168.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -18,7 +25,7 @@
       }
     },
     "com.easyar.sense.ext.rokid.uxr": {
-      "version": "file:C:/Users/XY/Downloads/EasyARSenseUnityPlugin_4.7.0+4228.4f8cb168/com.easyar.sense.ext.rokid.uxr-4.7.0+4228.4f8cb168.tgz",
+      "version": "file:D:/Project/2025Unity/Rokid-SZAmusementLand/Packages/com.easyar.sense.ext.rokid.uxr-4.7.0+4228.4f8cb168.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -51,12 +58,6 @@
         "com.unity.inputsystem": "1.7.0"
       },
       "url": "https://npm.rokid.com"
-    },
-    "com.unity.2d.sprite": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {}
     },
     "com.unity.burst": {
       "version": "1.8.4",
@@ -128,7 +129,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.22",
+      "version": "2.0.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -171,15 +172,6 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.recorder": {
-      "version": "3.0.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.timeline": "1.0.0"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
@@ -258,7 +250,7 @@
     },
     "com.unity.timeline": {
       "version": "1.6.5",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.audio": "1.0.0",
@@ -298,8 +290,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.4.0",
-      "depth": 0,
+      "version": "4.3.3",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.vr": "1.0.0",

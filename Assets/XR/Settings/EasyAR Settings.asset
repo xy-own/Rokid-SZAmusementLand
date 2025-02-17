@@ -16,7 +16,7 @@ MonoBehaviour:
   InitializeOnStartup: 1
   Permissions:
     CameraDevice: 1
-    VideoRecording: 0
+    VideoRecording: 1
     Mega: 1
   GizmoConfig:
     ImageTarget:
@@ -36,15 +36,15 @@ MonoBehaviour:
     APISecret: 
     AppID: 
   GlobalMegaBlockLocalizationServiceConfig:
-    ServerAddress: 
-    APIKey: 
-    APISecret: 
-    AppID: 
-  GlobalMegaLandmarkLocalizationServiceConfig:
     ServerAddress: https://clsv3-api.easyar.com
     APIKey: 2157269aa58c525ee9264bc16bed695f
     APISecret: 308943b0855960423552445e0b38decf443602f65062bf9037d3c58fa2bf59aa
     AppID: d7e2c3964bab4f149b9ff70ca0632d21
+  GlobalMegaLandmarkLocalizationServiceConfig:
+    ServerAddress: 
+    APIKey: 
+    APISecret: 
+    AppID: 
   GenerateXMLDoc: 1
   ARCoreSDK: 0
   AREngineSDK: 0
