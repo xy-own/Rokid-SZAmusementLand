@@ -71,3 +71,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /.vsconfig
+/Packages/com.easyar.mega-2.11.1+4228.4f8cb168.tgz
+/Packages/com.easyar.sense-4.7.0+4228.4f8cb168.tgz
+/Packages/com.easyar.sense.ext.rokid.uxr-4.7.0+4228.4f8cb168.tgz

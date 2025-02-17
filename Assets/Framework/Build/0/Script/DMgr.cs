@@ -7,6 +7,7 @@ namespace D_0
     {
         public override void OnEnter(string data)
         {
+
         }
 
         public override void OnExit()
