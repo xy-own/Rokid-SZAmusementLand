@@ -2,44 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace SZ10001
 {
-    public AudioManager(AudioSource source)
+    public class AudioManager : MonoBehaviour
     {
-        mAudioSource = source;
-    }
-    private AudioSource mAudioSource = null;
-     
-    public void AudioPlay(string name, bool loop = false)
-    {
-        AudioClip clip = Resources.Load<AudioClip>($"Audio/{name}");
-        mAudioSource.loop = loop;
-        if (clip == null)
-            return;
-        mAudioSource.clip = clip;
-        mAudioSource.Play();
-    }
-
-    public void AudioPlayOneShot(string name)
-    {
-        AudioClip clip = Resources.Load<AudioClip>($"Audio/{name}");
-        if (clip == null)
-            return;
-        mAudioSource.PlayOneShot(clip);
-    }
-
-    public void AudioStop()
-    {
-        if (mAudioSource.isPlaying)
+        public AudioManager(AudioSource source)
         {
-            mAudioSource.Stop();
-            mAudioSource.clip = null;
+            mAudioSource = source;
         }
-    }
+        private AudioSource mAudioSource = null;
 
-    public void Dispose()
-    {
-        AudioStop();
-        mAudioSource = null;
+        public void AudioPlay(string name, bool loop = false)
+        {
+            AudioClip clip = Resources.Load<AudioClip>($"Audio/{name}");
+            mAudioSource.loop = loop;
+            if (clip == null)
+                return;
+            mAudioSource.clip = clip;
+            mAudioSource.Play();
+        }
+
+        public void AudioPlayOneShot(string name)
+        {
+            AudioClip clip = Resources.Load<AudioClip>($"Audio/{name}");
+            if (clip == null)
+                return;
+            mAudioSource.PlayOneShot(clip);
+        }
+
+        public void AudioStop()
+        {
+            if (mAudioSource.isPlaying)
+            {
+                mAudioSource.Stop();
+                mAudioSource.clip = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            AudioStop();
+            mAudioSource = null;
+        }
     }
 }

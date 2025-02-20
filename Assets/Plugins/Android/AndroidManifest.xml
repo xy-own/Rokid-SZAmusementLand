@@ -5,22 +5,22 @@
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
-    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
-    <uses-feature android:name="android.hardware.usb.host"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+<uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true"/>
+<uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
+<uses-feature android:name="android.hardware.usb.host"/>
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application>
         <activity android:name="com.rokid.uxrunityplugin.UXRActivity"
-                  android:theme="@style/UnityThemeSelector">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
-        </activity>
+          android:theme="@style/UnityThemeSelector">
+     <intent-filter>
+     	<action android:name="android.intent.action.MAIN" />
+     	<category android:name="android.intent.category.LAUNCHER" />
+     </intent-filter>
+     <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+</activity>
     </application>
 </manifest>

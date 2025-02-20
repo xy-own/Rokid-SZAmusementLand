@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 **APPLY_PLUGINS**
 
 dependencies {
-    //核心依赖
-    implementation 'com.rokid.uxrplugin:rkuxrplugin:2.5.3'
-    //语音识别依赖
-    implementation("com.rokid.axr:glassvoice-phone:1.4.2")
+//核心依赖
+implementation 'com.rokid.uxrplugin:rkuxrplugin:2.4.8' 
+//语音识别依赖
+implementation("com.rokid.axr:glassvoice-phone:1.4.2")
     implementation 'com.jakewharton:process-phoenix:3.0.0'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

@@ -17,7 +17,7 @@ allprojects {
     }
 
     repositories {**ARTIFACTORYREPOSITORY**
-        maven { url 'https://maven.rokid.com/repository/maven-public/' }
+       maven { url 'https://maven.rokid.com/repository/maven-public/' }
         google()
         jcenter()
         flatDir {

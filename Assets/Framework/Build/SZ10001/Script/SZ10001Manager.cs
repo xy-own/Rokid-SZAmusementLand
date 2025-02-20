@@ -11,7 +11,7 @@ namespace SZ10001
         private GameObject m_NPCMgr;
         private GameObject m_Audio;
         private AudioManager m_AudioManager;
-        private GameObject m_EnterTrigger;
+        private GameObject m_Enter;
         private GameObject m_Tietle;
         // Start is called before the first frame update
         void Start()
@@ -31,9 +31,10 @@ namespace SZ10001
             m_NPCMgr = transform.Find("NPC").gameObject;
             m_Audio = transform.Find("Audio").gameObject;
             m_AudioManager = new AudioManager(m_Audio.GetComponent<AudioSource>());
-            m_EnterTrigger = transform.Find("Trigger/Enter").gameObject;
-            m_EnterTrigger.AddComponent<TriEvent>().enterAction += EnterEvent;
+            m_Enter = transform.Find("Trigger/Enter").gameObject;
+            m_Enter.AddComponent<TriEvent>().enterAction += EnterEvent;
             m_Tietle = transform.Find("Tietle").gameObject;
+            m_Tietle.transform.SetParent(Camera.main.transform);
         }
 
         private void EnterEvent()
@@ -43,6 +44,7 @@ namespace SZ10001
 
         IEnumerator StartAni()
         {
+            m_Tietle.SetActive(false);
             m_AudioManager.AudioPlay("00-0");
             yield return new WaitForSeconds(18f);
             m_UIMgr.SetActive(true);

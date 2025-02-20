@@ -5,11 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Framework/Framework/Core/Scene/YZJ.unity
     guid: a59d5f070351c2e45b7e9cbb1ca7f67d
+  - enabled: 1
+    path: Assets/Framework/Framework/Core/Scene/Main.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     EasyAR.Mega.Studio.Settings: {fileID: 11400000, guid: 97d82793c11358c4a969eb9c04bbe262, type: 2}
     EasyAR.Settings: {fileID: 11400000, guid: d9fdc373885697242ab2f6d12bec5195, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 25cc3ddc9dbab5a44b09c98b9fb3758c, type: 2}
     rokid.xr.package.setting: {fileID: 11400000, guid: c3ea909f1256d814c85be026e5df584d, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 8d1dbbe0092f8804c866889016d521c7, type: 2}
