@@ -1,10 +1,14 @@
 /*
-* 文件名：RaoudMrg.cs
+* 文件名：RoadMrg.cs
 * 作者：依旧
 * Unity版本：2021.3.26f1
 * 创建日期：2025/02/14 15:50:53
-* 版权：© 2025 DefaultCompany
-* All rights reserved.
+* 描述：路径管理器，用于控制路径点的显示和特效
+* 功能：
+* 1. 动态显示/隐藏路径点
+* 2. 跟踪玩家位置更新最近路径点
+* 3. 管理路径起始和结束特效
+* 4. 优化性能的动态搜索范围
 */
 
 using System.Collections;
@@ -14,21 +18,44 @@ using UnityEngine;
 namespace HQG
 {
     /// <summary>
-    /// 类：RaoudMrg
-    /// 描述：此类的功能和用途...
+    /// 路径管理器
+    /// 负责管理路径点的显示、隐藏以及相关特效
     /// </summary>
     public class RoadMrg : MonoBehaviour
     {
+        [Header("基础设置")]
+        [Tooltip("路径点列表")]
         public List<Transform> targetPoints = new List<Transform>();
-        public Transform player; // 玩家Transform引用
+        [Tooltip("玩家Transform引用")]
+        public Transform player;
         private int currentIndex = 0; // 当前最近点的索引
-        public int visibleRange = 5; // 可见范围（前后各多少个点可见）
 
-        // 添加特效引用
-        public GameObject startEffectPrefab; // 起始特效预制体
-        public GameObject endEffectPrefab;   // 结束特效预制体
-        private GameObject startEffect;       // 起始特效实例
-        private GameObject endEffect;         // 结束特效实例
+        [Header("可见范围设置")]
+        [Tooltip("前方可见路径点数量")]
+        public int forwardVisibleRange = 5;  // 前方显示的路径点数量
+        [Tooltip("后方可见路径点数量")]
+        public int backwardVisibleRange = 3; // 后方显示的路径点数量
+
+        [Header("特效设置")]
+        [Tooltip("起始点特效预制体")]
+        public GameObject startEffectPrefab;  // 起始特效预制体
+        [Tooltip("结束点特效预制体")]
+        public GameObject endEffectPrefab;    // 结束特效预制体
+        private GameObject startEffect;        // 起始特效实例
+        private GameObject endEffect;          // 结束特效实例
+
+        [Header("性能优化参数")]
+        [Tooltip("更新检测的最小间隔时间(秒)")]
+        public float updateInterval = 0.1f;    // 更新间隔时间
+        [Tooltip("动态搜索范围")]
+        public int searchRange = 10;           // 搜索范围大小
+        [Tooltip("触发重新搜索的距离阈值")]
+        public float researchThreshold = 5f;   // 重新搜索的距离阈值
+
+        // 性能优化相关的私有变量
+        private float lastUpdateTime;          // 上次更新时间
+        private Vector3 lastPlayerPos;         // 上次玩家位置
+        private float sqrResearchThreshold;    // 距离阈值的平方
 
         void Awake()
         {
@@ -41,31 +68,75 @@ namespace HQG
 
         void Start()
         {
+            if (player == null || targetPoints.Count == 0) return;
+
+            // 先找到最近的点作为起始点
+            FindInitialNearestPoint();
+
             // 初始化所有点为不可见
             SetAllPointsInvisible();
-            
+
             // 初始化特效
+            InitializeEffects();
+
+            lastPlayerPos = player.position;
+            sqrResearchThreshold = researchThreshold * researchThreshold;
+            
+            // 立即更新可见点
+            UpdateVisiblePoints();
+        }
+
+        /// <summary>
+        /// 查找初始最近点
+        /// </summary>
+        private void FindInitialNearestPoint()
+        {
+            float minSqrDistance = float.MaxValue;
+            Vector3 playerPos = player.position;
+
+            // 遍历所有点找到最近的
+            for (int i = 0; i < targetPoints.Count; i++)
+            {
+                if (targetPoints[i] == null) continue;
+
+                float sqrDistance = (playerPos - targetPoints[i].position).sqrMagnitude;
+                if (sqrDistance < minSqrDistance)
+                {
+                    minSqrDistance = sqrDistance;
+                    currentIndex = i;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 初始化特效
+        /// </summary>
+        private void InitializeEffects()
+        {
             if (startEffectPrefab != null)
             {
                 startEffect = Instantiate(startEffectPrefab);
                 startEffect.SetActive(false);
-                // 初始时可以先不设置父对象，等第一次 Update 时会自动设置
             }
-            
+
             if (endEffectPrefab != null)
             {
                 endEffect = Instantiate(endEffectPrefab);
                 endEffect.SetActive(false);
-                // 初始时可以先不设置父对象，等第一次 Update 时会自动设置
             }
         }
 
         void Update()
         {
-            if (player != null && targetPoints.Count > 0)
+            if (player == null || targetPoints.Count == 0) return;
+
+            // 检查是否需要更新
+            if (ShouldUpdateSearch())
             {
                 UpdateNearestPointIndex();
                 UpdateVisiblePoints();
+                lastUpdateTime = Time.time;
+                lastPlayerPos = player.position;
             }
         }
 
@@ -79,37 +150,51 @@ namespace HQG
             }
         }
 
-        // 更新最近点索引
+        /// <summary>
+        /// 更新最近点索引
+        /// 使用动态搜索范围优化性能
+        /// </summary>
         private void UpdateNearestPointIndex()
         {
-            float minDistance = float.MaxValue;
+            float minSqrDistance = float.MaxValue;
             int newIndex = currentIndex;
 
-            // 搜索范围限制，避免每次都遍历整个列表
-            int searchStart = Mathf.Max(0, currentIndex - 10);
-            int searchEnd = Mathf.Min(targetPoints.Count, currentIndex + 10);
+            // 动态调整搜索范围
+            int searchStart = Mathf.Max(0, currentIndex - searchRange);
+            int searchEnd = Mathf.Min(targetPoints.Count, currentIndex + searchRange);
 
+            // 使用距离平方进行比较
+            Vector3 playerPos = player.position;
             for (int i = searchStart; i < searchEnd; i++)
             {
                 if (targetPoints[i] == null) continue;
 
-                float distance = Vector3.Distance(player.position, targetPoints[i].position);
-                if (distance < minDistance)
+                float sqrDistance = (playerPos - targetPoints[i].position).sqrMagnitude;
+                if (sqrDistance < minSqrDistance)
                 {
-                    minDistance = distance;
+                    minSqrDistance = sqrDistance;
                     newIndex = i;
                 }
             }
 
-            currentIndex = newIndex;
+            // 如果找到更近的点，动态调整搜索范围
+            if (newIndex != currentIndex)
+            {
+                currentIndex = newIndex;
+                // 根据距离差异动态调整搜索范围
+                searchRange = Mathf.Max(5, Mathf.Min(20, Mathf.Abs(newIndex - currentIndex) * 2));
+            }
         }
 
-        // 更新可见点和特效
+        /// <summary>
+        /// 更新可见点和特效
+        /// 根据当前索引更新路径点的显示状态
+        /// </summary>
         private void UpdateVisiblePoints()
         {
-            // 计算可见范围
-            int startIndex = Mathf.Max(0, currentIndex - visibleRange);
-            int endIndex = Mathf.Min(targetPoints.Count - 1, currentIndex + visibleRange);
+            // 计算前后可见范围
+            int startIndex = Mathf.Max(0, currentIndex - backwardVisibleRange);
+            int endIndex = Mathf.Min(targetPoints.Count - 1, currentIndex + forwardVisibleRange);
 
             // 设置范围内的点可见，范围外的点不可见
             for (int i = 0; i < targetPoints.Count; i++)
@@ -124,10 +209,15 @@ namespace HQG
             }
 
             // 更新特效位置
-            UpdateEffects(startIndex, endIndex);
+            // UpdateEffects(startIndex, endIndex);
         }
 
-        // 更新特效位置和显示
+        /// <summary>
+        /// 更新特效位置和显示
+        /// 将特效附加到对应的路径点上
+        /// </summary>
+        /// <param name="startIndex">起始路径点索引</param>
+        /// <param name="endIndex">结束路径点索引</param>
         private void UpdateEffects(int startIndex, int endIndex)
         {
             if (targetPoints.Count == 0) return;
@@ -159,10 +249,28 @@ namespace HQG
             }
         }
 
-        void OnDestroy()
+        /// <summary>
+        /// 检查是否需要更新搜索
+        /// 基于时间间隔和距离阈值进行判断
+        /// </summary>
+        /// <returns>是否需要更新</returns>
+        private bool ShouldUpdateSearch()
+        {
+            // 检查更新间隔
+            if (Time.time - lastUpdateTime < updateInterval) return false;
+
+            // 检查移动距离是否超过阈值
+            float sqrDistance = (player.position - lastPlayerPos).sqrMagnitude;
+            return sqrDistance > sqrResearchThreshold;
+        }
+
+        /// <summary>
+        /// 资源清理
+        /// </summary>
+        private void OnDestroy()
         {
             targetPoints.Clear();
-            
+
             // 清理特效
             if (startEffect != null)
                 Destroy(startEffect);

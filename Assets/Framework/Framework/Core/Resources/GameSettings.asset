@@ -14,8 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abLoad: 0
   logMode: 1
-  showFps: 1
+  showFps: 0
   gameFrameRate: 60
-  deviceId: CBE0DFC4A49C453EAA84B49EE7B85F3B
-  app_Id: 78f296b36a7241faac6418df78743d60
-  app_Secret: c562cefbd09d4ee29da585069b64bd51
