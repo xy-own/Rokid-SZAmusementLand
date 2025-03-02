@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Framework/Framework/Core/Scene/YZJ.unity
     guid: a59d5f070351c2e45b7e9cbb1ca7f67d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Framework/Framework/Core/Scene/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Framework/Framework/Core/Scene/Test.unity
+    guid: 86cb1516a10e38a49b3279a8a2a0df5b
   m_configObjects:
     EasyAR.Mega.Studio.Settings: {fileID: 11400000, guid: 97d82793c11358c4a969eb9c04bbe262, type: 2}
     EasyAR.Settings: {fileID: 11400000, guid: d9fdc373885697242ab2f6d12bec5195, type: 2}

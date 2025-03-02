@@ -8,18 +8,20 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: flower02_m
-  m_Shader: {fileID: -6465566751694194690, guid: a2378c96a1042764cb1be4374461b0fe,
+  m_Shader: {fileID: -6465566751694194690, guid: e72c09a7d0f7b7e469e5023461e5e182,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _EMISSON
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
   - _NORMALMAP
   - _SPECGLOSSMAP
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3001
   stringTagMap:
-    RenderType: Opaque
+    RenderType: Transparent
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -30,6 +32,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: f14554d2b673e424385ae5c0466c108b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissTX:
+        m_Texture: {fileID: 2800000, guid: b923e3c3dc2357f42b19bfbd7c8f21d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissTex:
@@ -44,6 +50,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: b923e3c3dc2357f42b19bfbd7c8f21d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MetTX:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,11 +62,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MianTex:
+        m_Texture: {fileID: 2800000, guid: b923e3c3dc2357f42b19bfbd7c8f21d9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal:
         m_Texture: {fileID: 2800000, guid: f14554d2b673e424385ae5c0466c108b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RouTX:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -93,26 +111,30 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
-    - _EMISSON: 0
-    - _EmissStr: 1
+    - _DstBlend: 10
+    - _EMISSON: 1
+    - _EmissStr: 0
     - _EnvironmentReflections: 1
+    - _Float: 0
+    - _Float_1: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Met: 0
     - _Metallic: 0
     - _Mode: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: 1
     - _ReceiveShadows: 1
+    - _Rou: 1
     - _Roughness: 1
     - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
-    - _Surface: 0
+    - _SrcBlend: 5
+    - _Surface: 1
     - _UVSec: 0
     - _UseAoMap: 0
     - _UseColorMap: 1
@@ -120,18 +142,26 @@ Material:
     - _UseMetallicMap: 0
     - _UseNormalMap: 1
     - _UseRoughnessMap: 1
+    - _WinMid: 0.2
+    - _Winstr: 0.1
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
-    - _ZWriteControl: 0
+    - _ZWriteControl: 1
+    - _fanwei: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissTX_color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OP: {r: 1, g: 1, b: 1, a: 0}
+    - _Op: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
+    - _WinSpeed: {r: 6, g: 0, b: 0, a: 0}
+    - _color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7941673455545595506
 MonoBehaviour:

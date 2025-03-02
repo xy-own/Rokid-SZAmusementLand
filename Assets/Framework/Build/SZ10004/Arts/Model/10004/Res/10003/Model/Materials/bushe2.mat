@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: bushe2
-  m_Shader: {fileID: -6465566751694194690, guid: a2378c96a1042764cb1be4374461b0fe,
+  m_Shader: {fileID: -6465566751694194690, guid: c789bce0b17bd2049bb8105f075e50ab,
     type: 3}
   m_ValidKeywords:
   - _EMISSON
@@ -129,6 +129,7 @@ Material:
     - _Color: {r: 0.023451408, g: 0.2924528, b: 0.1049056, a: 1}
     - _EmissColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Op: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}

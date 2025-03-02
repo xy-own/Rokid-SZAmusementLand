@@ -11,7 +11,6 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: c789bce0b17bd2049bb8105f075e50ab,
     type: 3}
   m_ValidKeywords:
-  - _ALPHATEST_ON
   - _EMISSON
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
@@ -80,7 +79,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0.5
+    - _AlphaClip: 0
     - _Ao_1: 1
     - _Blend: 0
     - _BumpScale: 1

@@ -8,13 +8,25 @@ using UnityEngine;
 namespace XY.UXR.Gesture
 {
     /// <summary>
+    /// 手掌姿态事件数据结构
+    /// </summary>
+    public class ScissorsEvent
+    {
+        public bool status;           // 手掌状态
+        public Vector3 position;      // 手掌位置
+        public Vector3 eulerAngles;   // 手掌旋转角度
+        public HandType handType;     // 手的类型（左手/右手）
+    }
+    /// <summary>
     /// 剪刀手势
     /// </summary>
     public class GesScissors : MonoBehaviour
     {
-        public Action<bool> action = null;
+        private ScissorsEvent palmInfo = new ScissorsEvent();
         private GestureBean rightBean = null;
+        private GestureBean leftBean = null;
         private bool m_IsScissors;
+        private Camera mCamera = null;
         private void Awake()
         {
             GesEventInput.OnTrackedSuccess += OnTrackedSuccess;
@@ -47,21 +59,47 @@ namespace XY.UXR.Gesture
         {
             if (handType == HandType.RightHand)
             {
+                rightBean = gestureBean;
                 m_IsScissors = IsScissorsGesture(gestureBean);
+                if (m_IsScissors) 
+                {
+                    MessageDispatcher.SendMessageData(API.OpenAPI.ScissorsEvent);
+                }
+            }
+            if (handType == HandType.LeftHand)
+            {
+                leftBean = gestureBean;
             }
         }
         private void Update()
         {
-            //if (m_IsScissors)
-            //{
-            //    MessageDispatcher.SendMessageData("SmallStarEnter", "P3_earth");
-            //    Main.uiCanvas.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = $"触发剪刀手势！！！！！！！";
-            //}
-            //else
-            //{
-            //    Main.uiCanvas.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = $"没啦！！！！！！！";
-            //}
-            //action?.Invoke(m_IsScissors);
+            palmInfo.status = false;
+            if (rightBean != null)
+            {
+                if (mCamera != null)
+                {
+                    bool bl = IsPointOnScreen(mCamera, rightBean.position);
+                    palmInfo.status = bl;
+                }
+                m_IsScissors = IsScissorsGesture(rightBean);
+                palmInfo.position = rightBean.position;
+                palmInfo.eulerAngles = rightBean.rotation.eulerAngles;
+            }
+            else if (leftBean != null)
+            {
+                if (mCamera != null)
+                {
+                    bool bl = IsPointOnScreen(mCamera, rightBean.position);
+                    palmInfo.status = bl;
+                }
+                m_IsScissors = IsScissorsGesture(leftBean);
+                palmInfo.position = leftBean.position;
+                palmInfo.eulerAngles = leftBean.rotation.eulerAngles;
+            }
+            if (m_IsScissors)
+            {
+                MessageDispatcher.SendMessageData(API.OpenAPI.ScissorsEvent,palmInfo);
+            }
         }
 
         public bool IsScissorsGesture(GestureBean gestureBean)
@@ -76,6 +114,14 @@ namespace XY.UXR.Gesture
             bool isOthersFolded = ringToPalm < 0.05f && pinkyToPalm < 0.05f && thumbToPalm < 0.05f;
 
             return isIndexMiddleExtended && isOthersFolded;
+        }
+
+        private static bool IsPointOnScreen(Camera camera, Vector3 worldPosition)
+        {
+            Vector3 viewportPosition = camera.ScreenToViewportPoint(camera.WorldToScreenPoint(worldPosition));
+            return viewportPosition.x >= 0f && viewportPosition.x <= 1f &&
+                   viewportPosition.y >= 0f && viewportPosition.y <= 1f &&
+                   viewportPosition.z > 0f;
         }
     }
 }

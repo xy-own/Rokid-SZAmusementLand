@@ -47,5 +47,10 @@ namespace XY.UXR.API
         /// 对应的数据结构 XY.UXR.Gesture.ThrowInfo
         /// </summary>
         public const string RKGesThrow = "ThrowCtrl";
+        /// <summary>
+        /// 事件
+        /// 对应的数据结构 XY.UXR.Gesture.PalmEvent
+        /// </summary>
+        public const string ScissorsEvent = "RKScissorsEvent";
     }
 }

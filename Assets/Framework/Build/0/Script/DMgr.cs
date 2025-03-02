@@ -2,6 +2,7 @@ using UnityEngine;
 using D.Base;
 using SZ10001;
 using Unity.VisualScripting;
+using DG.Tweening;
 
 namespace D_0
 {
@@ -23,17 +24,18 @@ namespace D_0
         private void Start()
         {
             m_Audio = transform.Find("MainAudio").GetComponent<AudioSource>();
-            m_AudioManager = m_Audio.AddComponent<AudioManager>();
+            m_AudioManager = new AudioManager(m_Audio);
 
             m_Poi = transform.Find("Poi").gameObject;
 
+            AudioPlay("BGM0");
             MessageDispatcher.AddListener<string>("SetBgm",AudioPlay);
             MessageDispatcher.AddListener("StopBgm", AudioStop);
         }
 
         private void AudioPlay(string Name)
         {
-            m_AudioManager.AudioPlay(Name);
+            m_AudioManager.AudioPlay(Name,true);
         }
 
         private void AudioStop() 
