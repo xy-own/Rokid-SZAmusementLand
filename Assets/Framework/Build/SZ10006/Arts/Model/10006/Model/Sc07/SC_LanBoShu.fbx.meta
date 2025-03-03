@@ -7,13 +7,58 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Crystals_007_m
+    second: {fileID: 2100000, guid: 493199b969a758343a20a4da1554cdf8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Fabric01_m
     second: {fileID: 2100000, guid: f51d84cfa225d0b4ebeb4b1869ca4977, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Material_006_m
+    second: {fileID: 2100000, guid: 1f8a21b87a5581344ba5c6ef91326112, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: box_m
     second: {fileID: 2100000, guid: db25fb5146dd096458a7ae1a4e8beab4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bushe2_m
+    second: {fileID: 2100000, guid: 39f877258e413d446926d3500289e052, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bushh1_m
+    second: {fileID: 2100000, guid: dbd403713494bdc469a4bdc1ec1c1380, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cake02_m
+    second: {fileID: 2100000, guid: ba9d07958002fe74ea6104246fd65031, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cake03_m
+    second: {fileID: 2100000, guid: 711453a53c690f345a8aeaf4bb422e56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cake04_m
+    second: {fileID: 2100000, guid: 1859c7c10869e3b458d4861dcc6af885, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cake05_m
+    second: {fileID: 2100000, guid: e9935d2b1dc9b1b4694c006d23407476, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cake_m
+    second: {fileID: 2100000, guid: 45b7026f8d352cc4b8491bdeee5da0ed, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -37,8 +82,43 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: h02_m
+    second: {fileID: 2100000, guid: 7d36fc742e7392d47a22fe042d1c1ab8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jq01_m
+    second: {fileID: 2100000, guid: d3e94f230a784fb4e80ed7e838631034, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jq02_m
+    second: {fileID: 2100000, guid: 5aaa10eb3bac98b43897c284bb7d59f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: lbs_ground_m
     second: {fileID: 2100000, guid: 9a03caa28b3b7ff418cc06fbfc3c1eba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mkl_r_m
+    second: {fileID: 2100000, guid: 4408406214d4bc749a97d0f573842f39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mkl_y_m
+    second: {fileID: 2100000, guid: e916cc2fec7419f479900b17f1d2bf70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: paopao_m
+    second: {fileID: 2100000, guid: 96ca02a43e2b36a43b9019cff4153808, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ttq_m
+    second: {fileID: 2100000, guid: aab8684ab60080d40b7cd01f148ad072, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

@@ -60,22 +60,27 @@ namespace SZ10005
             m_BoHe.transform.DOScale(Vector3.one, 2f);
             yield return new WaitForSeconds(4f);
             m_BoHeAni.SetTrigger("Speak1");
-            MessageDispatcher.SendMessageData("10005AudioPlay", "03-1");
-            yield return new WaitForSeconds(5.5f);
+            MessageDispatcher.SendMessageData("10005AudioPlay", "03-1-1");
+            yield return new WaitForSeconds(5f);
             m_BoHeAni.SetTrigger("Welcom");
-            yield return new WaitForSeconds(3.8f);
+            yield return new WaitForSeconds(5f);
             m_BoHeAni.SetTrigger("Think");
-            yield return new WaitForSeconds(13f);
+            yield return new WaitForSeconds(4.4f);
+            m_BoHeAni.SetTrigger("Idle");
+            yield return new WaitForSeconds(2f);
+            m_BoHeAni.SetTrigger("Speak1");
             m_BoHeAni.gameObject.GetComponent<ChangeSpeakAni>().enabled = true;
+            MessageDispatcher.SendMessageData("10005AudioPlay", "03-1-2");
+            yield return new WaitForSeconds(9.9f);
             m_Page.SetActive(true);
+            MessageDispatcher.SendMessageData("10005ShowUI");
             m_Page.transform.DOScale(0.7f, 1f);
             m_Page.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
             m_BoHeAni.SetTrigger("Speak2");
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-2");
-            yield return new WaitForSeconds(12.8f);
+            yield return new WaitForSeconds(15f);
             m_BoHeAni.SetTrigger("Idle");
             isCanPlay = true;
-            MessageDispatcher.SendMessageData("10005ShowUI");
         }
 
         public void RecoverGame()
@@ -119,22 +124,27 @@ namespace SZ10005
             m_BoHeAni.SetTrigger("Speak1");
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-3");
             yield return new WaitForSeconds(2f);
+            m_BookAni.SetTrigger("Open");
             m_Page.transform.DOMove(m_Book.transform.position + m_Book.transform.up, 2f).OnComplete(() =>
             {
                 m_Page.SetActive(false);
-                m_BookAni.SetTrigger("Open");
             });
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(15.9f);
+            m_BoHeAni.SetTrigger("Idle");
             m_BookAni.SetTrigger("Fail");
-            M_Green.SetActive(true);
             yield return new WaitForSeconds(2f);
+            M_Green.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            MessageDispatcher.SendMessageData("10005ShowUI1");
+            m_BoHeAni.SetTrigger("Speak1");
+            MessageDispatcher.SendMessageData("10005AudioPlay", "03-5");
+            yield return new WaitForSeconds(8.9f);
+            MessageDispatcher.SendMessageData("10005HideUI1");
             Vector3 dis = Camera.main.transform.position + Camera.main.transform.forward * 2f;
             dis = new Vector3(dis.x, dis.y-3f, dis.z);
             M_Green.transform.DOMove(dis, 1.5f);
-            yield return new WaitForSeconds(4.6f);
-            m_BoHeAni.SetTrigger("Speak1");
-            MessageDispatcher.SendMessageData("10005AudioPlay", "03-5");
-            yield return new WaitForSeconds(12.6f);
+            M_Green.transform.DOScale(0f, 1.5f);
+            yield return new WaitForSeconds(6f);
             m_BoHeAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10005Played", true);
         }

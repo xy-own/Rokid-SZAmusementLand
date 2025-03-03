@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: shuijing03_m
+    second: {fileID: 2100000, guid: 492b0eccd70320c4e8be85802ed93d6c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shuijing03_t_m
+    second: {fileID: 2100000, guid: 655050f1c4e43154b9168c51a2575a0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: shuijing_m
     second: {fileID: 2100000, guid: 492b0eccd70320c4e8be85802ed93d6c, type: 2}
   - first:

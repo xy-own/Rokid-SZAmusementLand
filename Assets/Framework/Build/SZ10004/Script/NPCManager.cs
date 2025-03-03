@@ -95,13 +95,12 @@ namespace SZ10004
             MessageDispatcher.SendMessageData("10004AudioPlay", "04-1-2");
             yield return new WaitForSeconds(6.6f);
             m_JingLing.GetComponent<FollowItem>().enabled = false;
-            m_JingLing.transform.LookAt(new Vector3(0.11f, m_JingLing.transform.position.y, 6.45f));
+            m_JingLing.transform.LookAt(new Vector3(0.11f, m_JingLing.transform.position.y, 6.5f));
             m_JingLingAni.SetTrigger("Idle2");
-            m_JingLing.transform.DOLocalMove(new Vector3(0.11f, 0.53f, 6.45f), 2f).OnComplete(() => {
+            m_JingLing.transform.DOLocalMove(new Vector3(0.62f, 0.53f, 6.35f), 2f).OnComplete(() => {
                 m_JingLing.GetComponent<FollowItem>().enabled = true;
                 m_JingLingAni.SetTrigger("Speak1");
                 MessageDispatcher.SendMessageData("10004AudioPlay", "04-2");
-                isCanPlay = true;
                 m_JingLing.transform.LookAt(Camera.main.transform.position);
                 m_Wood.SetActive(true);
             });
@@ -169,10 +168,9 @@ namespace SZ10004
             MessageDispatcher.SendMessageData("10004AudioPlay", "04-4-2");
             MessageDispatcher.SendMessageData("10004AudioShot", "mofashuijin");
             m_Pink.SetActive(true);
+            yield return new WaitForSeconds(1f);
             MessageDispatcher.SendMessageData("10004ShowUI1");
-            yield return new WaitForSeconds(4f);
-            m_Pink.SetActive(true);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
             //m_JingLingAni.SetTrigger("Idle");
             yield return new WaitForSeconds(3.6f);
             m_JingLingAni.SetTrigger("Idle");
@@ -180,6 +178,7 @@ namespace SZ10004
             Vector3 dis = Camera.main.transform.position + Camera.main.transform.forward * 2f;
             dis = new Vector3(dis.x, dis.y - 3f, dis.z);
             m_Pink.transform.DOMove(dis, 1.5f);
+            m_Pink.transform.DOScale(0f, 1.5f);
             yield return new WaitForSeconds(2f);
             m_JingLingAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10004AudioPlay", "04-5");

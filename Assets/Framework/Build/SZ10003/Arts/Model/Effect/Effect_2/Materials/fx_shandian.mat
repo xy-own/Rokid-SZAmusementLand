@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: fx_shandian
+  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Diffuse:
+        m_Texture: {fileID: 2800000, guid: 412b901f9e38c1a4e8ab5aa1ba7ecd5a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flu_LG_Tex:
+        m_Texture: {fileID: 2800000, guid: 91ee30935f0b9db419d501c364ff9ff6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Flu_NQ_Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 4cb775b955ddb2d46b2988f6313bac31, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: e471c26c4a95d2444ae40dc7fbf1e3db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _diffuse:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _BackIntensity: 0.5
+    - _COLOUR_ON: 0
+    - _ColorFix: 1
+    - _Contrast: 1
+    - _Cull: 0
+    - _Cutoff: 0.5
+    - _DiffAngle: 0
+    - _DiffusePower: 2
+    - _DiffuseScale: 1
+    - _DissolveColorPW: 1
+    - _DissolveStep: 0
+    - _DstBlend: 1
+    - _Flu_LG_Pw: 1
+    - _Flu_L_U: 1.5
+    - _Flu_L_V: 0
+    - _Flu_NQ_pw: 0.4
+    - _Flu_N_U: 1
+    - _Flu_N_V: 1
+    - _FresnelPower: 0
+    - _FresnelScale: 0
+    - _FrontIntensity: 1
+    - _GRADIENT_ON: 0
+    - _GRADIENT_SAME_DIFF_ON: 0
+    - _Gradient: 0
+    - _HEIGHTGRADIENT_ON: 0
+    - _Height: 0
+    - _HeightGradient: 0.5
+    - _Hue: 0
+    - _IS_CUSTOM: 0
+    - _Intensity: 1
+    - _InvFade: 1
+    - _IsGray: 0
+    - _IsInvertGray: 0
+    - _LeftWeights: 0
+    - _LightRate: 1
+    - _MLZTest: 4
+    - _MLZWrite: 1
+    - _MaskAlpha: 1
+    - _MaskAngle: 0
+    - _MaskPower: 0
+    - _MaskScale: 1
+    - _NoisePower: 0
+    - _NoiseXStreng: 0
+    - _NoiseYStreng: 0
+    - _Noise_Speed_U: 0
+    - _Noise_Speed_V: 0
+    - _OpenB: 0
+    - _OpenCustom: 0
+    - _Power: 3.12
+    - _RightWeights: 1
+    - _SaturLeftColorWeights: 0
+    - _SaturRightColorWeights: 1
+    - _Saturation: 1
+    - _SoftSize: 0
+    - _SpdX: 0
+    - _SpdY: 0
+    - _SrcBlend: 5
+    - _StencilComp: 8
+    - _StencilFail: 0
+    - _StencilPass: 0
+    - _StencilReadMask: 255
+    - _StencilRef: 0
+    - _StencilWriteMask: 255
+    - _StencilZFail: 0
+    - _TransparentStrong: 1
+    - _Uspeed: 0
+    - _Vspeed: 0
+    - _fresnel: 3
+    - _intensity: 1
+    m_Colors:
+    - _BChannel: {r: 1, g: 1, b: 0, a: 0}
+    - _BackColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DiffuseColor: {r: 1, g: 0.6456446, b: 0, a: 1}
+    - _DissolveColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Flu_LG_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GChannel: {r: 1, g: 1, b: 0, a: 0}
+    - _LeftColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MaskColor: {r: 0.88235295, g: 1, b: 1, a: 1}
+    - _RightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SaturLeftColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SaturRightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 0.1688758, g: 0, b: 0.3584906, a: 0.5019608}
+    - _color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_BuildTextureStacks: []
