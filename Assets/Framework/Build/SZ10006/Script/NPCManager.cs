@@ -229,12 +229,12 @@ namespace SZ10006
             m_RedBox.transform.DOScale(0f, 1f);
             m_Blue.SetActive(true);
             MessageDispatcher.SendMessageData("10006AudioShot", "mofashuijin");
-            MessageDispatcher.SendMessageData("10006ShowUI1");
+            m_Blue.transform.Find("ef_shuijing_blue/RJ_YongQi").gameObject.SetActive(true);
             yield return new WaitForSeconds(1f);
             m_LanBoShuAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10006AudioPlay", "05-3-2");
             yield return new WaitForSeconds(6.8f);
-            MessageDispatcher.SendMessageData("10006HideUI1");
+            m_Blue.transform.Find("ef_shuijing_blue/RJ_YongQi").gameObject.GetComponent<Animator>().SetTrigger("XiaoShi");
             Vector3 dis = Camera.main.transform.position + Camera.main.transform.forward*0.5f;
             dis = new Vector3(dis.x, dis.y - 0.3f, dis.z);
             //m_Blue.transform.DOScale(0.2f, 1f).OnComplete(() => {

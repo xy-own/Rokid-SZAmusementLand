@@ -9,7 +9,6 @@ namespace SZ10005
     public class SZ10005Manager : MonoBehaviour
     {
         private GameObject m_UIMgr;
-        private UIManager m_UIManager;
         private GameObject m_NPCMgr;
         private NPCManager m_NPCManager;
         private GameObject m_Audio;
@@ -56,6 +55,7 @@ namespace SZ10005
         {
             if (!m_IsEnter)
             {
+                MessageDispatcher.SendMessageData("EnterPoi");
                 m_IsEnter = true;
                 m_NPCManager.StartGame();
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6");
@@ -66,6 +66,7 @@ namespace SZ10005
         {
             if (m_IsPlayed)
             {
+                MessageDispatcher.SendMessageData("ExitPoi");
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
                 m_IsEnter = false;

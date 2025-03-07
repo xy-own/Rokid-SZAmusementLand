@@ -7,6 +7,21 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: LiHe02_m
+    second: {fileID: 2100000, guid: 455a4870099b65342874bf8f329b280a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LiHe03_m
+    second: {fileID: 2100000, guid: 160a7fcda58a81648b67d6e1a012e12c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LiHe04_m
+    second: {fileID: 2100000, guid: 220dec9d62da75440b2b86ee8f71dd85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: LiHe_m
     second: {fileID: 2100000, guid: 145215df1448d854898a542c92b84ca2, type: 2}
   materials:

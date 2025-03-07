@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: "\u676D\u5DDE\u897F\u96E8\u52A8\u753B\u6709\u9650\u516C\u53F8"
-  productName: "\u82CF\u5DDE\u7CD6\u679C\u4E50\u56ED\u6D4B\u8BD5"
+  productName: "\u6700\u540E\u573A\u666F"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -155,7 +155,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.easyar.mega.xrtest
+    Android: com.easyar.mega.xrtest10008
     Standalone: com.DefaultCompany.Rokid-Test
   buildNumber:
     Standalone: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 985345954, guid: c59a51ac0a6824e498bfaef79db61d73, type: 3}
   m_Name: EasyAR Mega Studio Settings
   m_EditorClassIdentifier: 
-  lastUpdateDate: 17743358.765791066
-  lastUpdateDateSense: 17743358.76581077
+  lastUpdateDate: 17743506.110332362
+  lastUpdateDateSense: 17743506.110332638
   CheckUpdate: 0

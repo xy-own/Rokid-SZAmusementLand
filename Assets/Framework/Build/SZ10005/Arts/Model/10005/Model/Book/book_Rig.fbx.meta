@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: book02_emiss_m
+    second: {fileID: 2100000, guid: c2be8d719f2489a4cbcfe79677067746, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: book02_m
     second: {fileID: 2100000, guid: 53b3ee1c4cb8e9a4e9760bfb20835315, type: 2}
   - first:

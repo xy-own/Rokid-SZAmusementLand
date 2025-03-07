@@ -15,6 +15,12 @@ namespace XY.UXR.API
         public const string RKGesPalmEvent = "RKGesPalmEvent";
 
         /// <summary>
+        /// 手掌事件
+        /// 对应的数据结构 XY.UXR.Gesture.PalmEvent
+        /// </summary>
+        public const string RKGesPalmEvent1 = "RKGesPalmEvent1";
+
+        /// <summary>
         /// 手掌往下挥动事件
         /// 对应的数据结构 XY.UXR.Gesture.Trigger.DownwardEvent
         /// </summary>

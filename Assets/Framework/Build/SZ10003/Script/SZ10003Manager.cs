@@ -56,6 +56,7 @@ namespace SZ10003
         {
             if (!m_IsEnter)
             {
+                MessageDispatcher.SendMessageData("EnterPoi");
                 m_IsEnter = true;
                 m_NPCManager.StartGame();
             }
@@ -65,6 +66,7 @@ namespace SZ10003
         {
             if (m_IsPlayed)
             {
+                MessageDispatcher.SendMessageData("ExitPoi");
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
                 m_IsEnter = false;

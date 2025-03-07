@@ -8,17 +8,17 @@ using UnityEngine;
 namespace XY.UXR.Gesture
 {
     /// <summary>
-    /// ÊÖÕÆ×ËÌ¬ÊÂ¼şÊı¾İ½á¹¹
+    /// æ‰‹æŒå§¿æ€äº‹ä»¶æ•°æ®ç»“æ„
     /// </summary>
     public class ScissorsEvent
     {
-        public bool status;           // ÊÖÕÆ×´Ì¬
-        public Vector3 position;      // ÊÖÕÆÎ»ÖÃ
-        public Vector3 eulerAngles;   // ÊÖÕÆĞı×ª½Ç¶È
-        public HandType handType;     // ÊÖµÄÀàĞÍ£¨×óÊÖ/ÓÒÊÖ£©
+        public bool status;           // æ‰‹æŒçŠ¶æ€
+        public Vector3 position;      // æ‰‹æŒä½ç½®
+        public Vector3 eulerAngles;   // æ‰‹æŒæ—‹è½¬è§’åº¦
+        public HandType handType;     // æ‰‹çš„ç±»å‹ï¼ˆå·¦æ‰‹/å³æ‰‹ï¼‰
     }
     /// <summary>
-    /// ¼ôµ¶ÊÖÊÆ
+    /// å‰ªåˆ€æ‰‹åŠ¿
     /// </summary>
     public class GesScissors : MonoBehaviour
     {

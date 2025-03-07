@@ -13,6 +13,9 @@ namespace SZ10001
         private AudioManager m_AudioManager;
         private GameObject m_Enter;
         private GameObject m_Tietle;
+        private bool m_IsPlaying;
+        private bool m_IsPlayed;
+        private Animator m_DoorAni;
         // Start is called before the first frame update
         void Start()
         {
@@ -33,13 +36,27 @@ namespace SZ10001
             m_AudioManager = new AudioManager(m_Audio.GetComponent<AudioSource>());
             m_Enter = transform.Find("Trigger/Enter").gameObject;
             m_Enter.AddComponent<TriEvent>().enterAction += EnterEvent;
+            m_Enter = transform.Find("Trigger/Enter").gameObject;
+            m_Enter.AddComponent<TriEvent>().exitAction += ExitEvent;
             m_Tietle = transform.Find("Tietle").gameObject;
             m_Tietle.transform.SetParent(Camera.main.transform);
+            m_DoorAni = m_NPCMgr.transform.Find("DaMen/Model/DaMen").GetComponent<Animator>();
         }
 
         private void EnterEvent()
         {
-            StartCoroutine(StartAni());
+            if (!m_IsPlaying)
+            {
+                m_IsPlaying = true;
+                StartCoroutine(StartAni());
+            }
+        }
+        private void ExitEvent()
+        {
+            if (m_IsPlayed)
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         IEnumerator StartAni()
@@ -51,6 +68,10 @@ namespace SZ10001
             m_AudioManager.AudioPlay("00-1");
             yield return new WaitForSeconds(8.7f);
             m_AudioManager.AudioPlay("00-2");
+            yield return new WaitForSeconds(23.8f);
+            m_DoorAni.SetTrigger("OpenDoor");
+            yield return new WaitForSeconds(2f);
+            m_IsPlayed = true;
         }
     }
 }

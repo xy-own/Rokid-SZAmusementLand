@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: a_M_maomaochong_eye_BaseColor
-  m_Shader: {fileID: -6465566751694194690, guid: 8451cbdef3f2862418c21d62ab44641f,
+  m_Shader: {fileID: -6465566751694194690, guid: c789bce0b17bd2049bb8105f075e50ab,
     type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:

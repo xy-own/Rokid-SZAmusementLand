@@ -86,6 +86,7 @@ namespace SZ10005
         public void RecoverGame()
         {
             m_Scene.SetActive(false);
+            m_BoHe.SetActive(false);
             isCanPlay = false;
             m_ZhuZi.SetActive(true);
         }
@@ -135,11 +136,12 @@ namespace SZ10005
             yield return new WaitForSeconds(2f);
             M_Green.SetActive(true);
             yield return new WaitForSeconds(1f);
-            MessageDispatcher.SendMessageData("10005ShowUI1");
+            M_Green.transform.Find("ef_shuijing_green/RJ_Bohe").gameObject.SetActive(true);
+            //MessageDispatcher.SendMessageData("10005ShowUI1");
             m_BoHeAni.SetTrigger("Speak1");
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-5");
             yield return new WaitForSeconds(8.9f);
-            MessageDispatcher.SendMessageData("10005HideUI1");
+            M_Green.transform.Find("ef_shuijing_green/RJ_Bohe").gameObject.GetComponent<Animator>().SetTrigger("XiaoShi");
             Vector3 dis = Camera.main.transform.position + Camera.main.transform.forward * 2f;
             dis = new Vector3(dis.x, dis.y-3f, dis.z);
             M_Green.transform.DOMove(dis, 1.5f);

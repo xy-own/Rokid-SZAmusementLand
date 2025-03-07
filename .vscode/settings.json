@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Rokid-SZAmusementLand.sln"
+    "dotnet.defaultSolution": "Rokid-SZAmusementLand.sln",
+    "dotnet.preferCSharpExtension": true
 }

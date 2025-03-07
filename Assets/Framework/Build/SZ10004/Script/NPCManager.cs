@@ -20,6 +20,9 @@ namespace SZ10004
         private GameObject m_Flower2;
         private GameObject m_Flower3;
         private GameObject m_Wood;
+        private GameObject m_YinFu1;
+        private GameObject m_YinFu2;
+        private GameObject m_YinFu3;
 
         // Start is called before the first frame update
         void Start()
@@ -56,6 +59,9 @@ namespace SZ10004
             m_Flower3 = m_HuaYuanAni.transform.Find("Petal").gameObject;
             m_Pink = transform.Find("Pink").gameObject;
             m_Wood = m_Scene.transform.Find("NPC/Mod/HuaYuan/wood02").gameObject;
+            m_YinFu1 = transform.Find("YinFu/root/Yin03").gameObject;
+            m_YinFu2 = transform.Find("YinFu/root/Yin01").gameObject;
+            m_YinFu3 = transform.Find("YinFu/root/Yin02").gameObject;
         }
 
         public void StartGame()
@@ -115,9 +121,10 @@ namespace SZ10004
         {
             if (isCanPlay && !m_Flower1.activeSelf)
             {
-                MessageDispatcher.SendMessageData("10004AudioShot", "mofashuijin");
-                //m_HuaYuanAni.SetTrigger("Flower1");
+                MessageDispatcher.SendMessageData("10004AudioShot", "Flower1");
+                MessageDispatcher.SendMessageData("10004AudioShot", "ShengZhang");
                 m_Flower1.SetActive(true);
+                m_YinFu1.SetActive(true);
                 PlayedGame();
             }
         }
@@ -127,9 +134,10 @@ namespace SZ10004
         {
             if (isCanPlay && !m_Flower2.activeSelf)
             {
-                MessageDispatcher.SendMessageData("10004AudioShot", "mofashuijin");
-                //m_HuaYuanAni.SetTrigger("Flower2");
+                MessageDispatcher.SendMessageData("10004AudioShot", "Flower2");
+                MessageDispatcher.SendMessageData("10004AudioShot", "ShengZhang");
                 m_Flower2.SetActive(true);
+                m_YinFu2.SetActive(true);
                 PlayedGame();
             }
         }
@@ -139,9 +147,10 @@ namespace SZ10004
         {
             if (isCanPlay && !m_Flower3.activeSelf)
             {
-                MessageDispatcher.SendMessageData("10004AudioShot", "mofashuijin");
-                //m_HuaYuanAni.SetTrigger("Flower3");
+                MessageDispatcher.SendMessageData("10004AudioShot", "Flower3");
+                MessageDispatcher.SendMessageData("10004AudioShot", "ShengZhang");
                 m_Flower3.SetActive(true);
+                m_YinFu3.SetActive(true);
                 PlayedGame();
             }
         }
@@ -166,15 +175,16 @@ namespace SZ10004
             yield return new WaitForSeconds(2f);
             m_JingLingAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10004AudioPlay", "04-4-2");
-            MessageDispatcher.SendMessageData("10004AudioShot", "mofashuijin");
+            MessageDispatcher.SendMessageData("10004AudioShot", "ShuiJingChuXian");
             m_Pink.SetActive(true);
             yield return new WaitForSeconds(1f);
-            MessageDispatcher.SendMessageData("10004ShowUI1");
+            m_Pink.transform.Find("ef_shuijing_pink/RJ_huapu").gameObject.SetActive(true);
+            //MessageDispatcher.SendMessageData("10004ShowUI1");
             yield return new WaitForSeconds(5f);
             //m_JingLingAni.SetTrigger("Idle");
             yield return new WaitForSeconds(3.6f);
             m_JingLingAni.SetTrigger("Idle");
-            MessageDispatcher.SendMessageData("10004HideUI1");
+            m_Pink.transform.Find("ef_shuijing_pink/RJ_huapu").gameObject.GetComponent<Animator>().SetTrigger("XiaoShi");
             Vector3 dis = Camera.main.transform.position + Camera.main.transform.forward * 2f;
             dis = new Vector3(dis.x, dis.y - 3f, dis.z);
             m_Pink.transform.DOMove(dis, 1.5f);

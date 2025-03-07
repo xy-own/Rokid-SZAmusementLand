@@ -98,8 +98,10 @@ namespace SZ10003
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-5");
             yield return new WaitForSeconds(5.9f);
             m_MaoMaoChongAni.SetTrigger("Idle");
+            m_MaoMaoChong.GetComponent<FollowItem>().enabled = true;
             m_Box.SetActive(true);
             m_Box.transform.position = Camera.main.transform.position;
+            yield return new WaitForSeconds(1f);
             Vector3 dis = m_MaoMaoChong.transform.position + m_MaoMaoChong.transform.forward;
             dis = new Vector3(dis.x, dis.y + 1f, dis.z);
             m_Box.transform.DOMove(dis, 2f).OnComplete(() => {

@@ -10,6 +10,7 @@ namespace D_0
     {
         private AudioSource m_Audio;
         private AudioManager m_AudioManager;
+        private GameObject m_Road;
 
         private GameObject m_Poi;
         public override void OnEnter(string data)
@@ -28,9 +29,13 @@ namespace D_0
 
             m_Poi = transform.Find("Poi").gameObject;
 
+            m_Road = transform.Find("Poi/RoadList").gameObject;
             AudioPlay("BGM0");
             MessageDispatcher.AddListener<string>("SetBgm",AudioPlay);
             MessageDispatcher.AddListener("StopBgm", AudioStop);
+
+            MessageDispatcher.AddListener("EnterPoi", EnterPoi);
+            MessageDispatcher.AddListener("ExitPoi", ExitPoi);
         }
 
         private void AudioPlay(string Name)
@@ -41,6 +46,16 @@ namespace D_0
         private void AudioStop() 
         {
             m_AudioManager.AudioStop();
+        }
+
+        private void EnterPoi()
+        {
+            m_Road.SetActive(false);
+        }
+
+        private void ExitPoi()
+        {
+            m_Road.SetActive(true);
         }
     }
 }

@@ -106,7 +106,7 @@ Material:
     - _Alpha: 1
     - _AlphaClip: 0
     - _Ao_1: 1
-    - _BaseMapValue: 1
+    - _BaseMapValue: 0.65
     - _Blend: 0
     - _BumpScale: 1
     - _CastShadows: 1
@@ -164,7 +164,7 @@ Material:
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
     - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _basecolor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+    - _basecolor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7403147593866876038
 MonoBehaviour:

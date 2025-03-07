@@ -50,7 +50,7 @@ namespace SZ10002
             MessageDispatcher.AddListener("10002AudioStop", AudioStop);
 
             MessageDispatcher.AddListener<bool>("10002Played", SetPlayed);
-            MessageDispatcher.AddListener<PalmEvent>(XY.UXR.API.OpenAPI.RKGesPalmEvent, PalmEvent);
+            MessageDispatcher.AddListener<PalmEvent>(XY.UXR.API.OpenAPI.RKGesPalmEvent1, PalmEvent);
 
         }
 
@@ -58,6 +58,7 @@ namespace SZ10002
         {
             if (!m_IsEnter)
             {
+                MessageDispatcher.SendMessageData("EnterPoi");
                 m_NPCManager.StartGame();
                 m_IsEnter = true;
             }
@@ -67,9 +68,10 @@ namespace SZ10002
         {
             if (m_IsPlayed)
             {
+                MessageDispatcher.SendMessageData("ExitPoi");
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
-                m_IsEnter = false;
+                //m_IsEnter = false;
                 m_IsPlayed = false;
             }
         }

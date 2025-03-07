@@ -34,7 +34,7 @@ Material:
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 2454
   stringTagMap:
     RenderType: TransparentCutout
   disabledShaderPasses: []
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emiss:
-        m_Texture: {fileID: 2800000, guid: 9a8ee9d252b0cb84191ecb07966e72a1, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissTex:
@@ -78,7 +78,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Mintex:
-        m_Texture: {fileID: 2800000, guid: 57255545e0a1adf4eaab23026e0301e6, type: 3}
+        m_Texture: {fileID: 2800000, guid: d7a444bc68cbeb543ac0c9ff2a5a427a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
@@ -125,7 +125,7 @@ Material:
     - _DstBlend: 0
     - _EMISSON: 1
     - _EmissStr: 1
-    - _Emiss_str: 1
+    - _Emiss_str: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -137,7 +137,7 @@ Material:
     - _Opacity: 1
     - _Parallax: 0.02
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: 4
     - _ReceiveShadows: 1
     - _Roughness: 1
     - _Roughness_str: 1
