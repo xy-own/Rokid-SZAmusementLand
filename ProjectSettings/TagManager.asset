@@ -6,6 +6,11 @@ TagManager:
   tags:
   - GameManager
   - Bullet
+  - loweffect
+  - effect
+  - PlayerBullet
+  - NPCBullet
+  - NPC
   layers:
   - Default
   - TransparentFX

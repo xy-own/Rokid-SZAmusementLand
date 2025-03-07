@@ -1,0 +1,48 @@
+using System.Collections;
+using System.Collections.Generic;
+using Starter.Utility;
+using UnityEngine;
+
+/// <summary>
+/// 模板名称: #TEMPLATENAME#
+/// 脚本创建时间: #CREATIONDATE#
+/// 描述: #DESCRIPTION# 
+/// </summary>
+public class #SCRIPTNAME# : UIView
+{
+    /// <summary>
+    /// 初始化脚本的状态
+    /// </summary>
+    public override void OnAwake()
+    {
+        // 初始化逻辑
+        Debug.Log("#SCRIPTNAME# OnAwake");
+    }
+
+    /// <summary>
+    /// 脚本开始时的逻辑
+    /// </summary>
+    public override void OnStart()
+    {
+        // 启动逻辑
+        Debug.Log("#SCRIPTNAME# OnStart");
+    }
+
+    /// <summary>
+    /// 每帧更新的逻辑
+    /// </summary>
+    public override void OnUpdate()
+    {
+        // 更新逻辑
+        Debug.Log("#SCRIPTNAME# OnUpdate");
+    }
+
+    /// <summary>
+    /// 释放脚本资源时的逻辑
+    /// </summary>
+    public override void OnDispose()
+    {
+        // 清理逻辑
+        Debug.Log("#SCRIPTNAME# OnDispose");
+    }
+}

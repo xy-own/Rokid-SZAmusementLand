@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using SU10007;
 
 /// <summary>
 /// 投射物移动控制脚本
@@ -21,8 +22,6 @@ public class ProjectileMoveScript : MonoBehaviour
     [Header("精确度(0-100%)")]
     [Range(0, 100)]
     public float accuracy = 100f;
-    [Header("发射频率")]
-    public float fireRate = 1f;
 
     [Header("枪口特效预制体")]
     public GameObject muzzlePrefab;
@@ -31,13 +30,23 @@ public class ProjectileMoveScript : MonoBehaviour
     [Header("拖尾特效列表")]
     public List<GameObject> trails = new List<GameObject>();
 
+    [Header("子弹设置")]
+    [Tooltip("子弹所属(Player/NPC)")]
+    public string bulletOwner = "Player";           // 子弹所属者
+    [Tooltip("子弹伤害值")]
+    public float damage = 10f;                      // 子弹伤害值
+    [Tooltip("子弹是否可以穿透")]
+    public bool canPenetrate = false;               // 是否可穿透
+    [Tooltip("子弹穿透次数")]
+    public int penetrateCount = 0;                  // 穿透次数
+
     // 私有变量
     private Vector3 startPos;
     private Vector3 offset;
     private bool collided;
     private Rigidbody rb;
-    private RotateToMouseScript rotateToMouse;
     private GameObject target;
+    private int hitCount = 0;                       // 命中次数计数
 
     private void Start()
     {
@@ -97,11 +106,6 @@ public class ProjectileMoveScript : MonoBehaviour
 
     private void UpdateMovement()
     {
-        if (target != null)
-        {
-            rotateToMouse.RotateToMouse(gameObject, target.transform.position);
-        }
-
         if (rotate)
         {
             transform.Rotate(0, 0, rotateAmount, Space.Self);
@@ -115,6 +119,30 @@ public class ProjectileMoveScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // 如果子弹来自NPC且碰到的是NPC，或子弹来自玩家且碰到的是玩家，则忽略该碰撞
+        if ((gameObject.CompareTag("NPCBullet") && collision.gameObject.CompareTag("NPC")) ||
+            (gameObject.CompareTag("PlayerBullet") && collision.gameObject.CompareTag("Player")))
+        {
+            return;
+        }
+
+        // 如果碰到了其他子弹，两者都销毁
+        if (collision.gameObject.GetComponent<ProjectileMoveScript>() != null)
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            return;
+        }
+
+        // 处理穿透逻辑
+        hitCount++;
+        if (canPenetrate && hitCount <= penetrateCount)
+        {
+            // 创建击中效果但不销毁子弹
+            CreateHitEffect(collision.contacts[0]);
+            return;
+        }
+
         if (!bounce)
         {
             HandleNormalCollision(collision);
@@ -136,6 +164,14 @@ public class ProjectileMoveScript : MonoBehaviour
         DetachTrails();
         DisableMovement();
         CreateHitEffect(collision.contacts[0]);
+
+        // 如果碰撞对象有生命值组件，则造成伤害
+        HealthComponent healthComp = collision.gameObject.GetComponent<HealthComponent>();
+        if (healthComp != null)
+        {
+            healthComp.TakeDamage(damage, bulletOwner);
+        }
+
         StartCoroutine(DestroyParticle(0f));
     }
 
@@ -228,9 +264,16 @@ public class ProjectileMoveScript : MonoBehaviour
     /// <summary>
     /// 设置目标对象
     /// </summary>
-    public void SetTarget(GameObject trg, RotateToMouseScript rotateTo)
+    public void SetTarget(GameObject trg)
     {
         target = trg;
-        rotateToMouse = rotateTo;
+    }
+
+    /// <summary>
+    /// 设置子弹所有者
+    /// </summary>
+    public void SetBulletOwner(string owner)
+    {
+        bulletOwner = owner;
     }
 }
