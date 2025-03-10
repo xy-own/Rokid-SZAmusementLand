@@ -51,11 +51,14 @@ namespace HQG
         public int searchRange = 10;           // 搜索范围大小
         [Tooltip("触发重新搜索的距离阈值")]
         public float researchThreshold = 5f;   // 重新搜索的距离阈值
+        [Tooltip("触发全局搜索的距离阈值")]
+        public float globalSearchThreshold = 10f; // 触发全局搜索的距离阈值
 
         // 性能优化相关的私有变量
         private float lastUpdateTime;          // 上次更新时间
         private Vector3 lastPlayerPos;         // 上次玩家位置
         private float sqrResearchThreshold;    // 距离阈值的平方
+        private float sqrGlobalSearchThreshold; // 全局搜索阈值的平方
 
         void Awake()
         {
@@ -81,7 +84,8 @@ namespace HQG
 
             lastPlayerPos = player.position;
             sqrResearchThreshold = researchThreshold * researchThreshold;
-            
+            sqrGlobalSearchThreshold = globalSearchThreshold * globalSearchThreshold;
+
             // 立即更新可见点
             UpdateVisiblePoints();
         }
@@ -133,7 +137,16 @@ namespace HQG
             // 检查是否需要更新
             if (ShouldUpdateSearch())
             {
-                UpdateNearestPointIndex();
+                // 检查是否需要全局搜索（玩家移动距离过大）
+                if (NeedsGlobalSearch())
+                {
+                    FindInitialNearestPoint(); // 执行全局搜索
+                }
+                else
+                {
+                    UpdateNearestPointIndex();
+                }
+
                 UpdateVisiblePoints();
                 lastUpdateTime = Time.time;
                 lastPlayerPos = player.position;
@@ -158,13 +171,25 @@ namespace HQG
         {
             float minSqrDistance = float.MaxValue;
             int newIndex = currentIndex;
+            Vector3 playerPos = player.position;
+
+            // 计算当前索引点与玩家的距离
+            if (currentIndex >= 0 && currentIndex < targetPoints.Count && targetPoints[currentIndex] != null)
+            {
+                float currentSqrDistance = (playerPos - targetPoints[currentIndex].position).sqrMagnitude;
+                // 如果距离太大，触发全局搜索
+                if (currentSqrDistance > sqrGlobalSearchThreshold)
+                {
+                    FindInitialNearestPoint();
+                    return;
+                }
+            }
 
             // 动态调整搜索范围
             int searchStart = Mathf.Max(0, currentIndex - searchRange);
             int searchEnd = Mathf.Min(targetPoints.Count, currentIndex + searchRange);
 
             // 使用距离平方进行比较
-            Vector3 playerPos = player.position;
             for (int i = searchStart; i < searchEnd; i++)
             {
                 if (targetPoints[i] == null) continue;
@@ -262,6 +287,17 @@ namespace HQG
             // 检查移动距离是否超过阈值
             float sqrDistance = (player.position - lastPlayerPos).sqrMagnitude;
             return sqrDistance > sqrResearchThreshold;
+        }
+
+        /// <summary>
+        /// 检查是否需要进行全局搜索
+        /// 当玩家移动距离特别大时触发（如传送）
+        /// </summary>
+        /// <returns>是否需要全局搜索</returns>
+        private bool NeedsGlobalSearch()
+        {
+            float sqrDistance = (player.position - lastPlayerPos).sqrMagnitude;
+            return sqrDistance > sqrGlobalSearchThreshold;
         }
 
         /// <summary>

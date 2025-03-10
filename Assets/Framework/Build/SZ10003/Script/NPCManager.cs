@@ -18,6 +18,7 @@ namespace SZ10003
         private GameObject m_ZhuZi;
         private GameObject m_Box;
         private GameObject m_Effect;
+        private GameObject m_JianTou;
 
         // Start is called before the first frame update
         void Start()
@@ -43,6 +44,7 @@ namespace SZ10003
             m_MaoMaoChongAni = m_MaoMaoChong.transform.Find("MaoMaoChong_Rig").GetComponent<Animator>();
             m_Box = transform.Find("Box").gameObject;
             m_Effect = transform.Find("Effect").gameObject;
+            m_JianTou = transform.Find("JianTou").gameObject;
         }
 
         public void StartGame()
@@ -57,7 +59,7 @@ namespace SZ10003
             m_Scene.SetActive(true);
             m_SuDi.SetActive(true);
             m_SuNi.SetActive(true);
-            m_SuDi.transform.LookAt(Camera.main.transform.position);
+            m_SuDi.transform.LookAt(new Vector3(Camera.main.transform.position.x,m_SuDi.transform.position.y, Camera.main.transform.position.z));
             MessageDispatcher.SendMessageData("10003AudioShot", "XCJ");
             yield return new WaitForSeconds(4f);
             m_SuDiAni.SetTrigger("Speak2");
@@ -70,10 +72,10 @@ namespace SZ10003
             m_SuNiAni.SetTrigger("Idle");
             yield return new WaitForSeconds(2f);
             m_Effect.SetActive(true);
+            MessageDispatcher.SendMessageData("10003AudioShot", "MaoMaoChongChuXian");
             yield return new WaitForSeconds(2f);
             m_MaoMaoChong.SetActive(true);
             m_MaoMaoChong.transform.DOScale(1f, 2f);
-            MessageDispatcher.SendMessageData("10003AudioShot", "mmc");
             MessageDispatcher.SendMessageData<string>("SetBgm", "BGM3");
             yield return new WaitForSeconds(2f);
             m_MaoMaoChongAni.SetTrigger("Speak1");
@@ -112,8 +114,6 @@ namespace SZ10003
             m_MaoMaoChongAni.SetTrigger("Idle");
             m_SuNiAni.SetTrigger("Speak2");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-7");
-            m_SuNi.transform.LookAt(m_SuDi.transform.position);
-            m_SuDi.transform.LookAt(m_SuNi.transform.position);
             yield return new WaitForSeconds(2.9f);
             m_SuNiAni.SetTrigger("Idle");
             m_SuDiAni.SetTrigger("Speak3");
@@ -121,26 +121,26 @@ namespace SZ10003
             yield return new WaitForSeconds(1.8f);
             m_SuDiAni.SetTrigger("Idle");
             m_Box.SetActive(false);
-            //m_MaoMaoChong.transform.DOScale(0f, 2f);
-            m_MaoMaoChong.transform.DOScaleY(0.2f, 1f).OnComplete(() => {
-                m_MaoMaoChong.transform.DOLocalMove(new Vector3(-1.08f, 2.93f, -1.16f), 3f).OnComplete(() =>
-                {
-                    m_SuNiAni.SetTrigger("Anxious");
-                    MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-9");
-                });
-                m_MaoMaoChong.transform.DOScaleY(2f, 1f).OnComplete(() =>
-                {
-                    m_MaoMaoChong.transform.DOScale(0f, 1f);
-                });
+            MessageDispatcher.SendMessageData("10003AudioShot", "MaoMaoChongLiKai");
+            m_MaoMaoChongAni.SetTrigger("Bullet");
+            m_MaoMaoChong.transform.DOLocalMove(new Vector3(-1.08f, 2.93f, -1.16f), 3f).OnComplete(() =>
+            {
+                m_Effect.SetActive(false);
+                m_SuNi.transform.LookAt(m_SuDi.transform.position);
+                m_SuDi.transform.LookAt(m_SuNi.transform.position);
+                m_SuNiAni.SetTrigger("Anxious");
+                MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-9");
             });
-            yield return new WaitForSeconds(7.3f);
+            yield return new WaitForSeconds(6.3f);
             m_SuNiAni.SetTrigger("Idle");
             m_SuDiAni.SetTrigger("Anxiou");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-10");
             yield return new WaitForSeconds(10f);
             m_SuDiAni.SetTrigger("Idle");
-            m_SuNi.transform.LookAt(Camera.main.transform.position);
-            m_SuDi.transform.LookAt(Camera.main.transform.position);
+            //m_SuNi.transform.LookAt(new Vector3(Camera.main.transform.position.x, m_SuDi.transform.position.y, Camera.main.transform.position.z));
+            //m_SuDi.transform.LookAt(new Vector3(Camera.main.transform.position.x, m_SuDi.transform.position.y, Camera.main.transform.position.z));
+            m_SuNi.GetComponent<FollowItem>().enabled = true;
+            m_SuDi.GetComponent<FollowItem>().enabled = true;
             m_SuNiAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-11");
             yield return new WaitForSeconds(4.8f);
@@ -154,6 +154,7 @@ namespace SZ10003
             yield return new WaitForSeconds(1.5f);
             m_SuNiAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10003Played", true);
+            m_JianTou.SetActive(true);
         }
 
         public void RecoverGame()
@@ -161,6 +162,7 @@ namespace SZ10003
             m_Scene.SetActive(false);
             m_SuDi.SetActive(false);
             m_SuNi.SetActive(false);
+            m_JianTou.SetActive(false);
         }
     }
 }

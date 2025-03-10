@@ -16,8 +16,10 @@ namespace SZ10005
         private GameObject M_Green;
         private GameObject m_Book;
         private Animator m_BookAni;
+        private Animator m_BookRootAni;
         private bool isCanPlay;
         private bool isPlayed;
+        private GameObject m_JianTou;
         // Start is called before the first frame update
         void Start()
         {
@@ -37,9 +39,11 @@ namespace SZ10005
             m_BoHe = transform.Find("BoHuoSir").gameObject;
             m_BoHeAni = m_BoHe.transform.Find("BoHuoSir_rig").GetComponent<Animator>();
             m_Page = transform.Find("Page").gameObject;
-            m_Book = m_Scene.transform.Find("Model/book_Rig").gameObject;
+            m_Book = m_Scene.transform.Find("Model/Book").gameObject;
             M_Green = transform.Find("Green").gameObject;
-            m_BookAni = m_Book.GetComponent<Animator>();
+            m_BookAni = m_Book.transform.Find("root").GetComponent<Animator>();
+            m_BookRootAni = m_Book.transform.Find("root/book_Rig").GetComponent<Animator>();
+            m_JianTou = transform.Find("JianTou").gameObject;
 
             MessageDispatcher.AddListener("GetDrawCom", GetDrawCon);
             //MessageDispatcher.AddListener("DrawFail", DrawFail);
@@ -68,6 +72,7 @@ namespace SZ10005
             yield return new WaitForSeconds(4.4f);
             m_BoHeAni.SetTrigger("Idle");
             yield return new WaitForSeconds(2f);
+            m_Book.SetActive(true);
             m_BoHeAni.SetTrigger("Speak1");
             m_BoHeAni.gameObject.GetComponent<ChangeSpeakAni>().enabled = true;
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-1-2");
@@ -89,6 +94,7 @@ namespace SZ10005
             m_BoHe.SetActive(false);
             isCanPlay = false;
             m_ZhuZi.SetActive(true);
+            m_JianTou.SetActive(false);
         }
 
         private void GetDrawCon()
@@ -125,14 +131,15 @@ namespace SZ10005
             m_BoHeAni.SetTrigger("Speak1");
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-3");
             yield return new WaitForSeconds(2f);
-            m_BookAni.SetTrigger("Open");
+            m_BookRootAni.SetTrigger("Open");
             m_Page.transform.DOMove(m_Book.transform.position + m_Book.transform.up, 2f).OnComplete(() =>
             {
                 m_Page.SetActive(false);
+                m_BookAni.SetTrigger("FuWen");
             });
             yield return new WaitForSeconds(15.9f);
             m_BoHeAni.SetTrigger("Idle");
-            m_BookAni.SetTrigger("Fail");
+            m_BookRootAni.SetTrigger("Fall");
             yield return new WaitForSeconds(2f);
             M_Green.SetActive(true);
             yield return new WaitForSeconds(1f);
@@ -149,6 +156,7 @@ namespace SZ10005
             yield return new WaitForSeconds(6f);
             m_BoHeAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10005Played", true);
+            m_JianTou.SetActive(true);
         }
     }
 }

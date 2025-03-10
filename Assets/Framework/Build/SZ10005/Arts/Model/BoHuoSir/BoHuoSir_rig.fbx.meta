@@ -29,6 +29,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: BoHuoSir_pants_m
     second: {fileID: 2100000, guid: 4d94514ae9c58354eb851248c8170c4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SenLinJingLing_ya_m
+    second: {fileID: 2100000, guid: 4247249fbfa0e314799b73e26e60c83e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

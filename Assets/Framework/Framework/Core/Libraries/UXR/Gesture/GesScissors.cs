@@ -61,10 +61,10 @@ namespace XY.UXR.Gesture
             {
                 rightBean = gestureBean;
                 m_IsScissors = IsScissorsGesture(gestureBean);
-                if (m_IsScissors) 
-                {
-                    MessageDispatcher.SendMessageData(API.OpenAPI.ScissorsEvent);
-                }
+                //if (m_IsScissors) 
+                //{
+                //    MessageDispatcher.SendMessageData(API.OpenAPI.ScissorsEvent);
+                //}
             }
             if (handType == HandType.LeftHand)
             {

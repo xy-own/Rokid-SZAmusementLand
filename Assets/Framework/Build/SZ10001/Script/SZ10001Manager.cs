@@ -16,6 +16,7 @@ namespace SZ10001
         private bool m_IsPlaying;
         private bool m_IsPlayed;
         private Animator m_DoorAni;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -40,7 +41,10 @@ namespace SZ10001
             m_Enter.AddComponent<TriEvent>().exitAction += ExitEvent;
             m_Tietle = transform.Find("Tietle").gameObject;
             m_Tietle.transform.SetParent(Camera.main.transform);
-            m_DoorAni = m_NPCMgr.transform.Find("DaMen/Model/DaMen").GetComponent<Animator>();
+            m_Tietle.transform.localPosition = new Vector3(0f, 0.1f, 1.5f);
+            m_DoorAni = m_NPCMgr.transform.Find("DaMen/Ani").GetComponent<Animator>();
+
+            StartCoroutine(StartAni());
         }
 
         private void EnterEvent()
@@ -48,7 +52,7 @@ namespace SZ10001
             if (!m_IsPlaying)
             {
                 m_IsPlaying = true;
-                StartCoroutine(StartAni());
+                //StartCoroutine(StartAni());
             }
         }
         private void ExitEvent()
@@ -61,17 +65,22 @@ namespace SZ10001
 
         IEnumerator StartAni()
         {
+            m_Tietle.SetActive(true);
+            yield return new WaitForSeconds(2f);
             m_Tietle.SetActive(false);
+            m_NPCMgr.transform.Find("DaMen").gameObject.SetActive(true);
+            m_AudioManager.AudioPlayOneShot("DaMenChuXian");
             m_AudioManager.AudioPlay("00-0");
-            yield return new WaitForSeconds(18f);
+            yield return new WaitForSeconds(19f);
             m_UIMgr.SetActive(true);
             m_AudioManager.AudioPlay("00-1");
-            yield return new WaitForSeconds(8.7f);
+            yield return new WaitForSeconds(10.5f);
             m_AudioManager.AudioPlay("00-2");
-            yield return new WaitForSeconds(23.8f);
+            yield return new WaitForSeconds(23.72f);
             m_DoorAni.SetTrigger("OpenDoor");
             yield return new WaitForSeconds(2f);
             m_IsPlayed = true;
+            MessageDispatcher.SendMessageData("ShowAllPoi");
         }
     }
 }

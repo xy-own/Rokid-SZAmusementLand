@@ -16,6 +16,7 @@ namespace SZ10006
             MessageDispatcher.AddListener("10006ShowUI", ShowTip);
             MessageDispatcher.AddListener("10006HideUI", HideTip);
             MessageDispatcher.AddListener<string>("10006HideBiao", HideBiao);
+            MessageDispatcher.AddListener<string>("10006ShowBiao", ShowBiao);
             MessageDispatcher.AddListener("10006ShowUI1",ShowTip1);
             MessageDispatcher.AddListener("10006HideUI1", HideTip1);
         }
@@ -29,12 +30,17 @@ namespace SZ10006
         private void ShowTip()
         {
             m_Tip1.SetActive(true);
-            transform.Find("Biao").gameObject.SetActive(true);
+            //transform.Find("Biao").gameObject.SetActive(true);
         }
 
         private void HideBiao(string name)
         {
             transform.Find($"Biao/{name}").gameObject.SetActive(false);
+        }
+
+        private void ShowBiao(string name)
+        {
+            transform.Find($"Biao/{name}").gameObject.SetActive(true);
         }
 
         private void ShowTip1()

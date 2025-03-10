@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XY.UXR.Gesture;
 
 namespace SZ10004
 {
@@ -13,6 +14,7 @@ namespace SZ10004
         private Animator m_JingLingAni;
         private bool isCanPlay;
         private bool isPlayed;
+        private bool isFirstPlay = true;
         private GameObject m_Pink;
         private Animator m_HuaYuanAni;
         private GameObject m_ZhuZi;
@@ -24,6 +26,7 @@ namespace SZ10004
         private GameObject m_YinFu2;
         private GameObject m_YinFu3;
 
+        private GameObject m_JianTou;
         // Start is called before the first frame update
         void Start()
         {
@@ -62,6 +65,7 @@ namespace SZ10004
             m_YinFu1 = transform.Find("YinFu/root/Yin03").gameObject;
             m_YinFu2 = transform.Find("YinFu/root/Yin01").gameObject;
             m_YinFu3 = transform.Find("YinFu/root/Yin02").gameObject;
+            m_JianTou = transform.Find("JianTou").gameObject;
         }
 
         public void StartGame()
@@ -77,8 +81,13 @@ namespace SZ10004
             m_Flower1.SetActive(false);
             m_Flower2.SetActive(false);
             m_Flower3.SetActive(false);
+            m_YinFu1.SetActive(false);
+            m_YinFu2.SetActive(false);
+            m_YinFu3.SetActive(false);
+            m_JianTou.SetActive(false);
             isCanPlay = false;
             m_ZhuZi.SetActive(true);
+            m_JianTou.SetActive(false);
         }
 
         IEnumerator AppearAndStartGame()
@@ -86,7 +95,7 @@ namespace SZ10004
             m_ZhuZi.SetActive(false);
             m_JingLing.SetActive(true);
             MessageDispatcher.SendMessageData("10004AudioShot", "XCJ");
-            m_JingLing.transform.DOScale(Vector3.one, 2f).OnComplete(() => {
+            m_JingLing.transform.DOScale(Vector3.one*0.5f, 2f).OnComplete(() => {
                 m_JingLing.GetComponent<FollowItem>().enabled = false;
                 m_JingLing.transform.LookAt(Camera.main.transform.position);
             });
@@ -102,7 +111,7 @@ namespace SZ10004
             yield return new WaitForSeconds(6.6f);
             m_JingLing.GetComponent<FollowItem>().enabled = false;
             m_JingLing.transform.LookAt(new Vector3(0.11f, m_JingLing.transform.position.y, 6.5f));
-            m_JingLingAni.SetTrigger("Idle2");
+            m_JingLingAni.SetTrigger("Fly");
             m_JingLing.transform.DOLocalMove(new Vector3(0.62f, 0.53f, 6.35f), 2f).OnComplete(() => {
                 m_JingLing.GetComponent<FollowItem>().enabled = true;
                 m_JingLingAni.SetTrigger("Speak1");
@@ -121,11 +130,15 @@ namespace SZ10004
         {
             if (isCanPlay && !m_Flower1.activeSelf)
             {
-                MessageDispatcher.SendMessageData("10004AudioShot", "Flower1");
+                if (isFirstPlay)
+                {
+                    isCanPlay = false;
+                }
                 MessageDispatcher.SendMessageData("10004AudioShot", "ShengZhang");
                 m_Flower1.SetActive(true);
                 m_YinFu1.SetActive(true);
-                PlayedGame();
+                StartCoroutine(FlowerShengZhang("Flower1"));
+                //PlayedGame();
             }
         }
 
@@ -134,11 +147,15 @@ namespace SZ10004
         {
             if (isCanPlay && !m_Flower2.activeSelf)
             {
-                MessageDispatcher.SendMessageData("10004AudioShot", "Flower2");
+                if (isFirstPlay)
+                {
+                    isCanPlay = false;
+                }
                 MessageDispatcher.SendMessageData("10004AudioShot", "ShengZhang");
                 m_Flower2.SetActive(true);
                 m_YinFu2.SetActive(true);
-                PlayedGame();
+                StartCoroutine(FlowerShengZhang("Flower2"));
+                //PlayedGame();
             }
         }
 
@@ -147,21 +164,35 @@ namespace SZ10004
         {
             if (isCanPlay && !m_Flower3.activeSelf)
             {
-                MessageDispatcher.SendMessageData("10004AudioShot", "Flower3");
+                if (isFirstPlay)
+                {
+                    isCanPlay = false;
+                }
                 MessageDispatcher.SendMessageData("10004AudioShot", "ShengZhang");
                 m_Flower3.SetActive(true);
                 m_YinFu3.SetActive(true);
-                PlayedGame();
+                StartCoroutine(FlowerShengZhang("Flower3"));
+                //PlayedGame();
             }
+        }
+
+        IEnumerator FlowerShengZhang(string Name)
+        {
+            MessageDispatcher.SendMessageData("10004HideUI");
+            yield return new WaitForSeconds(1.6f);
+            MessageDispatcher.SendMessageData("10004AudioPlay", Name);
+            MessageDispatcher.SendMessageData("StopBgm");
+            yield return new WaitForSeconds(15.5f);
+            MessageDispatcher.SendMessageData("PlayBgm");
+            PlayedGame();
         }
 
         public void PlayedGame()
         {
-            if (!isPlayed)
+            if (!isPlayed && isFirstPlay)
             {
                 isPlayed = true;
                 m_JingLingAni.SetTrigger("Speak3");
-                MessageDispatcher.SendMessageData("10004HideUI");
                 MessageDispatcher.SendMessageData("10004AudioPlay", "04-4-1");
                 StartCoroutine(ComGame());
             }
@@ -194,7 +225,10 @@ namespace SZ10004
             MessageDispatcher.SendMessageData("10004AudioPlay", "04-5");
             yield return new WaitForSeconds(5.8f);
             m_JingLingAni.SetTrigger("Idle2");
+            isFirstPlay = false;
+            isCanPlay = true;
             MessageDispatcher.SendMessageData<bool>("10004Played", true);
+            m_JianTou.SetActive(true);
         }
     }
 }

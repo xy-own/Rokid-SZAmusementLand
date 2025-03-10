@@ -21,7 +21,7 @@ namespace SZ10002
         private bool isPlayed;
 
         private GameObject m_GiftBox;
-
+        private GameObject m_JianTou;
         // Start is called before the first frame update
         void Start()
         {
@@ -51,17 +51,21 @@ namespace SZ10002
 
             m_Palm = transform.Find("TengMan").gameObject;
             m_Palm.AddComponent<BtnItem>().enterAction += EnterPalm;
+            m_JianTou = transform.Find("JianTou").gameObject;
         }
 
         public void StartGame()
         {
-            m_Scene.SetActive(true);
-            StartCoroutine(AppearAndStartGame());
+            if (!isPlayed)
+            {
+                m_Scene.SetActive(true);
+                StartCoroutine(AppearAndStartGame());
+            }
         }
 
         private void EnterPalm(FingerEvent fingerEvent,Collider go)
         {
-            MessageDispatcher.SendMessageData("10002AudioShot", "shouzhan");
+            MessageDispatcher.SendMessageData("10002AudioShot", "ChuPoQiPao");
             MessageDispatcher.SendMessageData("10002HideUI");
             //m_Palm.SetActive(false);
             m_Palm.transform.DOMove(m_JingLing.transform.position, 2f).OnComplete(() => { 
@@ -77,8 +81,8 @@ namespace SZ10002
             m_SuDi.SetActive(true);
             m_SuNi.SetActive(true);
             MessageDispatcher.SendMessageData("10002AudioShot", "XCJ");
-            m_SuDi.transform.DOScale(Vector3.one, 2f);
-            m_SuNi.transform.DOScale(Vector3.one, 2f);
+            m_SuDi.transform.DOScale(Vector3.one*1.6f, 2f);
+            m_SuNi.transform.DOScale(Vector3.one*1.6f, 2f);
             yield return new WaitForSeconds(4f);
             m_SuDiAni.SetTrigger("Speak1");
             MessageDispatcher.SendMessageData("10002AudioPlay", "01-1-1");
@@ -159,6 +163,8 @@ namespace SZ10002
             yield return new WaitForSeconds(3.05f);
             m_SuNiAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10002Played", true);
+            isPlayed = true;
+            m_JianTou.SetActive(true);
         }
 
         public void RecoverGame()
@@ -169,6 +175,7 @@ namespace SZ10002
             m_SuNi.SetActive(false);
             isCanPlay = false;
             m_ZhuZi.SetActive(true);
+            m_JianTou.SetActive(false);
         }
     }
 

@@ -68,7 +68,6 @@ namespace SZ10002
         {
             if (m_IsPlayed)
             {
-                MessageDispatcher.SendMessageData("ExitPoi");
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
                 //m_IsEnter = false;
@@ -79,6 +78,7 @@ namespace SZ10002
         private void SetPlayed(bool isPlayed)
         {
             m_IsPlayed = isPlayed;
+            MessageDispatcher.SendMessageData("ExitPoi");
         }
 
         private void AudioPlay(string name)

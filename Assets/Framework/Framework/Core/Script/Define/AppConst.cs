@@ -11,5 +11,7 @@ namespace D.Define
 
 
         public const string GameSettingName = "GameSettings";       //游戏设置
+
+        //public static 
     }
 }

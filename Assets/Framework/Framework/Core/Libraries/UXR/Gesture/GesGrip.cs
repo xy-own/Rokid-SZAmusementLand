@@ -51,7 +51,7 @@ namespace XY.UXR.Gesture
         private void Update()
         {
             palmInfo.status = false;
-            if (rightBean != null)
+            if (rightBean != null && rightBean.gesture_type == (int)GestureType.Grip)
             {
                 if (mCamera != null)
                 {
@@ -62,7 +62,7 @@ namespace XY.UXR.Gesture
                 palmInfo.position = rightBean.position;
                 palmInfo.eulerAngles = rightBean.rotation.eulerAngles;
             }
-            else if (leftBean != null)
+            else if (leftBean != null&&leftBean.gesture_type == (int)GestureType.Grip)
             {
                 if (mCamera != null)
                 {

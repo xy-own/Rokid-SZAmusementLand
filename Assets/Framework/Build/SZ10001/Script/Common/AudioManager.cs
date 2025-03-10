@@ -35,7 +35,15 @@ namespace SZ10001
             if (mAudioSource.isPlaying)
             {
                 mAudioSource.Stop();
-                mAudioSource.clip = null;
+                //mAudioSource.clip = null;
+            }
+        }
+
+        public void AudioPlay()
+        {
+            if (!mAudioSource.isPlaying)
+            {
+                mAudioSource.Play();
             }
         }
 

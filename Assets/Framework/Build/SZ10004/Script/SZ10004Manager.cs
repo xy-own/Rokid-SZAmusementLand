@@ -22,9 +22,11 @@ namespace SZ10004
         private bool m_IsGrip;
         private bool m_IsScissors;
 
-        private bool m_IsHand;
+        private bool m_IsPlaying;
 
-        private float m_Time;
+        private float m_PalmTime;
+        private float m_GripTime;
+        private float m_ScissorsTime;
         // Start is called before the first frame update
         void Start()
         {
@@ -34,26 +36,7 @@ namespace SZ10004
         // Update is called once per frame
         void Update()
         {
-            m_IsHand = m_IsPalm || m_IsGrip || m_IsScissors;
-            if ((m_IsHand && m_Time < 3))
-            {
-                m_Time += Time.deltaTime;
-            }
-            else if (m_IsHand && m_Time >= 3)
-            {
-                if (m_IsPalm)
-                {
-                    m_NPCManager.GetPalm();
-                }
-                else if (m_IsGrip)
-                {
-                    m_NPCManager.GetGrip();
-                }
-                else if (m_IsScissors)
-                {
-                    m_NPCManager.GetScissors();
-                }
-            }
+
         }
 
         private void Initialize()
@@ -97,6 +80,7 @@ namespace SZ10004
         private void SetPlayed(bool isPlayed)
         {
             m_IsPlayed = isPlayed;
+            m_IsPlaying = true;
         }
 
         private void ExitEvent()
@@ -128,48 +112,100 @@ namespace SZ10004
 
         private void PalmEvent(PalmEvent palmEvent)
         {
-            if (!m_IsPalm && palmEvent.status)
+            if (palmEvent.status)
             {
-                m_Time = 0;
-                m_IsPalm = true;
-                m_IsGrip = false;
-                m_IsScissors = false;
+                Debug.Log("识别到手掌");
+                //m_IsPalm = true;
+                m_NPCManager.GetPalm();
             }
-            else
-            {
-                m_IsPalm = false;
-            }
+            //else
+            //{
+            //    //m_IsPalm = false;
+            //}
         }
 
         private void GripEvent(HandBackEvent gripEvent)
         {
-            if (!m_IsGrip && gripEvent.status)
+            if (gripEvent.status)
             {
-                m_Time = 0;
-                m_IsPalm = false;
-                m_IsGrip = true;
-                m_IsScissors = false;
+                Debug.Log("识别到拳头");
+                //m_IsGrip = true;
+                m_NPCManager.GetGrip();
             }
-            else
-            {
-                m_IsGrip = false;
-            }
+            //else
+            //{
+            //    //m_IsGrip = false;
+            //}
+
         }
 
-        private void ScissorsEvent(ScissorsEvent palmEvent)
+        private void ScissorsEvent(ScissorsEvent scissorsEvent)
         {
-            if (palmEvent.status)
-            {
-                m_Time = 0;
-                m_IsPalm = false;
-                m_IsGrip = false;
-                m_IsScissors = true;
-            }
-            else
-            {
-                m_IsScissors = false;
-            }
-            //m_NPCManager.GetScissors();
+            //if (palmEvent.status)
+            //{
+                Debug.Log("识别到剪刀");
+            m_NPCManager.GetScissors();
+                //m_IsScissors = true;
+            //}
+            //else
+            //{
+            //    //m_IsScissors = false;
+            //}
+
         }
+
+        //private void PalmTime()
+        //{
+        //    if (!m_IsPlaying && m_IsPalm)
+        //    {
+        //        m_PalmTime += Time.deltaTime;
+        //        if(m_PalmTime >= 3)
+        //        {
+        //            m_NPCManager.GetPalm();
+        //            m_PalmTime = 0;
+        //            m_IsPlaying = true;
+        //        }
+        //    }
+        //    else if (!m_IsPalm)
+        //    {
+        //        m_PalmTime = 0;
+        //    }
+        //}
+
+        //private void GripTime()
+        //{
+        //    if (!m_IsPlaying && m_IsGrip)
+        //    {
+        //        m_GripTime += Time.deltaTime;
+        //        if (m_GripTime >= 3)
+        //        {
+        //            m_NPCManager.GetGrip();
+        //            m_GripTime = 0;
+        //            m_IsPlaying = true;
+        //        }
+        //    }
+        //    else if (!m_IsGrip)
+        //    {
+        //        m_GripTime = 0;
+        //    }
+        //}
+
+        //private void ScissorsTime()
+        //{
+        //    if (!m_IsPlaying && m_IsScissors)
+        //    {
+        //        m_ScissorsTime += Time.deltaTime;
+        //        if (m_ScissorsTime >= 3)
+        //        {
+        //            m_NPCManager.GetScissors();
+        //            m_ScissorsTime = 0;
+        //            m_IsPlaying = true;
+        //        }
+        //    }
+        //    else if (!m_IsScissors)
+        //    {
+        //        m_ScissorsTime = 0;
+        //    }
+        //}
     }
 }

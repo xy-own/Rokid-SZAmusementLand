@@ -3,6 +3,7 @@ using D.Base;
 using SZ10001;
 using Unity.VisualScripting;
 using DG.Tweening;
+using System.Collections.Generic;
 
 namespace D_0
 {
@@ -13,6 +14,8 @@ namespace D_0
         private GameObject m_Road;
 
         private GameObject m_Poi;
+
+        public List<GameObject> m_List;
         public override void OnEnter(string data)
         {
 
@@ -33,9 +36,12 @@ namespace D_0
             AudioPlay("BGM0");
             MessageDispatcher.AddListener<string>("SetBgm",AudioPlay);
             MessageDispatcher.AddListener("StopBgm", AudioStop);
+            MessageDispatcher.AddListener("PlayBgm", AudioPlay);
 
             MessageDispatcher.AddListener("EnterPoi", EnterPoi);
             MessageDispatcher.AddListener("ExitPoi", ExitPoi);
+
+            MessageDispatcher.AddListener("ShowAllPoi", ShowAllPoi);
         }
 
         private void AudioPlay(string Name)
@@ -48,6 +54,11 @@ namespace D_0
             m_AudioManager.AudioStop();
         }
 
+        private void AudioPlay()
+        {
+            m_AudioManager.AudioPlay();
+        }
+
         private void EnterPoi()
         {
             m_Road.SetActive(false);
@@ -56,6 +67,14 @@ namespace D_0
         private void ExitPoi()
         {
             m_Road.SetActive(true);
+        }
+
+        private void ShowAllPoi()
+        {
+            for (int i = 1;i < m_List.Count;i++)
+            {
+                m_List[i].SetActive(true);
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ public class PaoPaoManager : MonoBehaviour
 
     private void ClickPaoPao(FingerEvent fingerEvent,Collider go)
     {
+        MessageDispatcher.SendMessageData("10006AudioShot", "ChuPengPaoPao");
         m_PaoPao.SetActive(false);
         m_PaoPaoPo.SetActive(true);
     }

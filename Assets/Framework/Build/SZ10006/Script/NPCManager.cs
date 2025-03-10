@@ -37,10 +37,15 @@ namespace SZ10006
         private bool m_IsYellowCom;
         private GameObject m_Blue;
         private GameObject m_ZhuZi;
+        private GameObject m_BlueEffect;
+        private GameObject m_RedEffect;
+        private GameObject m_YellowEffect;
 
         private Transform m_RedPos;
         private Transform m_BluePos;
         private Transform m_YellowPos;
+
+        private GameObject m_JianTou;
         // Start is called before the first frame update
         void Start()
         {
@@ -81,6 +86,9 @@ namespace SZ10006
             m_BlueBox.AddComponent<BtnItem>().enterAction += EnterBlueBox;
             m_YellowBox = m_Scene.transform.Find("LanBoShu/Box/box_y_T").gameObject;
             m_YellowBox.AddComponent<BtnItem>().enterAction += EnterYellowBox;
+            m_BlueEffect = m_BlueBox.transform.Find("BlueBoxEffect").gameObject;
+            m_RedEffect = m_RedBox.transform.Find("RedBoxEffect").gameObject;
+            m_YellowEffect = m_YellowBox.transform.Find("YellowBoxEffect").gameObject;
             m_RedCristal = m_Scene.transform.Find("LanBoShu/cristal/cristal02_r").gameObject;
             m_RedCristal.AddComponent<BtnItem>().enterAction += EnterRedCristal;
             m_BlueCristal = m_Scene.transform.Find("LanBoShu/cristal/cristal02_b").gameObject;
@@ -91,6 +99,8 @@ namespace SZ10006
             m_RedBoxAni = m_RedBox.transform.Find("Group").GetComponent<Animator>();
             m_BlueBoxAni = m_BlueBox.transform.Find("Group").GetComponent<Animator>();
             m_YellowBoxAni = m_YellowBox.transform.Find("Group").GetComponent<Animator>();
+
+            m_JianTou = transform.Find("JianTou").gameObject;
         }
 
         public void StartGame()
@@ -114,10 +124,16 @@ namespace SZ10006
             m_LanBoShuAni.SetTrigger("Speak2");
             MessageDispatcher.SendMessageData("10006AudioPlay", "05-2");
             m_BlueBoxAni.SetTrigger("On");
+            MessageDispatcher.SendMessageData("10006AudioShot", "KaiGuanXIangZi");
+            MessageDispatcher.SendMessageData("10006ShowBiao", "Blue");
             yield return new WaitForSeconds(1f);
             m_RedBoxAni.SetTrigger("On");
+            MessageDispatcher.SendMessageData("10006AudioShot", "KaiGuanXIangZi");
+            MessageDispatcher.SendMessageData("10006ShowBiao", "Red");
             yield return new WaitForSeconds(1f);
             m_YellowBoxAni.SetTrigger("On");
+            MessageDispatcher.SendMessageData("10006AudioShot", "KaiGuanXIangZi");
+            MessageDispatcher.SendMessageData("10006ShowBiao", "Yellow");
             MessageDispatcher.SendMessageData("10006ShowUI");
             yield return new WaitForSeconds(12.4f);
             isCanPlay = true;
@@ -132,6 +148,10 @@ namespace SZ10006
                 m_RedCristal.transform.DOScale(0.5f, 1f);
                 m_RedCristal.transform.DOMove(m_RedBox.transform.position, 1f).OnComplete(() =>
                 {
+                    MessageDispatcher.SendMessageData("10006AudioShot", "KaiGuanXIangZi");
+                    m_RedBoxAni.SetTrigger("Off");
+                    m_RedCristal.SetActive(false);
+                    m_RedEffect.SetActive(true);
                     m_IsRedCom = true;
                 });
                 MessageDispatcher.SendMessageData("10006HideBiao", "Red");
@@ -142,6 +162,7 @@ namespace SZ10006
             }
         }
 
+
         private void EnterBlueBox(FingerEvent fingerEvent, Collider go)
         {
             if (m_ChooseType == CristalType.Blue)
@@ -150,6 +171,10 @@ namespace SZ10006
                 m_BlueCristal.transform.DOScale(0.5f, 1f);
                 m_BlueCristal.transform.DOMove(m_BlueBox.transform.position, 1f).OnComplete(() =>
                 {
+                    MessageDispatcher.SendMessageData("10006AudioShot", "KaiGuanXIangZi");
+                    m_BlueBoxAni.SetTrigger("Off");
+                    m_BlueCristal.SetActive(false);
+                    m_BlueEffect.SetActive(true);
                     m_IsBlueCom = true;
                 });
                 MessageDispatcher.SendMessageData("10006HideBiao", "Blue");
@@ -168,6 +193,10 @@ namespace SZ10006
                 m_YellowCristal.transform.DOScale(0.5f, 1f);
                 m_YellowCristal.transform.DOMove(m_YellowBox.transform.position, 1f).OnComplete(() =>
                 {
+                    MessageDispatcher.SendMessageData("10006AudioShot", "KaiGuanXIangZi");
+                    m_YellowBoxAni.SetTrigger("Off");
+                    m_YellowCristal.SetActive(false);
+                    m_YellowEffect.SetActive(true);
                     m_IsYellowCom = true;
                 });
                 MessageDispatcher.SendMessageData("10006HideBiao", "Yellow");
@@ -212,15 +241,15 @@ namespace SZ10006
         {
             yield return new WaitForSeconds(7f);
             m_LanBoShuAni.SetTrigger("Idle");
-            m_RedBoxAni.SetTrigger("Off");
-            m_RedCristal.SetActive(false);
-            yield return new WaitForSeconds(1f);
-            m_BlueBoxAni.SetTrigger("Off");
-            m_BlueCristal.SetActive(false);
-            yield return new WaitForSeconds(1f);
-            m_YellowBoxAni.SetTrigger("Off");
-            m_YellowCristal.SetActive(false);
-            yield return new WaitForSeconds(1f);
+            //m_RedBoxAni.SetTrigger("Off");
+            //m_RedCristal.SetActive(false);
+            //yield return new WaitForSeconds(1f);
+            //m_BlueBoxAni.SetTrigger("Off");
+            //m_BlueCristal.SetActive(false);
+            //yield return new WaitForSeconds(1f);
+            //m_YellowBoxAni.SetTrigger("Off");
+            //m_YellowCristal.SetActive(false);
+            //yield return new WaitForSeconds(1f);
             m_RedBox.transform.DOLocalMoveX(0f,1f);
             m_YellowBox.transform.DOLocalMoveX(0f, 1f);
             yield return new WaitForSeconds(1f);
@@ -228,7 +257,7 @@ namespace SZ10006
             m_YellowBox.transform.DOScale(0f, 1f);
             m_RedBox.transform.DOScale(0f, 1f);
             m_Blue.SetActive(true);
-            MessageDispatcher.SendMessageData("10006AudioShot", "mofashuijin");
+            MessageDispatcher.SendMessageData("10006AudioShot", "LanShuiJingChuXian");
             m_Blue.transform.Find("ef_shuijing_blue/RJ_YongQi").gameObject.SetActive(true);
             yield return new WaitForSeconds(1f);
             m_LanBoShuAni.SetTrigger("Speak3");
@@ -248,12 +277,16 @@ namespace SZ10006
             yield return new WaitForSeconds(5.9f);
             m_LanBoShuAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10006Played", true);
+            m_Scene.transform.Find("LanBoShu/SC_LanBoShu").GetComponent<Animator>().SetTrigger("XiaoShi");
+            m_Scene.transform.Find("LanBoShu/SC_LanBoShu/desk").transform.DOScale(0f, 1f);
+            m_JianTou.SetActive(true);
         }
 
         public void RecoverGame()
         {
             m_Scene.SetActive(false);
             m_LanBoShu.SetActive(false);
+            m_JianTou.SetActive(false);
         }    
     }
 }
