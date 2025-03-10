@@ -61,16 +61,16 @@ namespace SU10007
             lastPlayerFireTime = -fireInterval; // 设置为负值以便可以立即发射第一发子弹
             lastNpcFireTime = -npcFireInterval;
 
-            if (playerBulletPrefab == null)
-            {
-                Debug.LogWarning("玩家子弹预制体未设置");
-            }
+            // if (playerBulletPrefab == null)
+            // {
+            //     Debug.LogWarning("玩家子弹预制体未设置");
+            // }
 
-            if (npcBulletPrefab == null)
-            {
-                Debug.LogWarning("NPC子弹预制体未设置，将使用玩家子弹预制体");
-                npcBulletPrefab = playerBulletPrefab;
-            }
+            // if (npcBulletPrefab == null)
+            // {
+            //     Debug.LogWarning("NPC子弹预制体未设置，将使用玩家子弹预制体");
+            //     npcBulletPrefab = playerBulletPrefab;
+            // }
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace SU10007
                 // 计算方向与目标方向的夹角
                 Vector3 targetDirection = (target.transform.position - spawnPosition).normalized;
                 float angle = Vector3.Angle(rotation * Vector3.forward, targetDirection);
-                Debug.Log(angle);
+                // Debug.Log(angle);
                 // 如果夹角小于阈值，则锁定目标（并添加随机偏移）
                 if (angle < targetAimAngleThreshold)
                 {
@@ -184,7 +184,7 @@ namespace SU10007
         /// <param name="target">目标GameObject</param>
         /// <param name="soundName">射击音效名称</param>
         /// <returns>是否成功射击</returns>
-        public bool NPCShootAtTarget(Transform npcTransform, GameObject target, string soundName = "npc_shoot")
+        public bool NPCShootAtTarget(Transform npcTransform, GameObject target, string soundName)
         {
             if (target == null || npcTransform == null)
             {

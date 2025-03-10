@@ -35,6 +35,7 @@ namespace SU10007
         public void Awake()
         {
             mAudioSource = this.AddComponent<AudioSource>();
+            mAudioSource.playOnAwake = false;
             audioCache = new Dictionary<string, AudioClip>();
             isInitialized = true;
             Debug.Log("音频管理器初始化成功");
@@ -131,6 +132,7 @@ namespace SU10007
 
             if (mAudioSource.isPlaying)
             {
+                mAudioSource.clip = null;
                 mAudioSource.Stop();
                 Debug.Log("音频播放已停止");
             }

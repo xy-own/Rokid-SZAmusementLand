@@ -20,7 +20,7 @@ namespace SU10007
         [Tooltip("最大射击间隔(秒)")]
         public float ShootS2Interval = 1.5f;          // 最大射击间隔
         [Tooltip("射击音效名称")]
-        public string shootSoundName = "npc_shoot";    // 射击音效名称
+        public string shootSoundName = "";    // 射击音效名称
 
         [Header("自动射击设置")]
         private ShootingSystem shootingSystem;         // 射击系统引用

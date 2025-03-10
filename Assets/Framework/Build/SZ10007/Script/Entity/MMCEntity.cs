@@ -410,6 +410,38 @@ namespace SU10007
             }
         }
 
+        /// <summary>
+        /// 重置实体状态
+        /// </summary>
+        public void Reset()
+        {
+            // 重置被攻击次数
+            BeattackCount = 0;
+
+            // 重置上次被击动画时间
+            lastBeattackTime = -1f;
+
+            // 取消正在进行的任务
+            if (shootToken != null)
+            {
+                var tokenSource = CancellationTokenSource.CreateLinkedTokenSource(shootToken);
+                tokenSource.Cancel();
+                tokenSource.Dispose();
+                shootToken = default;
+            }
+
+            // 重置动画状态
+            if (animator != null)
+            {
+                animator.Rebind();
+                animator.Update(0f);
+                PlayIdleAnimation(1);
+            }
+
+            // 停止旋转
+            StopRotation();
+        }
+
         private void OnDisable()
         {
 

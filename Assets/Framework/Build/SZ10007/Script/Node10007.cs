@@ -73,6 +73,8 @@ namespace SU10007
         private MMCEntity m_MMCEntity;                  // 毛毛虫实体
         private Transform m_MMCP1;                      // 毛毛虫出现点1
         private Transform m_MMCP2;                      // 毛毛虫出现点2
+        private GameObject m_JianTou;                   // 箭头特效
+        private SpriteRenderer TipSP;                   // 提示SpriteRenderer
         private ShootingSystem shootingSystem;          // 射击系统
         private NPCShootController npcSDShootController;  // SuDI射击控制器
         private ShootingSystem shootingSystemSD;          // SuDI射击系统
@@ -98,6 +100,8 @@ namespace SU10007
             m_SceneModel = transform.Find("NPC/Scene").gameObject;
             m_LiHeModel = transform.Find("NPC/LiHe").gameObject;
             m_SceneEffect = transform.Find("NPC/SceneEffect").gameObject;
+            m_JianTou = transform.Find("NPC/JianTou").gameObject;
+            TipSP = transform.Find("NPC/Tip").GetComponent<SpriteRenderer>();
             m_SuDiEntity = transform.Find("NPC/SuDiEntity").GetComponent<SuDiEntity>();
             m_SuNiEntity = transform.Find("NPC/SuNiEntity").GetComponent<SuNiEntity>();
             m_JBREntity = transform.Find("NPC/JBREntity").GetComponent<JBREntity>();
@@ -210,7 +214,7 @@ namespace SU10007
                 // 设置射击参数
                 npcJBRShootController.ShootS1Interval = 1f;
                 npcJBRShootController.ShootS2Interval = 1f;
-                npcJBRShootController.shootSoundName = "npc_shoot";
+                // npcJBRShootController.shootSoundName = "npc_shoot";
                 npcJBRShootController.enableShooting = false; // 默认不启用射击
             }
             else if (m_JBREntity == null)
@@ -232,7 +236,7 @@ namespace SU10007
                 // 设置射击参数
                 npcSDShootController.ShootS1Interval = 1.2f;
                 npcSDShootController.ShootS2Interval = 2.2f;
-                npcSDShootController.shootSoundName = "npc_shoot";
+                // npcSDShootController.shootSoundName = "npc_shoot";
                 npcSDShootController.enableShooting = false; // 默认不启用射击
             }
             else if (m_SuDiEntity == null)
@@ -250,13 +254,80 @@ namespace SU10007
             playerInTriggerZone = false;
             DisableShooting(); // 玩家离开区域时禁用射击
             Debug.Log("玩家已离开交互区域");
+
+            // 取消所有延迟执行的任务
+            if (cancellationToken != null)
+            {
+                cancellationToken.Cancel();
+                cancellationToken = new CancellationTokenSource();
+            }
+
+            // 停止NPC射击
+            if (npcSDShootController != null)
+                npcSDShootController.DisableShooting();
+            if (npcJBRShootController != null)
+                npcJBRShootController.DisableShooting();
+
+            // 停止所有DOTween动画
+            DOTween.KillAll();
+
+            // 重置天空盒
             SkyboxManager.Instance.SetDefaultSkybox();
-            m_ModModel.gameObject.SetActive(true);
-            // 可以添加相关的视觉或音频反馈
+
+            // 停止背景音乐和音效
             if (m_AudioManager != null)
             {
-                m_AudioManager.PlaySound("exit");
+                m_AudioManager.StopSound();
+                m_MMCEntity.m_AudioManager.StopSound();
+                MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
             }
+
+            m_MMCEntity.Reset();
+            // 隐藏所有在EnterEvent中激活的对象
+            if (m_SceneModel != null) m_SceneModel.gameObject.SetActive(false);
+            if (m_SceneEffect != null) m_SceneEffect.gameObject.SetActive(false);
+            if (m_LiHeModel != null) m_LiHeModel.gameObject.SetActive(false);
+            if (m_JianTou != null) m_JianTou.gameObject.SetActive(false);
+
+            // 隐藏所有NPC
+            if (m_SuNiEntity != null)
+            {
+                m_SuNiEntity.gameObject.SetActive(false);
+                m_SuNiEntity.PlayIdleAnimation(); // 重置动画状态
+            }
+            if (m_SuDiEntity != null)
+            {
+                m_SuDiEntity.gameObject.SetActive(false);
+                m_SuDiEntity.PlayIdleAnimation();
+            }
+            if (m_JBREntity != null)
+            {
+                m_JBREntity.gameObject.SetActive(false);
+                m_JBREntity.PlayIdleAnimation();
+            }
+            if (m_MMCEntity != null)
+            {
+                m_MMCEntity.gameObject.SetActive(false);
+                m_MMCEntity.PlayIdleAnimation(1);
+                // 重置毛毛虫位置和缩放
+                m_MMCEntity.transform.position = m_MMCP1.position;
+                m_MMCEntity.transform.localScale = m_MMCP1.localScale;
+            }
+
+            // 重置提示UI
+            if (TipSP != null)
+            {
+                TipSP.DOKill();
+                TipSP.color = new Color(TipSP.color.r, TipSP.color.g, TipSP.color.b, 0);
+            }
+
+            // 显示模型
+            if (m_ModModel != null)
+                m_ModModel.gameObject.SetActive(true);
+
+            // 重置状态变量
+            canShoot = false;
+            Debug.Log("场景已完全重置，准备下次进入");
         }
 
         /// <summary>
@@ -264,6 +335,7 @@ namespace SU10007
         /// </summary>
         private void EnterEvent()
         {
+            if (playerInTriggerZone) return;
             MessageDispatcher.SendMessageData("EnterPoi");
             playerInTriggerZone = true;
             Debug.Log("玩家已进入交互区域");
@@ -300,8 +372,10 @@ namespace SU10007
                             m_MMCEntity.PlayIdleAnimation(1);
                             m_SuNiEntity.PlayAttackSpeakAnimation();
                             m_SuNiEntity.LookTarget = CameraPos;
+                            TipSP.DOFade(1, 1);
                             m_AudioManager.PlaySound("06-2-1", onComplete: () =>
                             {
+                                TipSP.DOFade(0, 1);
                                 m_SuNiEntity.PlayIdleAnimation();
                                 m_SuNiEntity.LookTarget = m_MMCEntity.transform;
 
@@ -446,18 +520,24 @@ namespace SU10007
             // 先隐藏实体
             m_JBREntity.gameObject.SetActive(false);
             m_SuDiEntity.gameObject.SetActive(false);
-
-            // 先让姜饼人跳出来 - 修改为跳1次
-            SpawnEntityFromSky(m_JBREntity.gameObject, jbrStartPos, jbrTargetPos, 2f, 5f, 1, "jbr_jump").Forget();
             m_JBREntity.LookTarget = m_MMCEntity.transform;
+            // 先让姜饼人跳出来 - 修改为跳1次
+            SpawnEntityFromSky(m_JBREntity.gameObject, jbrStartPos, jbrTargetPos, 2f, 5f, 1, "").Forget();
+
             // 等待0.5秒后让苏迪跳出来
             // await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
-
-            await SpawnEntityFromSky(m_SuDiEntity.gameObject, suDiStartPos, suDiTargetPos, 2f, 5f, 1, "sudi_jump");
             m_SuDiEntity.LookTarget = m_MMCEntity.transform;
+            await SpawnEntityFromSky(m_SuDiEntity.gameObject, suDiStartPos, suDiTargetPos, 2f, 5f, 1, "");
+
+            m_SuDiEntity.PlayIdleSpeakAnimation();
             m_AudioManager.PlaySound("06-4-1", onComplete: () =>
             {
-                m_AudioManager.PlaySound("06-5");
+                m_SuNiEntity.PlayIdleAnimation();
+                // m_JBREntity.PlayIdleSpeakAnimation();
+                m_AudioManager.PlaySound("06-5", onComplete: () =>
+                {
+                    // m_JBREntity.PlayIdleAnimation();
+                });
                 EnableShooting();
                 this.DelaySeconds(0.5f, () =>
                 {
@@ -504,6 +584,7 @@ namespace SU10007
                                                 await sequence.AsyncWaitForCompletion();
                                                 m_SceneEffect.gameObject.SetActive(false);
                                                 m_LiHeModel.gameObject.SetActive(true);
+                                                m_LiHeModel.transform.position = m_MMCP2.position;
                                                 // 设置礼盒初始位置，从天空掉落
                                                 Vector3 originalPosition = m_LiHeModel.transform.position;
                                                 Vector3 startPosition = originalPosition + new Vector3(0, 8f, 0);
@@ -524,17 +605,17 @@ namespace SU10007
                                                 giftBoxSequence.Append(m_LiHeModel.transform.DOMove(bouncePosition, 0.6f).SetEase(Ease.InQuad));
 
                                                 // 2. 挤压变形效果
-                                                giftBoxSequence.Join(
-                                                    DOTween.Sequence()
-                                                        .AppendInterval(0.55f) // 接近地面时
-                                                        .Append(m_LiHeModel.transform.DOScale(squashScale, 0.1f))
-                                                );
+                                                // giftBoxSequence.Join(
+                                                //     DOTween.Sequence()
+                                                //         // .AppendInterval(0.55f) // 接近地面时
+                                                //         .Append(m_LiHeModel.transform.DOScale(squashScale, 0.1f))
+                                                // );
 
                                                 // 3. 回弹到地面
                                                 // giftBoxSequence.Append(m_LiHeModel.transform.DOMove(originalPosition, 0.2f).SetEase(Ease.OutQuad));
 
                                                 // 4. 恢复原始形状
-                                                giftBoxSequence.Join(m_LiHeModel.transform.DOScale(originalScale, 0.3f).SetEase(Ease.OutElastic));
+                                                // giftBoxSequence.Join(m_LiHeModel.transform.DOScale(originalScale, 0.3f).SetEase(Ease.OutElastic));
 
                                                 // 5. 短暂停留
                                                 giftBoxSequence.AppendInterval(0.5f);
@@ -545,24 +626,31 @@ namespace SU10007
                                                 // 播放落地音效
                                                 giftBoxSequence.InsertCallback(0.6f, () =>
                                                 {
+                                                    m_SuNiEntity.PlayIdleSpeakAnimation();
                                                     m_AudioManager.PlaySound("06-2-2", onComplete: () =>
                                                     {
+                                                        m_SuNiEntity.PlayIdleAnimation();
                                                         this.DelaySeconds(0.5f, () =>
                                                         {
                                                             m_SuDiEntity.LookTarget = CameraPos;
                                                             m_SuNiEntity.LookTarget = CameraPos;
                                                             m_JBREntity.LookTarget = CameraPos;
-                                                            m_AudioManager.PlaySound("06-4-2");
-                                                                           m_LiHeModel.transform.DOMove(CameraPos.position - new Vector3(0, 1f, 0) + new Vector3(CameraPos.forward.x, 0, CameraPos.forward.z) * 3.0f, 2.0f)
+                                                            m_SuDiEntity.PlayIdleSpeakAnimation();
+                                                            m_AudioManager.PlaySound("06-4-2", onComplete: () =>
+                                                            {
+                                                                m_SuDiEntity.PlayIdleAnimation();
+                                                                m_JianTou.gameObject.SetActive(true);
+                                                            });
+                                                            m_LiHeModel.transform.DOMove(CameraPos.position - new Vector3(0, 0.5f, 0) + new Vector3(CameraPos.forward.x, 0, CameraPos.forward.z) * 3.0f, 2.0f)
                                                             .SetEase(Ease.OutQuad)
                                                             .OnComplete(() =>
                                                             {
                                                                 giftBoxSequence.Kill(); // 停止动画
                                                                                         // 礼盒移动到玩家面前后，可以添加额外效果或逻辑
                                                                 m_LiHeModel.transform
-                                                                     .DOMove(m_LiHeModel.transform.position, 1.2f)
-                                                                     .SetEase(Ease.InOutSine)
-                                                                     .SetLoops(-1, LoopType.Yoyo); // 无限循环，来回运动
+                                                                    .DOMove(m_LiHeModel.transform.position, 1.2f)
+                                                                    .SetEase(Ease.InOutSine)
+                                                                    .SetLoops(-1, LoopType.Yoyo); // 无限循环，来回运动
 
                                                                 // 缓慢旋转效果
                                                                 m_LiHeModel.transform
@@ -745,7 +833,7 @@ namespace SU10007
             // 创建测试触发进入区域按钮
             if (GUI.Button(new Rect(testGUIOffsetX, testGUIOffsetY + 210, 200, 60), "触发进入区域", buttonStyle))
             {
-                m_LiHeModel.gameObject.SetActive(true); 
+                m_LiHeModel.gameObject.SetActive(true);
                 m_LiHeModel.transform.DOMove(CameraPos.position - new Vector3(0, 1f, 0) + new Vector3(CameraPos.forward.x, 0, CameraPos.forward.z) * 3.0f, 2.0f);
                 if (!playerInTriggerZone)
                 {
