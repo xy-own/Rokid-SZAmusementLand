@@ -92,6 +92,11 @@ namespace SU10007
         {
             // 注册手势事件监听
             MessageDispatcher.AddListener<PalmEvent>(XY.UXR.API.OpenAPI.RKGesPalmEvent, PalmEvent);
+            MessageDispatcher.AddListener("10007_JQ1", GuideEvent1);//剧情1 毛毛虫讲话1
+            MessageDispatcher.AddListener("10007_JQ1_2", GuideEvent1_2);//剧情1-2 射击UI隐藏
+            MessageDispatcher.AddListener("10007_JQ2", GuideEvent2);//剧情2  外援入场
+            MessageDispatcher.AddListener("10007_JQ2_2", GuideEvent1_2);//剧情2-2 射击UI隐藏
+
             // 查找并初始化组件
             m_Audio = transform.Find("Audio").gameObject;
 
@@ -396,7 +401,41 @@ namespace SU10007
                 m_AudioManager.PlaySound("mmc");
             }
         }
-
+        /// <summary>
+        /// 剧情事件1
+        /// </summary>
+        private void GuideEvent1()
+        {
+            DisableShooting();
+            this.DelaySeconds(1, () =>
+            {
+                if (m_MMCEntity.m_AudioManager != null)
+                {
+                    m_MMCEntity.PlayBowIdleSpeakAnimation();
+                    m_MMCEntity.m_AudioManager.PlaySound("06-3-1", onComplete: () =>
+                    {
+                        m_MMCEntity.PlayIdleAnimation(1);
+                        TipSP.DOFade(1, 1);
+                        EnableShooting();
+                    });
+                }
+            }, cancellationToken.Token).Forget();
+        }
+        /// <summary>
+        /// 隐藏射击UI
+        /// </summary>
+        public void GuideEvent1_2()
+        {
+            TipSP.DOFade(0, 1);
+        }
+        /// <summary>
+        /// 剧情事件2
+        /// </summary>
+        private void GuideEvent2()
+        {
+            DisableShooting();
+            SpawnJBRAndSuDiEntities().Forget();
+        }
         /// <summary>
         /// 让实体从空中跳出来的方法
         /// </summary>
@@ -538,6 +577,7 @@ namespace SU10007
                 {
                     // m_JBREntity.PlayIdleAnimation();
                 });
+                TipSP.DOFade(1, 1);
                 EnableShooting();
                 this.DelaySeconds(0.5f, () =>
                 {
@@ -566,13 +606,17 @@ namespace SU10007
                                 {
                                     this.DelaySeconds(5f, () =>
                                     {
+                                        Debug.Log("NPC射击功能已关闭");
+                                        npcSDShootController.DisableShooting();
+                                        m_SuDiEntity.PlayIdleAnimation();
+                                        npcJBRShootController.DisableShooting();
+                                        m_JBREntity.PlayIdleAnimation();
+                                        DisableShooting();
+
+                                        m_MMCEntity.PlayBowIdleSpeakAnimation();
                                         m_MMCEntity.m_AudioManager.PlaySound("06-3-4", onComplete: () =>
                                         {
-                                            // Debug.Log("NPC射击功能已关闭");
-                                            npcSDShootController.DisableShooting();
-                                            npcJBRShootController.DisableShooting();
-                                            DisableShooting();
-                                            // m_MMCEntity.PlayIdleAnimation(1);
+                                            m_MMCEntity.PlayIdleAnimation(1);
                                             m_SceneEffect.gameObject.SetActive(true);
                                             this.DelaySeconds(1f, async () =>
                                             {
@@ -648,7 +692,7 @@ namespace SU10007
                                                                 giftBoxSequence.Kill(); // 停止动画
                                                                                         // 礼盒移动到玩家面前后，可以添加额外效果或逻辑
                                                                 m_LiHeModel.transform
-                                                                    .DOMove(m_LiHeModel.transform.position, 1.2f)
+                                                                    .DOMove(m_LiHeModel.transform.position + new Vector3(0, 0.1f, 0), 1.2f)
                                                                     .SetEase(Ease.InOutSine)
                                                                     .SetLoops(-1, LoopType.Yoyo); // 无限循环，来回运动
 
