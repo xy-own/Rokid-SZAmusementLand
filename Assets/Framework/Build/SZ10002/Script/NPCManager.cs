@@ -81,8 +81,8 @@ namespace SZ10002
             m_SuDi.SetActive(true);
             m_SuNi.SetActive(true);
             MessageDispatcher.SendMessageData("10002AudioShot", "XCJ");
-            m_SuDi.transform.DOScale(Vector3.one*1.6f, 2f);
-            m_SuNi.transform.DOScale(Vector3.one*1.6f, 2f);
+            m_SuDi.transform.DOScale(Vector3.one*1.4f, 2f);
+            m_SuNi.transform.DOScale(Vector3.one*1.4f, 2f);
             yield return new WaitForSeconds(4f);
             m_SuDiAni.SetTrigger("Speak1");
             MessageDispatcher.SendMessageData("10002AudioPlay", "01-1-1");
@@ -132,7 +132,9 @@ namespace SZ10002
                 Vector3 dis = Camera.main.transform.position + Camera.main.transform.forward * 0.5f;
                 dis = new Vector3(dis.x, dis.y - 0.3f, dis.z);
                 m_GiftBox.transform.DOMove(dis, 1.5f);
-                m_GiftBox.transform.DOScale(0f, 1.5f);
+                m_GiftBox.transform.DOScale(0f, 1.5f).OnComplete(() => { 
+                    m_GiftBox.SetActive(false);
+                });
                 MessageDispatcher.SendMessageData("10002AudioShot", "jinselizi");
                 StartCoroutine(GetBox());
             }
@@ -165,6 +167,7 @@ namespace SZ10002
             MessageDispatcher.SendMessageData<bool>("10002Played", true);
             isPlayed = true;
             m_JianTou.SetActive(true);
+            MessageDispatcher.SendMessageData("10002AudioPlay", "EndTip");
         }
 
         public void RecoverGame()

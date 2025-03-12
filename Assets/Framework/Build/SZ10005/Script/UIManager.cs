@@ -49,6 +49,8 @@ namespace SZ10005
         {
             MessageDispatcher.RemoveListener("10005ShowUI", ShowTip);
             MessageDispatcher.RemoveListener("10005HideUI", HideTip);
+            MessageDispatcher.RemoveListener("10005ShowUI1", ShowTip1);
+            MessageDispatcher.RemoveListener("10005HideUI1", HideTip1);
         }
     }
 }

@@ -112,7 +112,7 @@ namespace SZ10004
             m_JingLing.GetComponent<FollowItem>().enabled = false;
             m_JingLing.transform.LookAt(new Vector3(0.11f, m_JingLing.transform.position.y, 6.5f));
             m_JingLingAni.SetTrigger("Fly");
-            m_JingLing.transform.DOLocalMove(new Vector3(0.62f, 0.53f, 6.35f), 2f).OnComplete(() => {
+            m_JingLing.transform.DOLocalMove(new Vector3(0.64f, 0.53f, 6.8f), 2f).OnComplete(() => {
                 m_JingLing.GetComponent<FollowItem>().enabled = true;
                 m_JingLingAni.SetTrigger("Speak1");
                 MessageDispatcher.SendMessageData("10004AudioPlay", "04-2");
@@ -183,6 +183,18 @@ namespace SZ10004
             MessageDispatcher.SendMessageData("10004AudioPlay", Name);
             MessageDispatcher.SendMessageData("StopBgm");
             yield return new WaitForSeconds(15.5f);
+            if (name == "Flower1")
+            {
+                m_YinFu1.SetActive(false);
+            }
+            if (name == "Flower2")
+            {
+                m_YinFu2.SetActive(false);
+            }
+            if (name == "Flower3")
+            {
+                m_YinFu3.SetActive(false);
+            }
             MessageDispatcher.SendMessageData("PlayBgm");
             PlayedGame();
         }
@@ -228,6 +240,8 @@ namespace SZ10004
             isFirstPlay = false;
             isCanPlay = true;
             MessageDispatcher.SendMessageData<bool>("10004Played", true);
+            MessageDispatcher.SendMessageData("10004AudioPlay", "EndTip");
+            MessageDispatcher.SendMessageData("10004AudioStop");
             m_JianTou.SetActive(true);
         }
     }

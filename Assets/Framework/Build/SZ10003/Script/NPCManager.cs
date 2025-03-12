@@ -2,6 +2,7 @@ using D;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 
 namespace SZ10003
@@ -19,6 +20,7 @@ namespace SZ10003
         private GameObject m_Box;
         private GameObject m_Effect;
         private GameObject m_JianTou;
+        private GameObject m_EndPos;
 
         // Start is called before the first frame update
         void Start()
@@ -45,6 +47,7 @@ namespace SZ10003
             m_Box = transform.Find("Box").gameObject;
             m_Effect = transform.Find("Effect").gameObject;
             m_JianTou = transform.Find("JianTou").gameObject;
+            m_EndPos = transform.Find("SuDiEndPos").gameObject;
         }
 
         public void StartGame()
@@ -148,12 +151,18 @@ namespace SZ10003
             m_SuDiAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-12");
             yield return new WaitForSeconds(14.6f);
-            m_SuDiAni.SetTrigger("Idle");
+            m_SuDiAni.SetTrigger("Run");
+            m_SuDi.GetComponent<FollowItem>().enabled = false;
+            m_SuDi.transform.LookAt(new Vector3(m_EndPos.transform.position.x, m_SuDi.transform.position.y, m_EndPos.transform.position.z));
+            m_SuDi.transform.DOLocalMove(m_EndPos.transform.localPosition, 2f).OnComplete(() => {
+                m_SuDi.SetActive(false);
+            });
             m_SuNiAni.SetTrigger("Speak2");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-13");
             yield return new WaitForSeconds(1.5f);
             m_SuNiAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10003Played", true);
+            MessageDispatcher.SendMessageData("10003AudioPlay", "EndTip");
             m_JianTou.SetActive(true);
         }
 

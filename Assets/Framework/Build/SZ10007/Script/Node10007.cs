@@ -255,7 +255,6 @@ namespace SU10007
         /// </summary>
         private void ExitEvent()
         {
-            MessageDispatcher.SendMessageData("ExitPoi");
             playerInTriggerZone = false;
             DisableShooting(); // 玩家离开区域时禁用射击
             Debug.Log("玩家已离开交互区域");
@@ -343,6 +342,7 @@ namespace SU10007
             if (playerInTriggerZone) return;
             MessageDispatcher.SendMessageData("EnterPoi");
             playerInTriggerZone = true;
+            Debug.Log("玩家已进入交互区域");
             Debug.Log("玩家已进入交互区域");
             MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6");
             m_SceneModel.gameObject.SetActive(true);

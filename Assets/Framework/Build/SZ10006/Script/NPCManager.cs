@@ -277,6 +277,7 @@ namespace SZ10006
             yield return new WaitForSeconds(5.9f);
             m_LanBoShuAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10006Played", true);
+            MessageDispatcher.SendMessageData("10006AudioPlay", "EndTip");
             m_Scene.transform.Find("LanBoShu/SC_LanBoShu").GetComponent<Animator>().SetTrigger("XiaoShi");
             m_Scene.transform.Find("LanBoShu/SC_LanBoShu/desk").transform.DOScale(0f, 1f);
             m_JianTou.SetActive(true);

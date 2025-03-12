@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameConst : MonoBehaviour
+public class GameConst 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static bool m_IsEnter10004;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static bool m_IsEnter10005;
+
+    public static bool m_IsEnter10006;
+
+    public static bool m_IsEnter10007;
 }

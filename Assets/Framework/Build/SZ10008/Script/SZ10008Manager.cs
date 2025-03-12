@@ -53,9 +53,9 @@ namespace SZ10008
 
         private void EnterEvent()
         {
-            if (!m_IsEnter)
+            if (!m_IsEnter && GameConst.m_IsEnter10007)
             {
-                MessageDispatcher.SendMessageData("EnterPoi");
+                MessageDispatcher.SendMessageData("EnterPoi", gameObject.name);
                 m_IsEnter = true;
                 m_NPCManager.StartGame();
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM8-1");
@@ -66,7 +66,7 @@ namespace SZ10008
         {
             if (m_IsPlayed)
             {
-                MessageDispatcher.SendMessageData("ExitPoi");
+                MessageDispatcher.SendMessageData("ExitPoi",gameObject);
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
                 m_IsEnter = false;
@@ -92,6 +92,14 @@ namespace SZ10008
         private void AudioPlayOneShot(string name)
         {
             m_AudioManager.AudioPlayOneShot(name);
+        }
+
+        private void OnDestroy()
+        {
+            MessageDispatcher.RemoveListener<string>("10008AudioPlay", AudioPlay);
+            MessageDispatcher.RemoveListener<string>("10008AudioShot", AudioPlayOneShot);
+            MessageDispatcher.RemoveListener("10008AudioStop", AudioStop);
+            MessageDispatcher.RemoveListener<bool>("10008Played", SetPlayed);
         }
     }
 }

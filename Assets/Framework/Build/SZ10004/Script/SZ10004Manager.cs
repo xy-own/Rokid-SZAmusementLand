@@ -69,7 +69,8 @@ namespace SZ10004
         {
             if (!m_IsEnter)
             {
-                MessageDispatcher.SendMessageData("EnterPoi");
+                GameConst.m_IsEnter10004 = true;
+                MessageDispatcher.SendMessageData("EnterPoi", gameObject.name);
                 m_IsEnter = true;
                 m_NPCManager.StartGame();
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6");
@@ -87,7 +88,7 @@ namespace SZ10004
         {
             if (m_IsPlayed)
             {
-                MessageDispatcher.SendMessageData("ExitPoi");
+                MessageDispatcher.SendMessageData("ExitPoi", gameObject);
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
                 m_IsEnter = false;
@@ -207,5 +208,18 @@ namespace SZ10004
         //        m_ScissorsTime = 0;
         //    }
         //}
+
+        private void OnDestroy()
+        {
+            MessageDispatcher.RemoveListener<string>("10004AudioPlay", AudioPlay);
+            MessageDispatcher.RemoveListener<string>("10004AudioShot", AudioPlayOneShot);
+            MessageDispatcher.RemoveListener("10004AudioStop", AudioStop);
+            MessageDispatcher.RemoveListener<bool>("10004Played", SetPlayed);
+
+
+            MessageDispatcher.RemoveListener<PalmEvent>(XY.UXR.API.OpenAPI.RKGesPalmEvent1, PalmEvent);
+            MessageDispatcher.RemoveListener<HandBackEvent>(XY.UXR.API.OpenAPI.RKHandGripEvent, GripEvent);
+            MessageDispatcher.RemoveListener<ScissorsEvent>(XY.UXR.API.OpenAPI.ScissorsEvent, ScissorsEvent);
+        }
     }
 }

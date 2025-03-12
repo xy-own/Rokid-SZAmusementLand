@@ -38,8 +38,8 @@ namespace D_0
             MessageDispatcher.AddListener("StopBgm", AudioStop);
             MessageDispatcher.AddListener("PlayBgm", AudioPlay);
 
-            MessageDispatcher.AddListener("EnterPoi", EnterPoi);
-            MessageDispatcher.AddListener("ExitPoi", ExitPoi);
+            MessageDispatcher.AddListener<string>("EnterPoi", EnterPoi);
+            MessageDispatcher.AddListener<GameObject>("ExitPoi", ExitPoi);
 
             MessageDispatcher.AddListener("ShowAllPoi", ShowAllPoi);
         }
@@ -59,14 +59,34 @@ namespace D_0
             m_AudioManager.AudioPlay();
         }
 
-        private void EnterPoi()
+        private void EnterPoi(string name)
         {
             m_Road.SetActive(false);
+            CloseSomePoi(name);
         }
 
-        private void ExitPoi()
+        private void ExitPoi(GameObject go)
         {
+            if (go.name != "10007")
+            {
+                GameObject obj = Instantiate(Resources.Load<GameObject>($"Prefab/{go.name}"));
+                obj.transform.SetParent(go.transform.parent, false);
+                obj.name = go.name;
+                for (int i = 0; i < m_List.Count; i++)
+                {
+                    if (m_List[i].name == go.name)
+                    {
+                        m_List.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                Destroy(go);
+
+                m_List.Add(obj);
+            }
             m_Road.SetActive(true);
+            ShowAllPoi();
         }
 
         private void ShowAllPoi()
@@ -74,6 +94,17 @@ namespace D_0
             for (int i = 1;i < m_List.Count;i++)
             {
                 m_List[i].SetActive(true);
+            }
+        }
+
+        private void CloseSomePoi(string name)
+        {
+            for (int i = 1; i < m_List.Count; i++)
+            {
+                if (m_List[i].name != name)
+                {
+                    m_List[i].SetActive(false);
+                }
             }
         }
     }

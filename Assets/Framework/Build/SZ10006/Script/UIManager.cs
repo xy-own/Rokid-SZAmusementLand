@@ -62,6 +62,10 @@ namespace SZ10006
         {
             MessageDispatcher.RemoveListener("10006ShowUI", ShowTip);
             MessageDispatcher.RemoveListener("10006HideUI", HideTip);
+            MessageDispatcher.RemoveListener<string>("10006HideBiao", HideBiao);
+            MessageDispatcher.RemoveListener<string>("10006ShowBiao", ShowBiao);
+            MessageDispatcher.RemoveListener("10006ShowUI1", ShowTip1);
+            MessageDispatcher.RemoveListener("10006HideUI1", HideTip1);
         }
     }
 }

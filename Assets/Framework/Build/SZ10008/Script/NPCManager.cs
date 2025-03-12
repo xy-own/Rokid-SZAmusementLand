@@ -30,6 +30,7 @@ namespace SZ10008
         private GameObject m_Pink;
         private GameObject m_Effect;
         private GameObject m_Scene;
+        private GameObject m_Tietle;
 
         // Start is called before the first frame update
         void Start()
@@ -68,6 +69,7 @@ namespace SZ10008
             m_Pink = transform.Find("Pink").gameObject;
             m_Effect = m_Blue.transform.Find("root/buffdimian").gameObject;
             m_Scene = transform.Find("Scene").gameObject;
+            m_Tietle = transform.Find("Tietle").gameObject;
         }
 
         public void StartGame()
@@ -166,6 +168,7 @@ namespace SZ10008
             MessageDispatcher.SendMessageData("10008AudioPlay", "07-3");
             yield return new WaitForSeconds(9.7f);
             m_SuNiAni.SetTrigger("Idle");
+            m_Tietle.SetActive(true);
         }
 
         public void RecoverGame()

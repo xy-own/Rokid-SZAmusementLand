@@ -58,7 +58,7 @@ namespace SZ10002
         {
             if (!m_IsEnter)
             {
-                MessageDispatcher.SendMessageData("EnterPoi");
+                MessageDispatcher.SendMessageData("EnterPoi",gameObject.name);
                 m_NPCManager.StartGame();
                 m_IsEnter = true;
             }
@@ -78,7 +78,7 @@ namespace SZ10002
         private void SetPlayed(bool isPlayed)
         {
             m_IsPlayed = isPlayed;
-            MessageDispatcher.SendMessageData("ExitPoi");
+            MessageDispatcher.SendMessageData("ExitPoi",gameObject);
         }
 
         private void AudioPlay(string name)
@@ -101,6 +101,16 @@ namespace SZ10002
             {
                 m_NPCManager.GetPalm();
             }
+        }
+
+        private void nDestroy()
+        {
+            MessageDispatcher.RemoveListener<string>("10002AudioPlay", AudioPlay);
+            MessageDispatcher.RemoveListener<string>("10002AudioShot", AudioPlayOneShot);
+            MessageDispatcher.RemoveListener("10002AudioStop", AudioStop);
+
+            MessageDispatcher.RemoveListener<bool>("10002Played", SetPlayed);
+            MessageDispatcher.RemoveListener<PalmEvent>(XY.UXR.API.OpenAPI.RKGesPalmEvent1, PalmEvent);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using XY.UXR.Gesture.Button;
 
 namespace SZ10005
 {
@@ -20,6 +21,7 @@ namespace SZ10005
         private bool isCanPlay;
         private bool isPlayed;
         private GameObject m_JianTou;
+        private GameObject m_ClickSphere;
         // Start is called before the first frame update
         void Start()
         {
@@ -44,9 +46,20 @@ namespace SZ10005
             m_BookAni = m_Book.transform.Find("root").GetComponent<Animator>();
             m_BookRootAni = m_Book.transform.Find("root/book_Rig").GetComponent<Animator>();
             m_JianTou = transform.Find("JianTou").gameObject;
+            m_ClickSphere = m_Page.transform.Find("Sphere").gameObject;
+            m_ClickSphere.GetComponent<BtnItem>().enterAction += ClickEvent;
 
-            MessageDispatcher.AddListener("GetDrawCom", GetDrawCon);
+            //MessageDispatcher.AddListener("GetDrawCom", GetDrawCon);
             //MessageDispatcher.AddListener("DrawFail", DrawFail);
+        }
+
+        private void ClickEvent(FingerEvent fingerEvent,Collider go)
+        {
+            if (isCanPlay)
+            {
+                m_Page.GetComponent<Animator>().SetTrigger("Draw");
+                StartCoroutine(ComGame());
+            }
         }
 
         public void StartGame()
@@ -97,21 +110,21 @@ namespace SZ10005
             m_JianTou.SetActive(false);
         }
 
-        private void GetDrawCon()
-        {
-            if (!isPlayed)
-            {
-                //StopCoroutine(Fail());
-                m_BoHeAni.SetTrigger("Idle");
-                MessageDispatcher.SendMessageData("10005AudioStop");
-                isPlayed = true;
+        //private void GetDrawCon()
+        //{
+        //    if (!isPlayed)
+        //    {
+        //        //StopCoroutine(Fail());
+        //        m_BoHeAni.SetTrigger("Idle");
+        //        MessageDispatcher.SendMessageData("10005AudioStop");
+        //        isPlayed = true;
 
 
-                MessageDispatcher.SendMessageData("10005AudioShot", "mofashuijin");
-                MessageDispatcher.SendMessageData("10005HideUI");
-                StartCoroutine(ComGame());
-            }
-        }
+        //        MessageDispatcher.SendMessageData("10005AudioShot", "mofashuijin");
+        //        MessageDispatcher.SendMessageData("10005HideUI");
+        //        StartCoroutine(ComGame());
+        //    }
+        //}
 
         //private void DrawFail()
         //{
@@ -128,6 +141,13 @@ namespace SZ10005
 
         IEnumerator ComGame()
         {
+            yield return new WaitForSeconds(5f);
+            m_BoHeAni.SetTrigger("Idle");
+            MessageDispatcher.SendMessageData("10005AudioStop");
+            isPlayed = true;
+            MessageDispatcher.SendMessageData("10005AudioShot", "mofashuijin");
+            MessageDispatcher.SendMessageData("10005HideUI");
+            yield return new WaitForSeconds(1f);
             m_BoHeAni.SetTrigger("Speak1");
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-3");
             yield return new WaitForSeconds(2f);
@@ -153,9 +173,10 @@ namespace SZ10005
             dis = new Vector3(dis.x, dis.y-3f, dis.z);
             M_Green.transform.DOMove(dis, 1.5f);
             M_Green.transform.DOScale(0f, 1.5f);
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(6.5f);
             m_BoHeAni.SetTrigger("Idle");
             MessageDispatcher.SendMessageData<bool>("10005Played", true);
+            MessageDispatcher.SendMessageData("10005AudioPlay", "EndTip");
             m_JianTou.SetActive(true);
         }
     }
