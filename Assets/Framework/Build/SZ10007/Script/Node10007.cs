@@ -343,10 +343,7 @@ namespace SU10007
             MessageDispatcher.SendMessageData("EnterPoi");
             playerInTriggerZone = true;
             Debug.Log("玩家已进入交互区域");
-            Debug.Log("玩家已进入交互区域");
-            MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6");
             m_SceneModel.gameObject.SetActive(true);
-            m_SceneEffect.gameObject.SetActive(true);
             m_SuNiEntity.gameObject.SetActive(true);
             m_ModModel.gameObject.SetActive(false);
             m_SuNiEntity.LookTarget = m_MMCEntity.transform;
@@ -356,14 +353,21 @@ namespace SU10007
             // 在原有逻辑基础上，添加姜饼人和苏迪的出场
             this.DelaySeconds(0.5f, async () =>
             {
+                MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6-1");
+                m_SceneEffect.gameObject.SetActive(true);
+                await this.DelaySeconds(0.5f, cancellationToken.Token);
                 m_MMCEntity.gameObject.SetActive(true);
                 m_MMCEntity.transform.position = m_MMCP1.position;
                 m_MMCEntity.transform.localScale = m_MMCP1.localScale;
                 DG.Tweening.Sequence sequence = DOTween.Sequence();
+                // m_MMCEntity.m_AudioManager.PlaySound("MaoMaoChongChuXian");
                 sequence.Join(m_MMCEntity.transform.DOMove(m_MMCP2.position, 1).SetEase(Ease.OutBounce));
                 sequence.Join(m_MMCEntity.transform.DOScale(m_MMCP2.localScale, 1).SetEase(Ease.OutQuad));
                 await sequence.AsyncWaitForCompletion();
-                m_SceneEffect.gameObject.SetActive(false);
+                this.DelaySeconds(4f, () =>
+                {
+                    m_SceneEffect.gameObject.SetActive(false);
+                }, cancellationToken.Token).Forget(); // 等待两秒后 隐藏黑洞
                 // 继续原有的对话流程
                 this.DelaySeconds(2f, () => // 等待两秒后 SuNI讲话
                 {
@@ -604,7 +608,7 @@ namespace SU10007
                             {
                                 m_MMCEntity.m_AudioManager.PlaySound("06-3-3", onComplete: () =>
                                 {
-                                    this.DelaySeconds(5f, () =>
+                                    this.DelaySeconds(5f, async () =>
                                     {
                                         Debug.Log("NPC射击功能已关闭");
                                         npcSDShootController.DisableShooting();
@@ -612,7 +616,7 @@ namespace SU10007
                                         npcJBRShootController.DisableShooting();
                                         m_JBREntity.PlayIdleAnimation();
                                         DisableShooting();
-
+                                        await this.DelaySeconds(0.5f, cancellationToken.Token);
                                         m_MMCEntity.PlayBowIdleSpeakAnimation();
                                         m_MMCEntity.m_AudioManager.PlaySound("06-3-4", onComplete: () =>
                                         {
@@ -623,10 +627,15 @@ namespace SU10007
                                                 // m_MMCEntity.transform.position = m_MMCP1.position;
                                                 // m_MMCEntity.transform.localScale = m_MMCP1.localScale;
                                                 DG.Tweening.Sequence sequence = DOTween.Sequence();
-                                                sequence.Join(m_MMCEntity.transform.DOMove(m_MMCP1.position, 1).SetEase(Ease.InExpo));
-                                                sequence.Join(m_MMCEntity.transform.DOScale(m_MMCP1.localScale, 1).SetEase(Ease.InCubic));
+                                                sequence.Join(m_MMCEntity.transform.DOMove(m_MMCP1.position, 2).SetEase(Ease.InExpo));
+                                                sequence.Join(m_MMCEntity.transform.DOScale(m_MMCP1.localScale, 2).SetEase(Ease.InCubic));
+                                                m_MMCEntity.m_AudioManager.PlaySound("MaoMaoChongLiKai");
                                                 await sequence.AsyncWaitForCompletion();
-                                                m_SceneEffect.gameObject.SetActive(false);
+                                                await this.DelaySeconds(2.5f, () =>
+                                                {
+                                                    m_SceneEffect.gameObject.SetActive(false);
+                                                }, cancellationToken.Token); // 等待两秒后 隐藏黑洞
+                                                MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6-2");
                                                 m_LiHeModel.gameObject.SetActive(true);
                                                 m_LiHeModel.transform.position = m_MMCP2.position;
                                                 // 设置礼盒初始位置，从天空掉落
