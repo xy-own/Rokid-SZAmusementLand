@@ -26,8 +26,9 @@ namespace SU10007
     {
         [Header("目标与射击设置")]
         public GameObject BulletPrefab;                 // 子弹预制体
-        public GameObject SDBulletPrefab;                 // 子弹预制体
-        public GameObject JBRBulletPrefab;                 // 子弹预制体
+        public GameObject SNBulletPrefab;                 // 苏妮子弹预制体
+        public GameObject SDBulletPrefab;                 // 苏迪子弹预制体
+        public GameObject JBRBulletPrefab;                 // 姜饼人子弹预制体
 
         [Header("射击参数")]
         [Tooltip("控制发射间隔（秒）")]
@@ -36,8 +37,6 @@ namespace SU10007
         public float targetAimAngleThreshold = 10f;     // 自动锁定目标的角度阈值
 
         [Header("NPC射击设置")]
-        // [Tooltip("NPC子弹预制体")]
-        // public GameObject NPCBulletPrefab;            // NPC子弹预制体
         [Tooltip("NPC是否可以射击")]
         public bool enableNpcShooting = true;         // NPC是否可以射击
         [Tooltip("NPC射击间隔(秒)")]
@@ -67,8 +66,8 @@ namespace SU10007
         private GameObject m_SceneModel;                // 场景模型
         private GameObject m_SceneEffect;               // 场景特效
         private GameObject m_LiHeModel;                 // 礼盒模型
-        private SuNiEntity m_SuNiEntity;                // SuNi实体
-        private SuDiEntity m_SuDiEntity;                // SuDi实体
+        private SuNiEntity m_SuNiEntity;                // 苏妮实体
+        private SuDiEntity m_SuDiEntity;                // 苏迪实体
         private JBREntity m_JBREntity;                 // 姜饼人实体
         private MMCEntity m_MMCEntity;                  // 毛毛虫实体
         private Transform m_MMCP1;                      // 毛毛虫出现点1
@@ -76,10 +75,12 @@ namespace SU10007
         private GameObject m_JianTou;                   // 箭头特效
         private SpriteRenderer TipSP;                   // 提示SpriteRenderer
         private ShootingSystem shootingSystem;          // 射击系统
-        private NPCShootController npcSDShootController;  // SuDI射击控制器
-        private ShootingSystem shootingSystemSD;          // SuDI射击系统
-        private NPCShootController npcJBRShootController;  // JBR射击控制器
-        private ShootingSystem shootingSystemJBR;          // JBR射击系统
+        private NPCShootController npcSNShootController;  // 苏妮射击控制器
+        private ShootingSystem shootingSystemSN;          // 苏妮射击系统
+        private NPCShootController npcSDShootController;  // 苏迪射击控制器
+        private ShootingSystem shootingSystemSD;          // 苏迪射击系统
+        private NPCShootController npcJBRShootController;  // 姜饼人射击控制器
+        private ShootingSystem shootingSystemJBR;          // 姜饼人射击系统
         private Camera mainCamera;                      // 主相机引用
         // private Transform playerTarget;                 // 玩家目标点
         private Transform m_ModModel;                   // 柱子模型
@@ -203,50 +204,69 @@ namespace SU10007
         {
             if (!enableNpcShooting) return;
 
-            // 如果毛毛虫实体存在且没有射击控制器，则添加
+            //
+            if (m_SuNiEntity != null && m_SuNiEntity.gameObject.GetComponent<NPCShootController>() == null)
+            {
+                shootingSystemSN = m_SuNiEntity.gameObject.AddComponent<ShootingSystem>();
+                shootingSystemSN.npcBulletPrefab = SNBulletPrefab;
+                shootingSystemSN.fireInterval = fireInterval;
+                shootingSystemSN.targetAimAngleThreshold = targetAimAngleThreshold;
+                shootingSystemSN.Initialize(m_AudioManager);
+
+                npcSNShootController = m_SuNiEntity.gameObject.AddComponent<NPCShootController>();
+                npcSNShootController.SetShootingSystem(shootingSystemSN, SNBulletPrefab);
+                npcSNShootController.firePoint = m_SuNiEntity.transform.GetChild(1);
+
+                // 设置射击参数
+                npcSNShootController.ShootS1Interval = 1.2f;
+                npcSNShootController.ShootS2Interval = 2.2f;
+                npcSNShootController.enableShooting = false; // 默认不启用射击
+            }
+            else if (m_SuNiEntity == null)
+            {
+                Debug.LogWarning("苏妮实体未找到，NPC射击功能将不可用");
+            }
             if (m_JBREntity != null && m_JBREntity.gameObject.GetComponent<NPCShootController>() == null)
             {
-                shootingSystemSD = m_JBREntity.gameObject.AddComponent<ShootingSystem>();
-                shootingSystemSD.npcBulletPrefab = JBRBulletPrefab;
-                shootingSystemSD.fireInterval = fireInterval;
-                shootingSystemSD.targetAimAngleThreshold = targetAimAngleThreshold;
-                shootingSystemSD.Initialize(m_AudioManager);
+                shootingSystemJBR = m_JBREntity.gameObject.AddComponent<ShootingSystem>();
+                shootingSystemJBR.npcBulletPrefab = JBRBulletPrefab;
+                shootingSystemJBR.fireInterval = fireInterval;
+                shootingSystemJBR.targetAimAngleThreshold = targetAimAngleThreshold;
+                shootingSystemJBR.Initialize(m_AudioManager);
 
                 npcJBRShootController = m_JBREntity.gameObject.AddComponent<NPCShootController>();
-                npcJBRShootController.SetShootingSystem(shootingSystemSD, JBRBulletPrefab);
+                npcJBRShootController.SetShootingSystem(shootingSystemJBR, JBRBulletPrefab);
                 npcJBRShootController.firePoint = m_JBREntity.transform.GetChild(1);
 
                 // 设置射击参数
                 npcJBRShootController.ShootS1Interval = 1f;
                 npcJBRShootController.ShootS2Interval = 1f;
-                // npcJBRShootController.shootSoundName = "npc_shoot";
                 npcJBRShootController.enableShooting = false; // 默认不启用射击
             }
             else if (m_JBREntity == null)
             {
-                Debug.LogWarning("毛毛虫实体未找到，NPC射击功能将不可用");
+                Debug.LogWarning("姜饼人实体未找到，NPC射击功能将不可用");
             }
             if (m_SuDiEntity != null && m_SuDiEntity.gameObject.GetComponent<NPCShootController>() == null)
             {
-                shootingSystemJBR = m_SuDiEntity.gameObject.AddComponent<ShootingSystem>();
-                shootingSystemJBR.npcBulletPrefab = SDBulletPrefab;
-                shootingSystemJBR.fireInterval = fireInterval;
-                shootingSystemJBR.targetAimAngleThreshold = targetAimAngleThreshold;
-                shootingSystemJBR.Initialize(m_AudioManager);
+                shootingSystemSD = m_SuDiEntity.gameObject.AddComponent<ShootingSystem>();
+                shootingSystemSD.npcBulletPrefab = SDBulletPrefab;
+                shootingSystemSD.fireInterval = fireInterval;
+                shootingSystemSD.targetAimAngleThreshold = targetAimAngleThreshold;
+                shootingSystemSD.Initialize(m_AudioManager);
 
                 npcSDShootController = m_SuDiEntity.gameObject.AddComponent<NPCShootController>();
-                npcSDShootController.SetShootingSystem(shootingSystemJBR, SDBulletPrefab);
+                npcSDShootController.SetShootingSystem(shootingSystemSD, SDBulletPrefab);
                 npcSDShootController.firePoint = m_SuDiEntity.transform.GetChild(1);
 
                 // 设置射击参数
                 npcSDShootController.ShootS1Interval = 1.2f;
                 npcSDShootController.ShootS2Interval = 2.2f;
-                // npcSDShootController.shootSoundName = "npc_shoot";
                 npcSDShootController.enableShooting = false; // 默认不启用射击
             }
             else if (m_SuDiEntity == null)
             {
-                Debug.LogWarning("毛毛虫实体未找到，NPC射击功能将不可用");
+                Debug.LogWarning("苏迪实体未找到，NPC射击功能将不可用");
             }
         }
 
@@ -271,7 +291,8 @@ namespace SU10007
                 npcSDShootController.DisableShooting();
             if (npcJBRShootController != null)
                 npcJBRShootController.DisableShooting();
-
+            if (npcSNShootController != null)
+                npcSNShootController.DisableShooting();
             // 停止所有DOTween动画
             DOTween.KillAll();
 
@@ -421,6 +442,7 @@ namespace SU10007
                         m_MMCEntity.PlayIdleAnimation(1);
                         TipSP.DOFade(1, 1);
                         EnableShooting();
+                        npcSNShootController.EnableShooting(m_MMCEntity.AttackPoint);
                     });
                 }
             }, cancellationToken.Token).Forget();
@@ -437,6 +459,7 @@ namespace SU10007
         /// </summary>
         private void GuideEvent2()
         {
+            npcSNShootController.DisableShooting();
             DisableShooting();
             SpawnJBRAndSuDiEntities().Forget();
         }
@@ -586,18 +609,14 @@ namespace SU10007
                 this.DelaySeconds(0.5f, () =>
                 {
                     // 启动NPC射击逻辑
-                    if (enableNpcShooting && npcSDShootController != null && npcJBRShootController != null)
+                    if (enableNpcShooting && npcSDShootController != null && npcJBRShootController != null && npcSNShootController != null)
                     {
                         // 更新玩家目标位置为相机位置前方
                         // UpdatePlayerTargetPosition();
 
                         // 启用NPC射击
-                        // npcSDShootController.EnableAutoShooting();
-                        // npcJBRShootController.EnableAutoShooting();
-
-
-                        // 设置NPC射击目标为玩家目标点
                         npcSDShootController.EnableShooting(m_MMCEntity.AttackPoint);
+                        npcSNShootController.EnableShooting(m_MMCEntity.AttackPoint);
                         npcJBRShootController.EnableShooting(m_MMCEntity.AttackPoint);
 
                         Debug.Log("NPC射击功能已启用，目标：毛毛虫");
@@ -611,6 +630,8 @@ namespace SU10007
                                     this.DelaySeconds(5f, async () =>
                                     {
                                         Debug.Log("NPC射击功能已关闭");
+                                        npcSNShootController.DisableShooting();
+                                        m_SuNiEntity.PlayIdleAnimation();
                                         npcSDShootController.DisableShooting();
                                         m_SuDiEntity.PlayIdleAnimation();
                                         npcJBRShootController.DisableShooting();
