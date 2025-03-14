@@ -241,7 +241,6 @@ namespace SZ10004
             isCanPlay = true;
             MessageDispatcher.SendMessageData<bool>("10004Played", true);
             MessageDispatcher.SendMessageData("10004AudioPlay", "EndTip");
-            MessageDispatcher.SendMessageData("10004AudioStop");
             m_JianTou.SetActive(true);
         }
     }

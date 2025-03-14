@@ -16,6 +16,7 @@ namespace D_0
         private GameObject m_Poi;
 
         public List<GameObject> m_List;
+        private GameObject m_Light;
         public override void OnEnter(string data)
         {
 
@@ -33,6 +34,9 @@ namespace D_0
             m_Poi = transform.Find("Poi").gameObject;
 
             m_Road = transform.Find("Poi/RoadList").gameObject;
+
+
+            m_Light = transform.Find("Light").gameObject;
             AudioPlay("BGM0");
             MessageDispatcher.AddListener<string>("SetBgm",AudioPlay);
             MessageDispatcher.AddListener("StopBgm", AudioStop);
@@ -42,6 +46,8 @@ namespace D_0
             MessageDispatcher.AddListener<GameObject>("ExitPoi", ExitPoi);
 
             MessageDispatcher.AddListener("ShowAllPoi", ShowAllPoi);
+            MessageDispatcher.AddListener("ShowRoad", ShowRoad);
+           
         }
 
         private void AudioPlay(string Name)
@@ -61,8 +67,21 @@ namespace D_0
 
         private void EnterPoi(string name)
         {
+            if (name != "10007")
+            {
+                m_Light.SetActive(true);
+            }
+            else
+            {
+                m_Light.SetActive(true);
+            }
             m_Road.SetActive(false);
             CloseSomePoi(name);
+        }
+
+        private void ShowRoad()
+        {
+            m_Road.SetActive(true);
         }
 
         private void ExitPoi(GameObject go)
@@ -82,7 +101,6 @@ namespace D_0
                 }
 
                 Destroy(go);
-
                 m_List.Add(obj);
             }
             m_Road.SetActive(true);

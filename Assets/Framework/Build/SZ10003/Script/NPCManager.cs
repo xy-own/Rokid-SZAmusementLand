@@ -109,6 +109,7 @@ namespace SZ10003
             yield return new WaitForSeconds(1f);
             Vector3 dis = m_MaoMaoChong.transform.position + m_MaoMaoChong.transform.forward;
             dis = new Vector3(dis.x, dis.y + 1f, dis.z);
+            MessageDispatcher.SendMessageData("10003AudioShot", "Move");
             m_Box.transform.DOMove(dis, 2f).OnComplete(() => {
                 m_MaoMaoChongAni.SetTrigger("Speak3");
                 MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-6");

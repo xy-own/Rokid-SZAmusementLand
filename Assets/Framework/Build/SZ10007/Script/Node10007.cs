@@ -84,6 +84,7 @@ namespace SU10007
         private Camera mainCamera;                      // 主相机引用
         // private Transform playerTarget;                 // 玩家目标点
         private Transform m_ModModel;                   // 柱子模型
+        private GameObject m_Wall;
 
 
         /// <summary>
@@ -115,6 +116,7 @@ namespace SU10007
             m_MMCP1 = transform.Find("NPC/MMCP1");
             m_MMCP2 = transform.Find("NPC/MMCP2");
             m_ModModel = transform.Find("NPC/Mod");
+            m_Wall = transform.Find("Wall").gameObject;
             // 设置触发器事件
             m_Enter = transform.Find("Trigger/Enter").gameObject;
             if (m_Enter != null)
@@ -278,7 +280,9 @@ namespace SU10007
             playerInTriggerZone = false;
             DisableShooting(); // 玩家离开区域时禁用射击
             Debug.Log("玩家已离开交互区域");
-
+            m_Wall.SetActive(false);
+            MessageDispatcher.SendMessageData("ExitPoi", gameObject);
+            GameConst.m_IsEnter10007 = true;
             // 取消所有延迟执行的任务
             if (cancellationToken != null)
             {
@@ -361,8 +365,9 @@ namespace SU10007
         private void EnterEvent()
         {
             if (playerInTriggerZone) return;
-            MessageDispatcher.SendMessageData("EnterPoi");
+            MessageDispatcher.SendMessageData("EnterPoi",gameObject.name);
             playerInTriggerZone = true;
+            m_Wall.SetActive(true);
             Debug.Log("玩家已进入交互区域");
             m_SceneModel.gameObject.SetActive(true);
             m_SuNiEntity.gameObject.SetActive(true);

@@ -17,6 +17,8 @@ namespace SZ10008
 
         private bool m_IsPlayed;
         private bool m_IsEnter;
+
+        private GameObject m_Wall;
         // Start is called before the first frame update
         void Start()
         {
@@ -45,6 +47,8 @@ namespace SZ10008
             m_Exit = transform.Find("Trigger/Exit").gameObject;
             m_Exit.AddComponent<TriEvent>().exitAction += ExitEvent;
 
+            m_Wall = transform.Find("Wall").gameObject;
+
             MessageDispatcher.AddListener<string>("10008AudioPlay", AudioPlay);
             MessageDispatcher.AddListener<string>("10008AudioShot", AudioPlayOneShot);
             MessageDispatcher.AddListener("10008AudioStop", AudioStop);
@@ -58,20 +62,22 @@ namespace SZ10008
                 MessageDispatcher.SendMessageData("EnterPoi", gameObject.name);
                 m_IsEnter = true;
                 m_NPCManager.StartGame();
-                MessageDispatcher.SendMessageData<string>("SetBgm", "BGM8-1");
+                MessageDispatcher.SendMessageData<string>("SetBgm", "BGM9");
+                m_Wall.SetActive(true);
             }
         }
 
         private void ExitEvent()
         {
-            if (m_IsPlayed)
-            {
-                MessageDispatcher.SendMessageData("ExitPoi",gameObject);
+            //if (m_IsPlayed)
+            //{
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
                 m_IsEnter = false;
                 m_IsPlayed = false;
-            }
+            MessageDispatcher.SendMessageData("ExitPoi", gameObject);
+            m_Wall.SetActive(false);
+            //}
         }
 
         private void SetPlayed(bool isPlayed)

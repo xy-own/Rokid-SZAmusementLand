@@ -18,6 +18,7 @@ namespace SZ10002
         private GameObject m_Exit;
         private bool m_IsEnter;
         private bool m_IsPlayed;
+        private GameObject m_Wall;
         // Start is called before the first frame update
         void Start()
         {
@@ -45,6 +46,8 @@ namespace SZ10002
             //m_Exit = transform.Find("Trigger/Exit").gameObject;
             m_Enter.GetComponent<TriEvent>().exitAction += ExitEvent;
 
+            m_Wall = transform.Find("Wall").gameObject;
+
             MessageDispatcher.AddListener<string>("10002AudioPlay", AudioPlay);
             MessageDispatcher.AddListener<string>("10002AudioShot", AudioPlayOneShot);
             MessageDispatcher.AddListener("10002AudioStop", AudioStop);
@@ -61,24 +64,27 @@ namespace SZ10002
                 MessageDispatcher.SendMessageData("EnterPoi",gameObject.name);
                 m_NPCManager.StartGame();
                 m_IsEnter = true;
+                m_Wall.SetActive(true);
             }
         }
 
         private void ExitEvent()
         {
-            if (m_IsPlayed)
-            {
+            //if (m_IsPlayed)
+            //{
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
                 m_NPCManager.RecoverGame();
-                //m_IsEnter = false;
+                m_IsEnter = false;
                 m_IsPlayed = false;
-            }
+            m_Wall.SetActive(false);
+            MessageDispatcher.SendMessageData("ExitPoi", gameObject);
+            //}
         }
 
         private void SetPlayed(bool isPlayed)
         {
             m_IsPlayed = isPlayed;
-            MessageDispatcher.SendMessageData("ExitPoi",gameObject);
+            MessageDispatcher.SendMessageData("ShowRoad");
         }
 
         private void AudioPlay(string name)
@@ -103,7 +109,7 @@ namespace SZ10002
             }
         }
 
-        private void nDestroy()
+        private void OnDestroy()
         {
             MessageDispatcher.RemoveListener<string>("10002AudioPlay", AudioPlay);
             MessageDispatcher.RemoveListener<string>("10002AudioShot", AudioPlayOneShot);

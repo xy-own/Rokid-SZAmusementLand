@@ -18,15 +18,8 @@ namespace SZ10004
         private bool m_IsPlayed;
         private bool m_IsEnter;
 
-        private bool m_IsPalm;
-        private bool m_IsGrip;
-        private bool m_IsScissors;
+        private GameObject m_Wall;
 
-        private bool m_IsPlaying;
-
-        private float m_PalmTime;
-        private float m_GripTime;
-        private float m_ScissorsTime;
         // Start is called before the first frame update
         void Start()
         {
@@ -54,6 +47,8 @@ namespace SZ10004
             m_Exit = transform.Find("Trigger/Exit").gameObject;
             m_Exit.AddComponent<TriEvent>().exitAction += ExitEvent;
 
+            m_Wall = transform.Find("Wall").gameObject;
+
             MessageDispatcher.AddListener<string>("10004AudioPlay", AudioPlay);
             MessageDispatcher.AddListener<string>("10004AudioShot", AudioPlayOneShot);
             MessageDispatcher.AddListener("10004AudioStop", AudioStop);
@@ -74,6 +69,7 @@ namespace SZ10004
                 m_IsEnter = true;
                 m_NPCManager.StartGame();
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6");
+                m_Wall.SetActive(true);
             }
             
         }
@@ -81,19 +77,20 @@ namespace SZ10004
         private void SetPlayed(bool isPlayed)
         {
             m_IsPlayed = isPlayed;
-            m_IsPlaying = true;
         }
 
         private void ExitEvent()
         {
-            if (m_IsPlayed)
-            {
-                MessageDispatcher.SendMessageData("ExitPoi", gameObject);
-                MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
-                m_NPCManager.RecoverGame();
-                m_IsEnter = false;
-                m_IsPlayed = false;
-            }
+            //if (m_IsPlayed)
+            //{
+            MessageDispatcher.SendMessageData("ExitPoi", gameObject);
+            MessageDispatcher.SendMessageData<string>("SetBgm", "BGM0");
+            m_NPCManager.RecoverGame();
+            AudioStop();
+            m_IsEnter = false;
+            m_IsPlayed = false;
+            m_Wall.SetActive(false);
+            //}
         }
 
         private void AudioPlay(string name)

@@ -99,12 +99,12 @@ namespace XY.UXR.Gesture
             Pose mPose = Pose.identity;
             palmEvent.handType = HandType.None;
 
-            if (leftBean != null && (HandOrientation)leftBean.hand_orientation == HandOrientation.Palm && (GestureType)leftBean.gesture_type == GestureType.Palm)
+            if ((leftBean != null && (HandOrientation)leftBean.hand_orientation == HandOrientation.Palm && (GestureType)leftBean.gesture_type == GestureType.Palm)|| (leftBean != null && (HandOrientation)leftBean.hand_orientation == HandOrientation.Back))
             {
                 mPose = GesEventInput.Instance.GetHandPose(HandType.LeftHand);
                 palmEvent.handType = HandType.LeftHand;
             }
-            if (rightBean != null && (HandOrientation)rightBean.hand_orientation == HandOrientation.Palm && (GestureType)rightBean.gesture_type == GestureType.Palm)
+            if ((rightBean != null && (HandOrientation)rightBean.hand_orientation == HandOrientation.Palm && (GestureType)rightBean.gesture_type == GestureType.Palm)|| (rightBean != null && (HandOrientation)rightBean.hand_orientation == HandOrientation.Back))
             {
                 mPose = GesEventInput.Instance.GetHandPose(HandType.RightHand);
                 palmEvent.handType = HandType.RightHand;

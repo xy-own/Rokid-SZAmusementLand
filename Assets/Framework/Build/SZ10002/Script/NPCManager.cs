@@ -94,10 +94,12 @@ namespace SZ10002
             MessageDispatcher.SendMessageData("10002ShowUI");
             m_SuNiAni.SetTrigger("Idle");
             m_Palm.SetActive(true);
+            MessageDispatcher.SendMessageData("10002AudioShot", "TengManChuXian");
         }
 
         IEnumerator PalmEvent()
         {
+            MessageDispatcher.SendMessageData("10002AudioShot", "MoFaChuXian");
             m_JingLing.SetActive(true);
             yield return new WaitForSeconds(4f);
             m_JingLingAni.SetTrigger("Speak2");

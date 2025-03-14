@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using XY.UXR.Gesture;
 using XY.UXR.Gesture.Button;
 
 namespace SZ10005
@@ -46,19 +47,23 @@ namespace SZ10005
             m_BookAni = m_Book.transform.Find("root").GetComponent<Animator>();
             m_BookRootAni = m_Book.transform.Find("root/book_Rig").GetComponent<Animator>();
             m_JianTou = transform.Find("JianTou").gameObject;
-            m_ClickSphere = m_Page.transform.Find("Sphere").gameObject;
-            m_ClickSphere.GetComponent<BtnItem>().enterAction += ClickEvent;
+            //m_ClickSphere = m_Page.transform.Find("Sphere").gameObject;
+            //m_ClickSphere.GetComponent<BtnItem>().enterAction += ClickEvent;
 
-            //MessageDispatcher.AddListener("GetDrawCom", GetDrawCon);
+            MessageDispatcher.AddListener<HandBackEvent>(XY.UXR.API.OpenAPI.RKHandEvent, ClickEvent);
             //MessageDispatcher.AddListener("DrawFail", DrawFail);
         }
 
-        private void ClickEvent(FingerEvent fingerEvent,Collider go)
+        private void ClickEvent(HandBackEvent handBackEvent)
         {
             if (isCanPlay)
             {
-                m_Page.GetComponent<Animator>().SetTrigger("Draw");
-                StartCoroutine(ComGame());
+                if (handBackEvent != null && handBackEvent.status)
+                {
+                    isCanPlay = false;
+                    m_Page.GetComponent<Animator>().SetTrigger("Draw");
+                    StartCoroutine(ComGame());
+                }
             }
         }
 
@@ -85,6 +90,7 @@ namespace SZ10005
             yield return new WaitForSeconds(4.4f);
             m_BoHeAni.SetTrigger("Idle");
             yield return new WaitForSeconds(2f);
+            MessageDispatcher.SendMessageData("10005AudioShot", "MoFaChuXian");
             m_Book.SetActive(true);
             m_BoHeAni.SetTrigger("Speak1");
             m_BoHeAni.gameObject.GetComponent<ChangeSpeakAni>().enabled = true;
@@ -92,13 +98,14 @@ namespace SZ10005
             yield return new WaitForSeconds(9.9f);
             m_Page.SetActive(true);
             MessageDispatcher.SendMessageData("10005ShowUI");
-            m_Page.transform.DOScale(0.7f, 1f);
+            m_Page.transform.DOScale(0.1f, 1f);
             m_Page.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.5f;
             m_BoHeAni.SetTrigger("Speak2");
             MessageDispatcher.SendMessageData("10005AudioPlay", "03-2");
             yield return new WaitForSeconds(15f);
             m_BoHeAni.SetTrigger("Idle");
             isCanPlay = true;
+            m_Page.GetComponent<BoxCollider>().enabled = true;
         }
 
         public void RecoverGame()
@@ -161,6 +168,7 @@ namespace SZ10005
             m_BoHeAni.SetTrigger("Idle");
             m_BookRootAni.SetTrigger("Fall");
             yield return new WaitForSeconds(2f);
+            MessageDispatcher.SendMessageData("10005AudioShot", "ShuiJingChuXian");
             M_Green.SetActive(true);
             yield return new WaitForSeconds(1f);
             M_Green.transform.Find("ef_shuijing_green/RJ_Bohe").gameObject.SetActive(true);

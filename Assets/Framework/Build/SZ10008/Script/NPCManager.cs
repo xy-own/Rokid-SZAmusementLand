@@ -31,6 +31,7 @@ namespace SZ10008
         private GameObject m_Effect;
         private GameObject m_Scene;
         private GameObject m_Tietle;
+        private GameObject m_DiTu;
 
         // Start is called before the first frame update
         void Start()
@@ -70,6 +71,7 @@ namespace SZ10008
             m_Effect = m_Blue.transform.Find("root/buffdimian").gameObject;
             m_Scene = transform.Find("Scene").gameObject;
             m_Tietle = transform.Find("Tietle").gameObject;
+            m_DiTu = transform.Find("DiTu").gameObject;
         }
 
         public void StartGame()
@@ -85,13 +87,16 @@ namespace SZ10008
             m_LiHe.transform.position = Camera.main.transform.position+ Camera.main.transform.forward*3f;
             m_LiHe.SetActive(true);
             yield return new WaitForSeconds(2f);
-            m_LiHe.transform.DOLocalMove(m_LiHePos.transform.localPosition, 2f).SetEase(Ease.Linear);
+            m_LiHe.transform.DOLocalMove(m_LiHePos.transform.localPosition, 2f).SetEase(Ease.Linear).OnComplete(() => {
+                m_DiTu.SetActive(true);
+            });
             MessageDispatcher.SendMessageData("10008AudioShot", "Move");
             yield return new WaitForSeconds(2f);
             m_Cloud.SetActive(true);
             m_Cloud.transform.DOScale(0.4f, 1f);
             m_GongZhuPoint.SetActive(true);
             m_WangZiPoint.SetActive(true);
+            MessageDispatcher.SendMessageData("10008AudioShot", "Move");
             m_GongZhuPoint.transform.DOMove(m_GongZhuPoint.transform.position + m_GongZhuPoint.transform.forward, 0.5f);
             m_WangZiPoint.transform.DOMove(m_GongZhuPoint.transform.position + m_GongZhuPoint.transform.forward, 0.5f);
             yield return new WaitForSeconds(2f);
@@ -122,6 +127,7 @@ namespace SZ10008
             MessageDispatcher.SendMessageData("10008AudioPlay", "07-1-4");
             m_LiHeAni.SetTrigger("Open");
             yield return new WaitForSeconds(2f);
+            MessageDispatcher.SendMessageData("10008AudioShot", "ShuiJingChuXian");
             m_Green.SetActive(true);
             //m_GongZhuAni.SetTrigger("Speak4");
             //MessageDispatcher.SendMessageData("10008AudioPlay", "07-1-5");
@@ -129,6 +135,7 @@ namespace SZ10008
             m_Green.transform.DOLocalMove(new Vector3(-6.18f, -1.55f, -0.15f), 1f);
             MessageDispatcher.SendMessageData("10008AudioShot", "Move");
             yield return new WaitForSeconds(1f);
+            MessageDispatcher.SendMessageData("10008AudioShot", "ShuiJingChuXian");
             m_Pink.SetActive(true);
             m_GongZhuAni.SetTrigger("Speak2");
             MessageDispatcher.SendMessageData("10008AudioPlay", "07-1-5");
@@ -136,6 +143,7 @@ namespace SZ10008
             m_Pink.transform.DOLocalMove(new Vector3(-6.4f, -1.55f, 2.65f), 1f);
             MessageDispatcher.SendMessageData("10008AudioShot", "Move");
             yield return new WaitForSeconds(1f);
+            MessageDispatcher.SendMessageData("10008AudioShot", "ShuiJingChuXian");
             m_Blue.SetActive(true);
             m_GongZhuAni.SetTrigger("Speak5");
             MessageDispatcher.SendMessageData("10008AudioPlay", "07-1-6");
@@ -146,12 +154,14 @@ namespace SZ10008
             m_Green.transform.DOLocalMove(m_Blue.transform.localPosition, 1f);
             MessageDispatcher.SendMessageData("10008AudioShot", "Move");
             yield return new WaitForSeconds(1f);
+            MessageDispatcher.SendMessageData("10008AudioShot", "LanShuiJingChuXian");
             m_Effect.SetActive(true);
             yield return new WaitForSeconds(1f);
             m_Pink.SetActive(false);
             m_Green.SetActive(false);
             m_Blue.SetActive(false);
             m_Scene.SetActive(true);
+            MessageDispatcher.SendMessageData("10008AudioShot", "Fire");
             yield return new WaitForSeconds(7.2f);
             m_GongZhuAni.SetTrigger("Idle");
             m_WangZiAni.SetTrigger("Speak2");
