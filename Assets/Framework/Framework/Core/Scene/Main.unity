@@ -1658,6 +1658,7 @@ GameObject:
   - component: {fileID: 795219418}
   - component: {fileID: 795219417}
   - component: {fileID: 795219419}
+  - component: {fileID: 795219420}
   m_Layer: 0
   m_Name: Gesture
   m_TagString: Untagged
@@ -1745,6 +1746,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mAxis: {fileID: 0}
   IsPinching: 0
+--- !u!114 &795219420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795219412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ad038f7f12ade54998d273cb785fc35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &824866450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2973,6 +2986,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6045076911616643359, guid: bc7bf2e56b74d4038af31f75d0b2d024, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6045076911616643428, guid: bc7bf2e56b74d4038af31f75d0b2d024, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 4294967295
