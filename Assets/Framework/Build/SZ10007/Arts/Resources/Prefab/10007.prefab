@@ -31184,6 +31184,9 @@ MonoBehaviour:
   SNBulletPrefab: {fileID: 1573301267260194, guid: ce6fd97c0bbeb2b45bcc5899a5b3e756, type: 3}
   SDBulletPrefab: {fileID: 1573301267260194, guid: cdb02af107e7b6e4199db5ddda10a0c7, type: 3}
   JBRBulletPrefab: {fileID: 1318909736566662, guid: 5cee6c0096dfe41419fcade9082cab48, type: 3}
+  MaoMaoChongSkinned: {fileID: 8809459960141265791}
+  MaoMaoChongNormalMaterial: {fileID: 2100000, guid: ae6d6d29ff266d74fa8733a64814e4e3, type: 2}
+  MaoMaoChongFailedMaterial: {fileID: 2100000, guid: 4a1537715171b1c4a9ef616f07b45362, type: 2}
   fireInterval: 0.5
   targetAimAngleThreshold: 80
   enableNpcShooting: 1
@@ -73797,6 +73800,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!137 &8809459960141265791 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3446119193250982056, guid: f758ec8e32a1d7c4d8b9eea43b2a46fb, type: 3}
+  m_PrefabInstance: {fileID: 6166111842413204439}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7473506776678743414
 PrefabInstance:
   m_ObjectHideFlags: 0
