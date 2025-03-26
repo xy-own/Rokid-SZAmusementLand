@@ -29,7 +29,9 @@ namespace SU10007
         public GameObject SNBulletPrefab;                 // 苏妮子弹预制体
         public GameObject SDBulletPrefab;                 // 苏迪子弹预制体
         public GameObject JBRBulletPrefab;                 // 姜饼人子弹预制体
-
+        public SkinnedMeshRenderer MaoMaoChongSkinned;     // 毛毛虫正常材质
+        public Material MaoMaoChongNormalMaterial;     // 毛毛虫正常材质
+        public Material MaoMaoChongFailedMaterial;     // 毛毛虫失败材质
         [Header("射击参数")]
         [Tooltip("控制发射间隔（秒）")]
         public float fireInterval = 0.5f;               // 发射间隔时间
@@ -365,7 +367,7 @@ namespace SU10007
         private void EnterEvent()
         {
             if (playerInTriggerZone) return;
-            MessageDispatcher.SendMessageData("EnterPoi",gameObject.name);
+            MessageDispatcher.SendMessageData("EnterPoi", gameObject.name);
             playerInTriggerZone = true;
             m_Wall.SetActive(true);
             Debug.Log("玩家已进入交互区域");
@@ -382,6 +384,7 @@ namespace SU10007
                 MessageDispatcher.SendMessageData<string>("SetBgm", "BGM6-1");
                 m_SceneEffect.gameObject.SetActive(true);
                 await this.DelaySeconds(0.5f, cancellationToken.Token);
+                UpdateMaoMaoChongMaterial(true);
                 m_MMCEntity.gameObject.SetActive(true);
                 m_MMCEntity.transform.position = m_MMCP1.position;
                 m_MMCEntity.transform.localScale = m_MMCP1.localScale;
@@ -628,6 +631,10 @@ namespace SU10007
                         this.DelaySeconds(5f, () =>
                         {
                             m_MMCEntity.m_AudioManager.PlaySound("06-3-2");
+                            this.DelaySeconds(4f, () =>
+                            {
+                                UpdateMaoMaoChongMaterial(false);
+                            }, cancellationToken.Token).Forget();
                             this.DelaySeconds(5f, () =>
                             {
                                 m_MMCEntity.m_AudioManager.PlaySound("06-3-3", onComplete: () =>
@@ -794,7 +801,25 @@ namespace SU10007
         }
 
 
+        /// <summary>
+        /// 更新毛毛虫材质
+        /// </summary>
+        /// <param name="isSuccess">是否成功状态</param>
+        public void UpdateMaoMaoChongMaterial(bool isSuccess)
+        {
+            if (MaoMaoChongSkinned != null && m_MMCEntity.gameObject.activeInHierarchy)
+            {
+                // 根据状态切换材质
+                MaoMaoChongSkinned.material = isSuccess ? MaoMaoChongNormalMaterial : MaoMaoChongFailedMaterial;
 
+                // 记录日志
+                Debug.Log($"已将毛毛虫材质更改为: {(isSuccess ? "正常" : "失败")}状态");
+            }
+            else
+            {
+                Debug.LogWarning("毛毛虫实体不可用，无法更新材质");
+            }
+        }
 
         /// <summary>
         /// 销毁时取消事件订阅并清理资源
