@@ -87,7 +87,7 @@ namespace SZ10003
             m_SuDi.transform.LookAt(m_MaoMaoChong.transform.position);
             yield return new WaitForSeconds(8f);
             m_MaoMaoChongAni.SetTrigger("Idle");
-            m_SuNiAni.SetTrigger("Speak2");
+            m_SuNiAni.SetTrigger("Angry1");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-2");
             yield return new WaitForSeconds(4.5f);
             m_SuNiAni.SetTrigger("Idle");
@@ -95,7 +95,7 @@ namespace SZ10003
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-3");
             yield return new WaitForSeconds(17.8f);
             m_MaoMaoChongAni.SetTrigger("Idle");
-            m_SuDiAni.SetTrigger("Speak1");
+            m_SuDiAni.SetTrigger("Angry1");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-4");
             yield return new WaitForSeconds(5.2f);
             m_SuDiAni.SetTrigger("Idle");
@@ -116,11 +116,11 @@ namespace SZ10003
             });
             yield return new WaitForSeconds(10f);
             m_MaoMaoChongAni.SetTrigger("Idle");
-            m_SuNiAni.SetTrigger("Speak2");
+            m_SuNiAni.SetTrigger("Angry2");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-7");
             yield return new WaitForSeconds(2.9f);
             m_SuNiAni.SetTrigger("Idle");
-            m_SuDiAni.SetTrigger("Speak3");
+            m_SuDiAni.SetTrigger("Angry2");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-8");
             yield return new WaitForSeconds(1.8f);
             m_SuDiAni.SetTrigger("Idle");

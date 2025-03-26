@@ -41,10 +41,10 @@ namespace SZ10002
             m_Audio = transform.Find("Audio").gameObject;
             m_AudioManager = new AudioManager(m_Audio.GetComponent<AudioSource>());
 
-            m_Enter = transform.Find("Trigger/Exit").gameObject;
+            m_Enter = transform.Find("Trigger/Enter").gameObject;
             m_Enter.AddComponent<TriEvent>().enterAction += EnterEvent;
-            //m_Exit = transform.Find("Trigger/Exit").gameObject;
-            m_Enter.GetComponent<TriEvent>().exitAction += ExitEvent;
+            m_Exit = transform.Find("Trigger/Exit").gameObject;
+            m_Exit.GetComponent<TriEvent>().exitAction += ExitEvent;
 
             m_Wall = transform.Find("Wall").gameObject;
 

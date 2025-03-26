@@ -13,6 +13,7 @@ namespace SZ10001
         private AudioManager m_AudioManager;
         private GameObject m_Enter;
         private GameObject m_Tietle;
+        private GameObject m_JianTou;
         private bool m_IsPlaying;
         private bool m_IsPlayed;
         private Animator m_DoorAni;
@@ -43,6 +44,7 @@ namespace SZ10001
             m_Tietle.transform.SetParent(Camera.main.transform);
             m_Tietle.transform.localPosition = new Vector3(0f, 0.1f, 1.5f);
             m_DoorAni = m_NPCMgr.transform.Find("DaMen/Ani").GetComponent<Animator>();
+            m_JianTou = transform.Find("JianTou").gameObject;
 
             StartCoroutine(StartAni());
         }
@@ -71,7 +73,7 @@ namespace SZ10001
             m_NPCMgr.transform.Find("DaMen").gameObject.SetActive(true);
             m_AudioManager.AudioPlayOneShot("DaMenChuXian");
             m_AudioManager.AudioPlay("00-0");
-            yield return new WaitForSeconds(19f);
+            yield return new WaitForSeconds(28.5f);
             m_UIMgr.SetActive(true);
             m_AudioManager.AudioPlay("00-1");
             yield return new WaitForSeconds(10.5f);
@@ -79,6 +81,7 @@ namespace SZ10001
             yield return new WaitForSeconds(23.72f);
             m_DoorAni.SetTrigger("OpenDoor");
             yield return new WaitForSeconds(2f);
+            m_JianTou.SetActive(true);
             m_IsPlayed = true;
             MessageDispatcher.SendMessageData("ShowAllPoi");
         }
