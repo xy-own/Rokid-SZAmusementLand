@@ -86,7 +86,7 @@ namespace D_0
 
         private void ExitPoi(GameObject go)
         {
-            if (go.name != "10007")
+            if (go.name != "10007"&& go.name != "10001")
             {
                 GameObject obj = Instantiate(Resources.Load<GameObject>($"Prefab/{go.name}"));
                 obj.transform.SetParent(go.transform.parent, false);

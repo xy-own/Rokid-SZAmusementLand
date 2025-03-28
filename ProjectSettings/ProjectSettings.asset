@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: "\u676D\u5DDE\u897F\u96E8\u52A8\u753B\u6709\u9650\u516C\u53F8"
-  productName: "\u82CF\u5DDE\u4E50\u56ED\u7CD6\u679C\u4E16\u754CSlam"
+  productName: "\u82CF\u5DDE\u4E50\u56ED\u7CD6\u679C\u4E16\u754C"
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -135,7 +135,16 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 7071358058048146325, guid: 25cc3ddc9dbab5a44b09c98b9fb3758c, type: 2}
+  - {fileID: 4800000, guid: ea9a295053a0dc440b9698a7f41d9741, type: 3}
+  - {fileID: 4800000, guid: 1499e61b3897c4a4b9318a56ca931b8a, type: 3}
+  - {fileID: 4800000, guid: 798d6e253a35a144d94205b80c8fd48b, type: 3}
+  - {fileID: 4800000, guid: ae539cb2b258bd047a57837fd579cc80, type: 3}
+  - {fileID: 4800000, guid: 58841e6e22debfc43ba09a0cf58cd92d, type: 3}
+  - {fileID: 4800000, guid: a336f422ffebbec4c89b4dac26022d5f, type: 3}
+  - {fileID: 4800000, guid: 94e9bc9fcadbccf4088e79d5c427848b, type: 3}
+  - {fileID: 11400000, guid: d9fdc373885697242ab2f6d12bec5195, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -155,7 +164,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.easyar.mega.xrtestSlam
+    Android: com.easyar.mega.xrtest
     Standalone: com.DefaultCompany.Rokid-Test
   buildNumber:
     Standalone: 0

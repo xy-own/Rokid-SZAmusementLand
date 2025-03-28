@@ -32,7 +32,13 @@ namespace SZ10005
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetKeyUp(KeyCode.C))
+            {
+                ClickEvent(new HandBackEvent
+                {
+                    status = true
+                });
+            }
         }
 
         public void Initialized()
@@ -105,7 +111,7 @@ namespace SZ10005
             yield return new WaitForSeconds(15f);
             m_BoHeAni.SetTrigger("Idle");
             isCanPlay = true;
-            m_Page.GetComponent<BoxCollider>().enabled = true;
+            //m_Page.GetComponent<BoxCollider>().enabled = true;
         }
 
         public void RecoverGame()

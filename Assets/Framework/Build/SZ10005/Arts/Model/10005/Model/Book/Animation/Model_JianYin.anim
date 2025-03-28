@@ -378,7 +378,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/bushe2
+    path: Sc_BoHeXianSheng_0317/bushe2
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -406,7 +406,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/bushh1
+    path: Sc_BoHeXianSheng_0317/bushh1
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -434,7 +434,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/desk02
+    path: Sc_BoHeXianSheng_0317/desk02
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -462,7 +462,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/h02b
+    path: Sc_BoHeXianSheng_0317/h02b
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -490,7 +490,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/h04b
+    path: Sc_BoHeXianSheng_0317/h04b
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -518,7 +518,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/stone
+    path: Sc_BoHeXianSheng_0317/stone
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -546,7 +546,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/b14_mu
+    path: Sc_BoHeXianSheng_0317/tree/P/AM113
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -574,7 +574,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/b14_t
+    path: Sc_BoHeXianSheng_0317/tree/P/b14
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -602,7 +602,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree_shadow/bb16_mu1
+    path: Sc_BoHeXianSheng_0317/tree/P/b16
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -630,7 +630,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb16_mu
+    path: Sc_BoHeXianSheng_0317/tree/P/b18
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -658,7 +658,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree_shadow/bb18_mu1
+    path: Sc_BoHeXianSheng_0317/tree/P/b21
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -686,7 +686,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb18_mu
+    path: Sc_BoHeXianSheng_0317/tree/T/AM113
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -714,7 +714,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree_shadow/bb21_mu1
+    path: Sc_BoHeXianSheng_0317/tree/T/b14
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -742,7 +742,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb21_mu
+    path: Sc_BoHeXianSheng_0317/tree/T/b16
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -770,7 +770,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb16_t
+    path: Sc_BoHeXianSheng_0317/tree/T/b18
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -798,7 +798,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb18_t
+    path: Sc_BoHeXianSheng_0317/tree/T/b21
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -826,7 +826,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb21_t
+    path: Sc_BoHeXianSheng_0317/tree_bg0
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -834,7 +834,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.46226418
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -843,7 +843,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: 0.46226418
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -853,65 +853,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.r
-    path: VFX/Effect/ef_smoke
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.g
-    path: VFX/Effect/ef_smoke
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.b
-    path: VFX/Effect/ef_smoke
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/tree_bg1
+    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -926,15 +870,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 2
         value: 1
         inSlope: 0
@@ -946,93 +881,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
-    path: VFX/Effect/ef_smoke
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.r
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.g
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.b
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/tree_bg2
+    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -1047,15 +898,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 2
         value: 1
         inSlope: 0
@@ -1067,93 +909,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.r
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.g
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.b
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/ground/ground1
+    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -1168,15 +926,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 2
         value: 1
         inSlope: 0
@@ -1188,9 +937,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/ground/ground2
+    classID: 23
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 30
@@ -1285,206 +1034,150 @@ AnimationClip:
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3992178195
+      path: 1321327378
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3243565540
+      path: 1650914533
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2663427524
+      path: 1039317189
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1012903738
+      path: 2546283687
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1778714812
+      path: 3248460577
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3799869265
+      path: 1818759731
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1405345117
+      path: 2796159653
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 458208609
+      path: 2500168525
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3956897442
+      path: 2064378465
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1187274925
+      path: 2629027686
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1424607427
+      path: 3460443137
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2786793374
+      path: 1390749366
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3748517916
+      path: 1619340685
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2628985540
+      path: 2391493793
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3336506428
+      path: 1764975014
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3426820406
+      path: 1002605249
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3508909399
+      path: 2232418077
       attribute: 1329959529
       script: {fileID: 0}
       typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1647608565
-      attribute: 1941764792
+      path: 4060663691
+      attribute: 1329959529
       script: {fileID: 0}
-      typeID: 199
+      typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 2019041884
-      attribute: 1941764792
+      path: 1795268145
+      attribute: 1329959529
       script: {fileID: 0}
-      typeID: 199
+      typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1400205727
-      attribute: 1941764792
+      path: 3727639020
+      attribute: 1329959529
       script: {fileID: 0}
-      typeID: 199
+      typeID: 23
       customType: 22
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 1647608565
-      attribute: 1136458424
+      path: 1193676886
+      attribute: 1329959529
       script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1647608565
-      attribute: 1404893880
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1647608565
-      attribute: 1673329336
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2019041884
-      attribute: 1136458424
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2019041884
-      attribute: 1404893880
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 2019041884
-      attribute: 1673329336
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1400205727
-      attribute: 1136458424
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1400205727
-      attribute: 1404893880
-      script: {fileID: 0}
-      typeID: 199
-      customType: 22
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 1400205727
-      attribute: 1673329336
-      script: {fileID: 0}
-      typeID: 199
+      typeID: 23
       customType: 22
       isPPtrCurve: 0
     pptrCurveMapping: []
@@ -1870,7 +1563,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/bushe2
+    path: Sc_BoHeXianSheng_0317/bushe2
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1898,7 +1591,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/bushh1
+    path: Sc_BoHeXianSheng_0317/bushh1
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1926,7 +1619,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/desk02
+    path: Sc_BoHeXianSheng_0317/desk02
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1954,7 +1647,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/h02b
+    path: Sc_BoHeXianSheng_0317/h02b
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -1982,7 +1675,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/h04b
+    path: Sc_BoHeXianSheng_0317/h04b
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2010,7 +1703,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/stone
+    path: Sc_BoHeXianSheng_0317/stone
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2038,7 +1731,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/b14_mu
+    path: Sc_BoHeXianSheng_0317/tree/P/AM113
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2066,7 +1759,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/b14_t
+    path: Sc_BoHeXianSheng_0317/tree/P/b14
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2094,7 +1787,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree_shadow/bb16_mu1
+    path: Sc_BoHeXianSheng_0317/tree/P/b16
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2122,7 +1815,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb16_mu
+    path: Sc_BoHeXianSheng_0317/tree/P/b18
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2150,7 +1843,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree_shadow/bb18_mu1
+    path: Sc_BoHeXianSheng_0317/tree/P/b21
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2178,7 +1871,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb18_mu
+    path: Sc_BoHeXianSheng_0317/tree/T/AM113
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2206,7 +1899,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree_shadow/bb21_mu1
+    path: Sc_BoHeXianSheng_0317/tree/T/b14
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2234,7 +1927,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb21_mu
+    path: Sc_BoHeXianSheng_0317/tree/T/b16
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2262,7 +1955,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb16_t
+    path: Sc_BoHeXianSheng_0317/tree/T/b18
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2290,7 +1983,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb18_t
+    path: Sc_BoHeXianSheng_0317/tree/T/b21
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2318,7 +2011,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: material._Op.r
-    path: SC_BoHeXianSheng/tree/bb21_t
+    path: Sc_BoHeXianSheng_0317/tree_bg0
     classID: 23
     script: {fileID: 0}
   - curve:
@@ -2326,7 +2019,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.46226418
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2335,7 +2028,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: 0.46226418
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2345,65 +2038,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.r
-    path: VFX/Effect/ef_smoke
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.g
-    path: VFX/Effect/ef_smoke
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.b
-    path: VFX/Effect/ef_smoke
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/tree_bg1
+    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -2418,15 +2055,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 2
         value: 1
         inSlope: 0
@@ -2438,93 +2066,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
-    path: VFX/Effect/ef_smoke
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.r
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.g
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.b
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/tree_bg2
+    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -2539,15 +2083,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 2
         value: 1
         inSlope: 0
@@ -2559,93 +2094,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
-    path: VFX/Effect/ef_smoke (1)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.r
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.g
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 2
-        value: 0.46226418
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: material._BaseColor.b
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/ground/ground1
+    classID: 23
     script: {fileID: 0}
   - curve:
       serializedVersion: 2
@@ -2660,15 +2111,6 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
         time: 2
         value: 1
         inSlope: 0
@@ -2680,9 +2122,9 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._BaseColor.a
-    path: VFX/Effect/ef_smoke (2)
-    classID: 199
+    attribute: material._Op.r
+    path: Sc_BoHeXianSheng_0317/ground/ground2
+    classID: 23
     script: {fileID: 0}
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

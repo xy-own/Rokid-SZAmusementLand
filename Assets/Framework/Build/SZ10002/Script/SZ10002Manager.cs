@@ -44,7 +44,7 @@ namespace SZ10002
             m_Enter = transform.Find("Trigger/Enter").gameObject;
             m_Enter.AddComponent<TriEvent>().enterAction += EnterEvent;
             m_Exit = transform.Find("Trigger/Exit").gameObject;
-            m_Exit.GetComponent<TriEvent>().exitAction += ExitEvent;
+            m_Exit.AddComponent<TriEvent>().exitAction += ExitEvent;
 
             m_Wall = transform.Find("Wall").gameObject;
 

@@ -90,7 +90,7 @@ namespace SZ10003
             m_SuNiAni.SetTrigger("Angry1");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-2");
             yield return new WaitForSeconds(4.5f);
-            m_SuNiAni.SetTrigger("Idle");
+            m_SuNiAni.SetTrigger("IdleAngry");
             m_MaoMaoChongAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-3");
             yield return new WaitForSeconds(17.8f);
@@ -98,7 +98,7 @@ namespace SZ10003
             m_SuDiAni.SetTrigger("Angry1");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-4");
             yield return new WaitForSeconds(5.2f);
-            m_SuDiAni.SetTrigger("Idle");
+            m_SuDiAni.SetTrigger("IdleAngry");
             m_MaoMaoChongAni.SetTrigger("Speak3");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-5");
             yield return new WaitForSeconds(5.9f);
@@ -119,11 +119,11 @@ namespace SZ10003
             m_SuNiAni.SetTrigger("Angry2");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-7");
             yield return new WaitForSeconds(2.9f);
-            m_SuNiAni.SetTrigger("Idle");
+            m_SuNiAni.SetTrigger("IdleAngry");
             m_SuDiAni.SetTrigger("Angry2");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-8");
             yield return new WaitForSeconds(1.8f);
-            m_SuDiAni.SetTrigger("Idle");
+            m_SuDiAni.SetTrigger("IdleAngry");
             m_Box.SetActive(false);
             MessageDispatcher.SendMessageData("10003AudioShot", "MaoMaoChongLiKai");
             m_MaoMaoChongAni.SetTrigger("Bullet");
@@ -136,11 +136,11 @@ namespace SZ10003
                 MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-9");
             });
             yield return new WaitForSeconds(6.3f);
-            m_SuNiAni.SetTrigger("Idle");
+            m_SuNiAni.SetTrigger("IdleAngry");
             m_SuDiAni.SetTrigger("Anxiou");
             MessageDispatcher.SendMessageData("10003AudioPlay", "02-3-10");
             yield return new WaitForSeconds(10f);
-            m_SuDiAni.SetTrigger("Idle");
+            m_SuDiAni.SetTrigger("IdleAngry");
             //m_SuNi.transform.LookAt(new Vector3(Camera.main.transform.position.x, m_SuDi.transform.position.y, Camera.main.transform.position.z));
             //m_SuDi.transform.LookAt(new Vector3(Camera.main.transform.position.x, m_SuDi.transform.position.y, Camera.main.transform.position.z));
             m_SuNi.GetComponent<FollowItem>().enabled = true;
